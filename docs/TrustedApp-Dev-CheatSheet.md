@@ -1,0 +1,1259 @@
+# TrustedApp Development CheatSheet
+
+*Last Updated: December 2024*
+
+## 🚀 **Quick Start Commands**
+
+```bash
+# Development
+pnpm dev              # Start dev server with Turbopack
+pnpm build           # Build for production  
+pnpm start           # Start production server
+pnpm lint            # Run ESLint
+pnpm lint --fix      # Fix linting issues
+
+# Component Creation
+mkdir src/components/[category]
+touch src/components/[category]/ComponentName.tsx
+```
+
+---
+
+## 📦 **Essential Imports & Utilities**
+
+### **Core Utilities**
+```typescript
+// Utility function for className merging
+import { cn } from "@/lib/utils"
+
+// Usage
+<div className={cn("base-class", conditionalClass && "active", className)} />
+```
+
+### **Theme Management**
+```typescript
+// Theme store and components
+import { useThemeStore, type ThemeMode } from "@/lib/themeStore"
+import { ThemeToggle, ThemeToggleCompact } from "@/components/ui/theme-toggle"
+import { ThemeProvider } from "@/components/providers/theme-provider"
+
+// Usage
+const { mode, setMode, resolvedTheme } = useThemeStore()
+```
+
+### **Animation & Motion**
+```typescript
+// Core animation imports
+import { motion, Variants } from "motion/react"
+import { AnimatePresence } from "motion/react"
+
+// Custom animation components
+import { AnimatedGroup } from "@/components/ui/animated-group"
+import { TextEffect } from "@/components/ui/text-effect"
+```
+
+### **UI Components (Most Used)**
+```typescript
+// Essential UI imports
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
+// Icons (Lucide React)
+import { Users, ArrowRight, Check, Star, ChevronDown, Sun, Moon, Monitor } from "lucide-react"
+```
+
+### **React Hooks (Common Patterns)**
+```typescript
+import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { useDebouncedCallback } from "use-debounce"
+
+// State management (Zustand)
+import { useRevenueStore } from "@/lib/revenueStore"
+```
+
+---
+
+## 🎯 **Component Patterns**
+
+### **1. Basic Component Structure**
+```typescript
+import React from "react"
+import { cn } from "@/lib/utils"
+
+interface ComponentProps {
+  className?: string
+  children?: React.ReactNode
+  variant?: "default" | "secondary"
+}
+
+export const Component = ({ className, children, variant = "default" }: ComponentProps) => {
+  return (
+    <div className={cn("base-styles", variant === "secondary" && "secondary-styles", className)}>
+      {children}
+    </div>
+  )
+}
+```
+
+### **2. Theme-Aware Component Pattern**
+```typescript
+import { useThemeStore } from "@/lib/themeStore"
+import { cn } from "@/lib/utils"
+
+export const ThemeAwareComponent = ({ className }: { className?: string }) => {
+  const { resolvedTheme } = useThemeStore()
+  
+  return (
+    <div className={cn(
+      "base-styles",
+      resolvedTheme === "dark" ? "dark-specific-styles" : "light-specific-styles",
+      className
+    )}>
+      {/* Component content */}
+    </div>
+  )
+}
+```
+
+### **3. Animated Component Pattern**
+```typescript
+import { motion } from "motion/react"
+import { cn } from "@/lib/utils"
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1 }
+}
+
+export const AnimatedComponent = ({ items, className }: Props) => {
+  return (
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className={cn("grid gap-4", className)}
+    >
+      {items.map((item, index) => (
+        <motion.div key={index} variants={itemVariants}>
+          {item}
+        </motion.div>
+      ))}
+    </motion.div>
+  )
+}
+```
+
+### **4. Search/Filter Pattern**
+```typescript
+import { useState } from "react"
+
+export const SearchableComponent = () => {
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+
+  const filteredItems = items.filter(item => {
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesCategory = selectedCategory === "all" || item.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  return (
+    <div>
+      <input 
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search..."
+      />
+      {/* Render filtered items */}
+    </div>
+  )
+}
+```
+
+### **5. State Management Pattern (Zustand)**
+```typescript
+import { create } from "zustand"
+
+interface StoreState {
+  data: any[]
+  setData: (data: any[]) => void
+  updateItem: (id: string, updates: Partial<any>) => void
+}
+
+export const useStore = create<StoreState>((set) => ({
+  data: [],
+  setData: (data) => set({ data }),
+  updateItem: (id, updates) => set((state) => ({
+    data: state.data.map(item => item.id === id ? { ...item, ...updates } : item)
+  }))
+}))
+```
+
+---
+
+## 🎨 **Animation Presets**
+
+### **AnimatedGroup Presets**
+```typescript
+// Available presets: "fade", "slide", "scale", "blur", "blur-slide", "zoom", "flip", "bounce", "rotate", "swing"
+
+<AnimatedGroup preset="slide" className="grid gap-4">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</AnimatedGroup>
+```
+
+### **TextEffect Presets**
+```typescript
+// Available presets: "blur", "fade-in-blur", "scale", "fade", "slide"
+// Per options: "char", "word", "line"
+
+<TextEffect preset="fade-in-blur" per="word">
+  Your animated text here
+</TextEffect>
+```
+
+### **Custom Motion Variants**
+```typescript
+const slideIn = {
+  hidden: { x: -20, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.3 } }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+  }
+}
+```
+
+---
+
+## 🌙 **Theme System**
+
+### **Theme Toggle Usage**
+```typescript
+// Floating theme toggle (main implementation)
+<FloatingThemeToggle />
+
+// Original inline toggles (if needed elsewhere)
+<ThemeToggle />
+<ThemeToggleCompact />
+
+// The floating toggle is automatically added in layout.tsx
+```
+
+### **Theme Store Integration**
+```typescript
+import { useThemeStore } from "@/lib/themeStore"
+
+const { mode, setMode, resolvedTheme } = useThemeStore()
+
+// Set theme programmatically
+setMode("dark")     // Force dark mode
+setMode("light")    // Force light mode  
+setMode("system")   // Follow system preference
+
+// Check current resolved theme
+if (resolvedTheme === "dark") {
+  // Dark mode specific logic
+}
+```
+
+### **Theme Provider Setup**
+```typescript
+// In layout.tsx or _app.tsx
+import { ThemeProvider } from "@/components/providers/theme-provider"
+
+export default function RootLayout({ children }) {
+  return (
+    <html suppressHydrationWarning>
+      <body>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+---
+
+## 💅 **Styling Patterns**
+
+### **Common Tailwind Patterns**
+```css
+/* Layout */
+.container-pattern { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+.section-pattern { @apply py-16 lg:py-24; }
+.grid-pattern { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8; }
+
+/* Components */
+.card-pattern { @apply bg-card text-card-foreground rounded-2xl shadow-lg border border-border p-6; }
+.button-pattern { @apply inline-flex items-center justify-center rounded-md text-sm font-medium; }
+
+/* Text */
+.heading-xl { @apply text-4xl lg:text-6xl font-bold tracking-tight; }
+.heading-lg { @apply text-3xl lg:text-4xl font-bold; }
+.heading-md { @apply text-2xl lg:text-3xl font-semibold; }
+
+/* Interactive */
+.hover-lift { @apply transition-transform hover:-translate-y-1; }
+.hover-glow { @apply transition-shadow hover:shadow-xl; }
+
+/* Theme-aware */
+.theme-surface { @apply bg-background text-foreground; }
+.theme-card { @apply bg-card text-card-foreground border-border; }
+.theme-muted { @apply bg-muted text-muted-foreground; }
+```
+
+### **Responsive Breakpoints**
+```css
+/* Mobile First Approach */
+sm:   /* 640px and up */
+md:   /* 768px and up */
+lg:   /* 1024px and up */
+xl:   /* 1280px and up */
+2xl:  /* 1536px and up */
+```
+
+### **Dark Mode Specific Styles**
+```css
+/* Use semantic colors for automatic theme adaptation */
+.auto-theme { @apply bg-background text-foreground border-border; }
+
+/* Manual dark mode variants (avoid if possible) */
+.manual-theme { @apply bg-white dark:bg-slate-900 text-black dark:text-white; }
+```
+
+---
+
+## 🖼️ **Asset Management**
+
+### **Logo Usage**
+```typescript
+// Header/Footer (ALWAYS use this)
+const HEADER_LOGO = "/logos/TrustedApp_Logo-removebg-preview.png"
+const FOOTER_LOGO = "/logos/TrustedApp_Logo-removebg-preview.png"
+
+// Expert Profile (TrustedApp experts only)
+const TRUSTEDAPP_PFP = "/logos/Trusted_App_PFP-removebg-preview.png"
+```
+
+### **Image Optimization**
+```typescript
+import Image from "next/image"
+
+// Optimized image component
+<Image
+  src="/path/to/image.jpg"
+  alt="Description"
+  width={400}
+  height={300}
+  className="rounded-lg"
+  priority // Use for above-the-fold images
+/>
+```
+
+### **Remote Image Patterns**
+```typescript
+// Configured domains in next.config.ts
+- res.cloudinary.com
+- images.unsplash.com
+- ik.imagekit.io
+- img.logo.dev
+```
+
+---
+
+## 🔧 **Configuration Files**
+
+### **TypeScript Config**
+```json
+// tsconfig.json - Path aliases
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/ui/*": ["./src/components/ui/*"],
+      "@/lib/*": ["./src/lib/*"]
+    }
+  }
+}
+```
+
+### **Shadcn/ui Config**
+```json
+// components.json
+{
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide"
+}
+```
+
+---
+
+## 📱 **Common Page Patterns**
+
+### **Landing Page Structure**
+```typescript
+export default function Page() {
+  return (
+    <>
+      <HeroSection />
+      <LogoCloud />
+      <FeaturesSection />
+      <Stats />
+      <Testimonials />
+      <Faqs />
+      <CallToAction />
+    </>
+  )
+}
+```
+
+### **Feature Page Structure**
+```typescript
+export default function FeaturePage() {
+  return (
+    <div className="py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold mb-4">Page Title</h1>
+          <p className="text-xl text-muted-foreground">Subtitle</p>
+        </div>
+        
+        <div className="grid gap-8">
+          {/* Content sections */}
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+## 🎭 **Icon Library (Lucide)**
+
+### **Most Used Icons**
+```typescript
+import {
+  // Navigation
+  Menu, X, ChevronDown, ArrowRight,
+  
+  // Actions
+  Check, Plus, Minus, Edit, Trash2,
+  
+  // Social/Business
+  Users, UserCheck, Building, Star,
+  
+  // Communication
+  Mail, Phone, MessageCircle, Send,
+  
+  // Content
+  FileText, Image, Video, Download,
+  
+  // Status
+  CheckCircle, AlertCircle, XCircle, Clock,
+  
+  // Theme
+  Sun, Moon, Monitor
+} from "lucide-react"
+```
+
+### **Icon Usage Pattern**
+```typescript
+<Users className="size-6 text-blue-600" aria-hidden />
+<ArrowRight className="size-4 ml-2" />
+<Sun className="size-4 text-amber-500" />
+<Moon className="size-4 text-slate-400" />
+```
+
+---
+
+## 🚦 **State Management Patterns**
+
+### **Local State (useState)**
+```typescript
+// Simple state
+const [isOpen, setIsOpen] = useState(false)
+
+// Object state
+const [form, setForm] = useState({ name: "", email: "" })
+
+// Array state
+const [items, setItems] = useState<Item[]>([])
+const addItem = (item: Item) => setItems(prev => [...prev, item])
+const removeItem = (id: string) => setItems(prev => prev.filter(item => item.id !== id))
+```
+
+### **Zustand Store Pattern**
+```typescript
+// Store definition
+interface AppState {
+  data: any[]
+  loading: boolean
+  setData: (data: any[]) => void
+  setLoading: (loading: boolean) => void
+}
+
+export const useAppStore = create<AppState>((set) => ({
+  data: [],
+  loading: false,
+  setData: (data) => set({ data }),
+  setLoading: (loading) => set({ loading })
+}))
+
+// Usage in component
+const { data, loading, setData } = useAppStore()
+```
+
+### **Theme Store Pattern**
+```typescript
+// Theme store with persistence
+import { create } from "zustand"
+import { persist } from "zustand/middleware"
+
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      mode: "system",
+      resolvedTheme: "light",
+      setMode: (mode) => set({ mode }),
+      setResolvedTheme: (resolvedTheme) => set({ resolvedTheme }),
+    }),
+    {
+      name: "trustedapp-theme",
+      partialize: (state) => ({ mode: state.mode }),
+    }
+  )
+)
+```
+
+---
+
+## 🧪 **Testing Patterns**
+
+### **Component Testing Setup**
+```typescript
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+
+test("component renders correctly", () => {
+  render(<Component />)
+  expect(screen.getByRole("button")).toBeInTheDocument()
+})
+
+test("handles user interaction", async () => {
+  const user = userEvent.setup()
+  render(<Component />)
+  
+  await user.click(screen.getByRole("button"))
+  expect(screen.getByText("Success")).toBeInTheDocument()
+})
+```
+
+---
+
+## 🔍 **Debugging Helpers**
+
+### **Dev Tools**
+```typescript
+// Console debugging
+console.log("🐛 Debug:", { variable })
+console.table(arrayData)
+console.group("Function Name")
+console.groupEnd()
+
+// React Dev Tools
+// Install React Developer Tools browser extension
+
+// Performance monitoring
+console.time("operation")
+// ... operation
+console.timeEnd("operation")
+```
+
+### **Common Debug Patterns**
+```typescript
+// State debugging
+useEffect(() => {
+  console.log("State changed:", state)
+}, [state])
+
+// Props debugging
+const Component = (props) => {
+  console.log("Props received:", props)
+  return <div>...</div>
+}
+```
+
+---
+
+## ⚡ **Performance Tips**
+
+### **Image Optimization**
+```typescript
+// Use Next.js Image component
+import Image from "next/image"
+
+// Lazy load images below the fold
+<Image loading="lazy" />
+
+// Priority load hero images
+<Image priority />
+```
+
+### **Code Splitting**
+```typescript
+// Dynamic imports
+const DynamicComponent = dynamic(() => import("./HeavyComponent"), {
+  loading: () => <p>Loading...</p>
+})
+
+// Lazy load with Suspense
+import { lazy, Suspense } from "react"
+const LazyComponent = lazy(() => import("./Component"))
+
+<Suspense fallback={<Loading />}>
+  <LazyComponent />
+</Suspense>
+```
+
+### **Bundle Analysis**
+```bash
+# Analyze bundle size
+pnpm build && pnpm analyze
+```
+
+---
+
+## 🚨 **Common Gotchas & Solutions**
+
+### **1. Hydration Errors**
+```typescript
+// Problem: Server/client mismatch
+// Solution: Use suppressHydrationWarning or useEffect
+
+const [mounted, setMounted] = useState(false)
+useEffect(() => setMounted(true), [])
+
+if (!mounted) return null
+return <ClientOnlyComponent />
+```
+
+### **2. Image Loading Issues**
+```typescript
+// Problem: Images not loading
+// Solution: Check Next.js config and path
+
+// next.config.ts
+images: {
+  remotePatterns: [
+    { protocol: "https", hostname: "example.com" }
+  ]
+}
+```
+
+### **3. Animation Performance**
+```typescript
+// Problem: Janky animations
+// Solution: Use transform and opacity only
+
+// ✅ Good
+.animate { transform: translateY(-10px); opacity: 0.8; }
+
+// ❌ Avoid
+.animate { height: 200px; width: 300px; }
+```
+
+### **4. Theme Flash Issues**
+```typescript
+// Problem: Theme flash on page load
+// Solution: Use suppressHydrationWarning and proper SSR handling
+
+<html suppressHydrationWarning>
+  <body>
+    <ThemeProvider>
+      {children}
+    </ThemeProvider>
+  </body>
+</html>
+```
+
+---
+
+## 📚 **Quick References**
+
+### **File Structure Template**
+```
+src/
+  app/
+    [page]/
+      page.tsx
+      loading.tsx
+      error.tsx
+  components/
+    ui/           # Reusable primitives
+    marketing/    # Brand-specific
+    layout/       # Navigation
+    providers/    # Context providers
+    [domain].tsx  # Page-level
+  lib/
+    utils.ts      # Utilities
+    store.ts      # State management
+    themeStore.ts # Theme management
+```
+
+### **Git Workflow**
+```bash
+# Feature development
+git checkout -b feature/component-name
+git add .
+git commit -m "feat: add ComponentName"
+git push origin feature/component-name
+
+# Create PR, merge, cleanup
+git branch -d feature/component-name
+```
+
+---
+
+**🎯 Pro Tip:** Keep this cheat sheet handy and update it when you discover new patterns or encounter edge cases!
+
+**📞 Need Help?** Check the [Directory Rules](./Directory-Rules.md) for organizational guidelines.
+
+## 🎨 **Color Scheme & Theme System**
+
+### **🚨 CRITICAL: Avoiding Color Issues**
+
+Our app had several color scheme issues where components remained perpetually dark or light regardless of theme mode. Here's what we fixed and how to prevent future issues:
+
+#### **❌ NEVER Use These (Hardcoded Colors):**
+```css
+/* Background Colors - AVOID */
+bg-white, bg-black, bg-[#hex], bg-gray-*
+
+/* Text Colors - AVOID */  
+text-white, text-black, text-gray-*, hover:text-black
+
+/* Manual Dark Mode - AVOID */
+bg-white dark:bg-gray-950
+text-gray-500 dark:text-gray-400
+```
+
+#### **✅ ALWAYS Use These (Semantic Colors):**
+```css
+/* Backgrounds */
+bg-background        /* Main page background */
+bg-card             /* Card/elevated surfaces */
+bg-muted            /* Subtle backgrounds */
+bg-popover          /* Popover/dropdown backgrounds */
+
+/* Text Colors */
+text-foreground      /* Primary text */
+text-muted-foreground /* Secondary/subtle text */
+text-card-foreground  /* Text on cards */
+
+/* Interactive Elements */
+text-primary         /* Links, buttons, accents */
+hover:text-foreground /* Hover states */
+border-border        /* All borders */
+
+/* Transparency & Effects */
+bg-background/80     /* Semi-transparent backgrounds */
+backdrop-blur-sm     /* Glass effects */
+```
+
+#### **🔧 Fixed Components:**
+- **Footer**: `bg-[#fafafa]` → `bg-background/80 backdrop-blur-sm`
+- **Privacy Policy**: `bg-[#0a0a0a] text-gray-100` → `bg-background text-foreground`
+- **Team Section**: `bg-white dark:bg-gray-950` → `bg-card text-card-foreground`
+- **Call-to-Action**: `bg-white text-gray-600` → `bg-background text-muted-foreground`
+- **Header**: Enhanced transparency with `bg-background/70`
+- **Pricing Page**: `bg-gradient-to-br from-white via-[#f9fafb] to-white` → `bg-background`
+- **PriceCard**: `bg-white/80` → `bg-card/80 backdrop-blur-md`
+- **Hero Section**: `bg-gradient-to-br from-blue-50 via-white to-purple-50` → `bg-background`
+- **Features Section**: `bg-white shadow` → `bg-card border border-border shadow`
+- **Solution Page**: `bg-gradient-to-br from-white via-[#f9fafb] to-white` → `bg-background`
+- **About Page**: `bg-gradient-to-b from-blue-50 via-white to-white` → `bg-background`
+- **Testimonials Page**: All hardcoded backgrounds converted to semantic colors
+
+#### **🎨 Complete Color Mapping Guide:**
+```typescript
+const COLOR_MIGRATION = {
+  // Backgrounds
+  'bg-white': 'bg-background',
+  'bg-black': 'bg-background', 
+  'bg-gray-50': 'bg-muted/30',
+  'bg-gray-100': 'bg-muted/50',
+  'bg-gray-900': 'bg-card',
+  'bg-gray-950': 'bg-card',
+  'bg-[#fafafa]': 'bg-background/80',
+  'bg-[#0a0a0a]': 'bg-background',
+
+  // Text Colors
+  'text-black': 'text-foreground',
+  'text-white': 'text-foreground',
+  'text-gray-400': 'text-muted-foreground',
+  'text-gray-500': 'text-muted-foreground', 
+  'text-gray-600': 'text-muted-foreground',
+  'text-gray-700': 'text-foreground/80',
+  'text-gray-900': 'text-foreground',
+
+  // Interactive
+  'hover:text-black': 'hover:text-foreground',
+  'hover:text-white': 'hover:text-foreground',
+  'border-gray-300': 'border-border',
+  'border-gray-800': 'border-border',
+
+  // Form Elements
+  'focus:ring-blue-500': 'focus:ring-primary/50',
+  'bg-blue-500': 'bg-primary',
+  'text-blue-600': 'text-primary'
+}
+```
+
+### **Theme Toggle Usage**
+```typescript
+// Floating theme toggle (main implementation)
+<FloatingThemeToggle />
+
+// Original inline toggles (if needed elsewhere)
+<ThemeToggle />
+<ThemeToggleCompact />
+
+// The floating toggle is automatically added in layout.tsx
+```
+
+### **Theme Store Integration**
+```typescript
+import { useThemeStore } from "@/lib/themeStore"
+
+const { mode, setMode, resolvedTheme } = useThemeStore()
+
+// Set theme programmatically
+setMode("dark")     // Force dark mode
+setMode("light")    // Force light mode  
+setMode("system")   // Follow system preference
+
+// Check current resolved theme
+if (resolvedTheme === "dark") {
+  // Dark mode specific logic
+}
+```
+
+### **🛡️ Prevention Guidelines**
+1. **Always test both light and dark modes** when developing
+2. **Use semantic colors exclusively** - never hardcode colors
+3. **Prefer transparency** for overlays: `bg-background/80 backdrop-blur-sm`
+4. **Add transition effects** for smooth theme changes: `transition-colors`
+5. **Lint rule suggestion**: Add ESLint rule to catch hardcoded colors
+
+---
+
+## 🎬 **Animation System**
+
+### **Framer Motion Patterns**
+```typescript
+// Page entrance animation
+const pageVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+}
+
+// Stagger children animation
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+  }
+}
+
+// Hover effects
+whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+whileHover={{ y: -8, boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
+
+// Glass morphism hover
+whileHover={{ 
+  backgroundColor: "rgba(255,255,255,0.1)",
+  backdropFilter: "blur(20px)"
+}}
+```
+
+---
+
+## 💅 **Styling Patterns**
+
+### **Common Tailwind Patterns**
+```css
+/* Layout */
+.container-pattern { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+.section-pattern { @apply py-16 lg:py-24; }
+.grid-pattern { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8; }
+
+/* Components */
+.card-pattern { @apply bg-card text-card-foreground rounded-2xl shadow-lg border border-border p-6; }
+.button-pattern { @apply inline-flex items-center justify-center rounded-md text-sm font-medium; }
+
+/* Text */
+.heading-xl { @apply text-4xl lg:text-6xl font-bold tracking-tight; }
+.heading-lg { @apply text-3xl lg:text-4xl font-bold; }
+.heading-md { @apply text-2xl lg:text-3xl font-semibold; }
+
+/* Interactive */
+.hover-lift { @apply transition-transform hover:-translate-y-1; }
+.hover-glow { @apply transition-shadow hover:shadow-xl; }
+
+/* Theme-aware (FIXED PATTERNS) */
+.theme-surface { @apply bg-background text-foreground; }
+.theme-card { @apply bg-card text-card-foreground border-border; }
+.theme-muted { @apply bg-muted text-muted-foreground; }
+.theme-transparent { @apply bg-background/80 backdrop-blur-sm; }
+```
+
+### **Responsive Breakpoints**
+```css
+/* Mobile First Approach */
+sm:   /* 640px and up */
+md:   /* 768px and up */
+lg:   /* 1024px and up */
+xl:   /* 1280px and up */
+2xl:  /* 1536px and up */
+```
+
+---
+
+## 🖼️ **Asset Management**
+
+### **Logo Usage**
+```typescript
+// Header/Footer (ALWAYS use this)
+const HEADER_LOGO = "/logos/TrustedApp_Logo-removebg-preview.png"
+const FOOTER_LOGO = "/logos/TrustedApp_Logo-removebg-preview.png"
+
+// Expert Profile (TrustedApp experts only)
+const TRUSTEDAPP_PFP = "/logos/Trusted_App_PFP-removebg-preview.png"
+```
+
+### **Image Optimization**
+```typescript
+import Image from "next/image"
+
+// Optimized image component
+<Image
+  src="/path/to/image.jpg"
+  alt="Description"
+  width={400}
+  height={300}
+  className="rounded-lg"
+  priority // Use for above-the-fold images
+/>
+```
+
+### **Remote Image Patterns**
+```typescript
+// Configured domains in next.config.ts
+- res.cloudinary.com
+- images.unsplash.com
+- ik.imagekit.io
+- img.logo.dev
+```
+
+---
+
+## 🔧 **Configuration Files**
+
+### **TypeScript Config**
+```json
+// tsconfig.json - Path aliases
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/ui/*": ["./src/components/ui/*"],
+      "@/lib/*": ["./src/lib/*"]
+    }
+  }
+}
+```
+
+### **Shadcn/ui Config**
+```json
+// components.json
+{
+  "rsc": true,
+  "tsx": true,
+  "style": "new-york",
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "src/app/globals.css",
+    "baseColor": "slate",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui"
+  }
+}
+```
+
+---
+
+## 🌐 **Routing & Navigation**
+
+### **App Router Structure**
+```typescript
+// src/app/page.tsx - Homepage
+// src/app/team/page.tsx - Team page
+// src/app/pricing/page.tsx - Pricing page
+// src/app/layout.tsx - Root layout
+
+// Dynamic routes
+// src/app/experts/[id]/page.tsx
+// src/app/providers/[slug]/page.tsx
+```
+
+### **Navigation Patterns**
+```typescript
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+// Active link styling
+const pathname = usePathname()
+const isActive = pathname === "/team"
+
+<Link 
+  href="/team"
+  className={`text-muted-foreground hover:text-foreground transition-colors ${
+    isActive ? "text-foreground font-semibold" : ""
+  }`}
+>
+  Team
+</Link>
+```
+
+---
+
+## 📦 **Component Patterns**
+
+### **UI Component Structure**
+```typescript
+// src/components/ui/* - Base shadcn components
+// src/components/marketing/* - Marketing specific
+// src/components/layout/* - Layout components
+
+// Import pattern
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+```
+
+### **Custom Hook Pattern**
+```typescript
+// src/lib/hooks/useTheme.ts
+import { useThemeStore } from "@/lib/themeStore"
+
+export function useTheme() {
+  const { mode, setMode, resolvedTheme } = useThemeStore()
+  
+  return {
+    theme: resolvedTheme,
+    setTheme: setMode,
+    isDark: resolvedTheme === "dark"
+  }
+}
+```
+
+---
+
+## 🚀 **Performance Optimization**
+
+### **Next.js 15 Features**
+```typescript
+// Turbopack (in dev)
+"dev": "next dev --turbopack"
+
+// Static optimization
+export const dynamic = 'force-static'
+
+// Streaming
+import { Suspense } from 'react'
+<Suspense fallback={<Loading />}>
+  <SlowComponent />
+</Suspense>
+```
+
+### **Image & Asset Optimization**
+```typescript
+// Lazy loading
+<Image loading="lazy" />
+
+// Priority loading for hero images
+<Image priority />
+
+// Optimized logo sizing
+const LOGO_SIZES = {
+  header: { width: 120, height: 40 },
+  footer: { width: 100, height: 33 }
+}
+```
+
+---
+
+## 🔍 **Debugging & Development**
+
+### **Common Issues & Solutions**
+
+#### **Hydration Errors**
+```typescript
+// Use suppressHydrationWarning for theme-dependent content
+<html suppressHydrationWarning>
+
+// Client-only components
+const [mounted, setMounted] = useState(false)
+useEffect(() => setMounted(true), [])
+if (!mounted) return <Skeleton />
+```
+
+#### **Theme Flash Prevention**
+```typescript
+// In _document.tsx or layout.tsx
+<script dangerouslySetInnerHTML={{
+  __html: `(function() {
+    try {
+      var theme = localStorage.getItem('theme') || 'system'
+      if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      }
+    } catch (e) {}
+  })()`
+}} />
+```
+
+#### **Color Debugging**
+```typescript
+// Debug theme state
+console.log('Theme mode:', mode)
+console.log('Resolved theme:', resolvedTheme)
+console.log('System dark:', window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+// Check applied classes
+console.log('HTML classes:', document.documentElement.className)
+```
+
+---
+
+## 📝 **Code Standards**
+
+### **File Naming**
+```
+PascalCase: Components (Button.tsx, TeamSection.tsx)
+camelCase: Functions, variables (getUserData, isLoggedIn)
+kebab-case: Files, folders (team-section.tsx, user-profile/)
+UPPER_CASE: Constants (API_BASE_URL, DEFAULT_THEME)
+```
+
+### **Import Organization**
+```typescript
+// 1. React imports
+import React, { useState, useEffect } from 'react'
+
+// 2. Next.js imports  
+import Link from 'next/link'
+import Image from 'next/image'
+
+// 3. Third-party imports
+import { motion } from 'framer-motion'
+
+// 4. Internal imports
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+
+// 5. Type imports (last)
+import type { ComponentProps } from 'react'
+```
+
+---
+
+## 🔧 **Quick Fixes & Snippets**
+
+### **Component Template**
+```typescript
+"use client"
+
+import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
+
+interface ComponentNameProps {
+  className?: string
+  children?: React.ReactNode
+}
+
+export function ComponentName({ className, children }: ComponentNameProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={cn("bg-card text-card-foreground p-6 rounded-lg", className)}
+    >
+      {children}
+    </motion.div>
+  )
+}
+```
+
+### **Theme-Aware Button**
+```typescript
+<Button 
+  variant="outline"
+  className="bg-background/80 backdrop-blur-sm border-border hover:bg-muted transition-colors"
+>
+  Theme-Aware Button
+</Button>
+```
+
+---
+
+## 🎯 **Best Practices**
+
+1. **Always use semantic colors** - never hardcode `bg-white`, `text-black`, etc.
+2. **Test both light and dark modes** during development
+3. **Use transparency for overlays** - `bg-background/80 backdrop-blur-sm`
+4. **Add smooth transitions** - `transition-colors duration-200`
+5. **Optimize images** with Next.js Image component
+6. **Use TypeScript strictly** - no `any` types
+7. **Follow component composition** over prop drilling
+8. **Keep components small and focused** - single responsibility
+9. **Use custom hooks** for complex state logic
+10. **Document breaking changes** in this cheat sheet
+
+---
+
+*Last Updated: December 2024 - Post Color Scheme Fix*
+*Version: 2.1.0 - Added comprehensive color troubleshooting section* 

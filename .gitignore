@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Cleanup rules - prevent duplicate files
+*" 2"*
+*" 2."*
+src" 2"/
+docs" 2"/
+.next" 2"/
+
+# System files
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
