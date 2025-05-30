@@ -130,7 +130,7 @@ export default function HeroSection() {
             >
               {founders.map((founder, idx) => (
                 <SwiperSlide className="px-2" key={idx}>
-                  <div className="bg-card/80 backdrop-blur-lg rounded-2xl h-44 sm:h-48 max-w-lg p-6 sm:p-9 flex flex-col items-center justify-center transition-all hover:scale-105 shadow-lg">
+                  <div className="bg-card/90 backdrop-blur-sm rounded-2xl h-44 sm:h-48 max-w-lg p-6 sm:p-9 flex flex-col items-center justify-center transition-all hover:scale-105 shadow-lg">
                     <img
                       src={founder.image}
                       alt={founder.name}

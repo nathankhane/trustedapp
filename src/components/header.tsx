@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 const menuItems = [
   { name: "Team", href: "/team" },
@@ -62,7 +63,7 @@ export const HeroHeader = () => {
           className={cn(
             "mx-auto mt-2 max-w-6xl px-4 sm:px-6 transition-all duration-300 lg:px-12",
             isClient && isScrolled &&
-            "bg-background/95 backdrop-blur-xl max-w-5xl rounded-2xl shadow-lg shadow-black/5 lg:px-8",
+            "bg-background/95 backdrop-blur-sm max-w-5xl rounded-2xl shadow-lg shadow-black/5 lg:px-8",
           )}
         >
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">

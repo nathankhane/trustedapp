@@ -132,6 +132,11 @@
         hsl(var(--muted) / 0.3) 50%,
         hsl(var(--background)) 100%);
     min-height: 100vh;
+    /* Optimize blur rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   /* Dark mode body background */
@@ -140,5 +145,17 @@
         hsl(var(--background)) 0%,
         hsl(var(--muted) / 0.2) 50%,
         hsl(var(--background)) 100%);
+  }
+
+  /* Optimize blur filters */
+  [class*="blur-"],
+  [style*="blur("] {
+    will-change: filter;
+    transform: translateZ(0);
+  }
+
+  /* Ensure proper animation completion */
+  [class*="animate-"] {
+    animation-fill-mode: both;
   }
 }

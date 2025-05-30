@@ -60,17 +60,17 @@ export default function FeaturesSection() {
         style={{ y: y1, opacity }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl animate-pulse" />
-        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-pink-500/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/8 rounded-full blur-lg animate-pulse" />
+        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-500/8 rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-pink-500/8 rounded-full blur-lg animate-pulse" style={{ animationDelay: '2s' }} />
       </motion.div>
 
       <motion.div
         style={{ y: y2, opacity }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute top-1/4 right-10 w-16 h-16 bg-green-500/10 rounded-full blur-lg animate-bounce" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-1/3 right-1/4 w-20 h-20 bg-yellow-500/10 rounded-full blur-lg animate-bounce" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-1/4 right-10 w-16 h-16 bg-green-500/8 rounded-full blur-md animate-bounce" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-1/3 right-1/4 w-20 h-20 bg-yellow-500/8 rounded-full blur-md animate-bounce" style={{ animationDelay: '1.5s' }} />
       </motion.div>
 
       <div className="mx-auto max-w-5xl px-6 overflow-visible relative z-10">
