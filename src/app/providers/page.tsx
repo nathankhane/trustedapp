@@ -273,7 +273,7 @@ export default function ProviderMarketplace() {
         <div className="mb-16">
           <div className="flex gap-4 max-w-2xl mx-auto">
             <div className="flex-1 relative group">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" />
+              <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors animate-pulse" />
               <input
                 type="text"
                 placeholder="Search experts..."

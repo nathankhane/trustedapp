@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { HeroHeader } from "@/components/header";
 import FooterSection from "@/components/footer";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SimpleToggle } from "@/components/ui/mode-toggle";
 
 const geistSans = Geist({
@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TrustedApp",
-  description: "Monetize the Stack You Already Use",
+  title: "Trusted SaaS",
+  description: "Turn expertise into income. Turn user insight into market wins.",
 };
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
         <ThemeProvider>
           <HeroHeader />
           <div className="min-h-screen flex flex-col">
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 pt-16 sm:pt-20">{children}</main>
             <FooterSection />
           </div>
           {/* Theme toggle positioned as floating button */}
