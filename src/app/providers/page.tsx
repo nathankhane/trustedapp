@@ -277,7 +277,7 @@ export default function ProviderMarketplace() {
               <input
                 type="text"
                 placeholder="Search experts..."
-                className="w-full pl-12 pr-4 py-4 bg-card/70 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm text-foreground placeholder:text-muted-foreground"
+                className="w-full pl-12 pr-4 py-4 bg-card/90 rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm text-foreground placeholder:text-muted-foreground border border-border/20 focus:border-primary/30"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

@@ -144,7 +144,7 @@ export default function ExpertsPage() {
               <input
                 type="text"
                 placeholder="Search partners..."
-                className="w-full pl-12 pr-4 py-4 bg-card/70 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm text-foreground placeholder:text-muted-foreground"
+                className="w-full pl-12 pr-4 py-4 bg-card/90 rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm text-foreground placeholder:text-muted-foreground border border-border/20 focus:border-primary/30"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -152,7 +152,7 @@ export default function ExpertsPage() {
             <div className="relative group">
               <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" />
               <select
-                className="pl-12 pr-8 py-4 bg-card/70 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm appearance-none text-foreground"
+                className="pl-12 pr-8 py-4 bg-card/90 rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm appearance-none text-foreground border border-border/20 focus:border-primary/30"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
