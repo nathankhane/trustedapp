@@ -10,7 +10,7 @@ export default function AboutPage() {
                         <h2 className="text-foreground mt-2 text-4xl font-semibold">Get paid for product insight. SaaS teams get truth on demand.</h2>
                         <p className="text-muted-foreground mb-12 mt-6 text-lg">
                             <strong>What we do:</strong><br />
-                            TrustedApp instantly matches seasoned software users ("Experts") with SaaS companies ("Providers") for paid calls, surveys, and reviews. Experts turn hard-won know-how into recurring income. Providers skip the recruiting grind and get actionable user intel + warm conversions in days, not weeks.
+                            TrustedApp instantly matches seasoned software users (&ldquo;Experts&rdquo;) with SaaS companies (&ldquo;Providers&rdquo;) for paid calls, surveys, and reviews. Experts turn hard-won know-how into recurring income. Providers skip the recruiting grind and get actionable user intel + warm conversions in days, not weeks.
                         </p>
                     </div>
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
                         </div>
                         <div className="mt-12">
                             <blockquote className="text-lg text-muted-foreground italic border-l-4 border-primary pl-6 mb-4">
-                                "One TrustedApp campaign put 35 competitor power users in front of my PMs this week. We shaved two sprints of guess-work and closed six net-new accounts for less than an agency retainer."<br />
+                                &ldquo;One TrustedApp campaign put 35 competitor power users in front of my PMs this week. We shaved two sprints of guess-work and closed six net-new accounts for less than an agency retainer.&rdquo;<br />
                                 <span className="font-semibold text-primary">Maya Patel – Director of Product Marketing, Atlassian</span>
                             </blockquote>
                             <p className="text-foreground text-lg font-semibold mt-8">

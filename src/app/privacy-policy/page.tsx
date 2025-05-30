@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
                         TrustedApp Privacy Policy
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                        Your privacy powers our platform. Here's the short, clear version of what we collect, why, and how we protect it.
+                        Your privacy powers our platform. Here&rsquo;s the short, clear version of what we collect, why, and how we protect it.
                     </p>
                     <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@ export default function PrivacyPolicyPage() {
                                     </table>
                                 </div>
                                 <p className="text-muted-foreground text-sm mt-4 italic">
-                                    We don't knowingly collect data from anyone under 16.
+                                    We don&rsquo;t knowingly collect data from anyone under 16.
                                 </p>
                             </div>
                         </section>
@@ -273,7 +273,7 @@ export default function PrivacyPolicyPage() {
 
                             <div className="bg-card rounded-xl p-6 shadow-sm">
                                 <p className="text-card-foreground leading-relaxed">
-                                    We'll post updates here and, if the change is big, give you 14 days' notice via email or in-app.
+                                    We&rsquo;ll post updates here and, if the change is big, give you 14 days&rsquo; notice via email or in-app.
                                 </p>
                             </div>
                         </section>
