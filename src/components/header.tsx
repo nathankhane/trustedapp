@@ -57,14 +57,8 @@ export const HeroHeader = () => {
 
   return (
     <header>
-      <nav className="fixed z-50 w-full top-0 left-0 right-0">
-        <div
-          className={cn(
-            "w-full px-4 sm:px-6 lg:px-8 transition-all duration-300",
-            isClient && isScrolled &&
-            "bg-background/95 backdrop-blur-lg border-b border-border/20 shadow-sm",
-          )}
-        >
+      <nav className="fixed z-50 w-full top-0 left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-border/20 shadow-sm">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="relative flex items-center justify-between h-16">
               {/* Logo and Mobile Menu Button */}
