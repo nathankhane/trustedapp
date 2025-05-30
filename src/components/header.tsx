@@ -44,7 +44,7 @@ export const HeroHeader = () => {
           className={cn(
             "mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12",
             isClient && isScrolled &&
-            "bg-background/70 backdrop-blur-xl max-w-5xl rounded-2xl shadow-lg shadow-black/5 lg:px-8",
+            "bg-background/90 backdrop-blur-xl max-w-5xl rounded-2xl shadow-lg shadow-black/5 lg:px-8",
           )}
         >
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
@@ -118,7 +118,7 @@ export const HeroHeader = () => {
             {/* Mobile Menu */}
             {menuState && (
               <div className="lg:hidden absolute top-full left-0 right-0 mt-2 mx-2">
-                <div className="bg-background/95 backdrop-blur-md rounded-2xl border border-border/30 p-6 shadow-xl">
+                <div className="bg-background/98 backdrop-blur-xl rounded-2xl border border-border/30 p-6 shadow-xl">
                   <ul className="space-y-4 mb-6">
                     {menuItems.map((item, index) => {
                       const isActive = pathname === item.href;
