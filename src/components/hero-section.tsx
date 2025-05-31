@@ -84,7 +84,7 @@ export default function HeroSection() {
           <h1
             className="
               mx-auto text-center font-bold leading-[1.2] tracking-tight
-              text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+              text-3xl sm:text-4xl md:text-5xl lg:text-6xl
               text-transparent bg-clip-text
               bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
               mb-8 sm:mb-10 lg:mb-12
