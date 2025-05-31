@@ -58,7 +58,7 @@ export default function FAQs() {
               Your questions answered
             </p>
             <p className="text-muted-foreground mt-6 hidden md:block">
-              Can't find what you're looking for? Contact our{" "}
+              {"Can't find what you're looking for? Contact our"}{" "}
               <Link
                 href="#"
                 className="text-primary font-medium hover:underline"
@@ -84,7 +84,7 @@ export default function FAQs() {
           </div>
 
           <p className="text-muted-foreground mt-6 md:hidden">
-            Can't find what you're looking for? Contact our{" "}
+            {"Can't find what you're looking for? Contact our"}{" "}
             <Link href="#" className="text-primary font-medium hover:underline">
               customer support team
             </Link>
