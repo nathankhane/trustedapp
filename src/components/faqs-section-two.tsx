@@ -32,7 +32,7 @@ export default function FAQs() {
       id: "item-4",
       question: "Who can join as a founder?",
       answer:
-        "Operators who've raised from top-tier VCs and actively use the tools they're reviewing. We verify funding, role, and tech stack; if you're not hands-on with the product category, you're out.",
+        "Operators who&apos;ve raised from top-tier VCs and actively use the tools they&apos;re reviewing. We verify funding, role, and tech stack; if you&apos;re not hands-on with the product category, you&apos;re out.",
     },
     {
       id: "item-5",
@@ -58,7 +58,7 @@ export default function FAQs() {
               Your questions answered
             </p>
             <p className="text-muted-foreground mt-6 hidden md:block">
-              Can't find what you're looking for? Contact our{" "}
+              Can&apos;t find what you&apos;re looking for? Contact our{" "}
               <Link
                 href="#"
                 className="text-primary font-medium hover:underline"
@@ -84,7 +84,7 @@ export default function FAQs() {
           </div>
 
           <p className="text-muted-foreground mt-6 md:hidden">
-            Can't find what you're looking for? Contact our{" "}
+            Can&apos;t find what you&apos;re looking for? Contact our{" "}
             <Link href="#" className="text-primary font-medium hover:underline">
               customer support team
             </Link>
