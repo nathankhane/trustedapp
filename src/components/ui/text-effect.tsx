@@ -70,26 +70,17 @@ const presetVariants: Record<
   blur: {
     container: defaultContainerVariants,
     item: {
-      hidden: { opacity: 0, filter: "blur(4px)" },
-      visible: {
-        opacity: 1,
-        filter: "blur(0px)",
-        transition: { duration: 0.6, ease: "easeOut" }
-      },
-      exit: { opacity: 0, filter: "blur(2px)" },
+      hidden: { opacity: 0, filter: "blur(12px)" },
+      visible: { opacity: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, filter: "blur(12px)" },
     },
   },
   "fade-in-blur": {
     container: defaultContainerVariants,
     item: {
-      hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
-      visible: {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: { duration: 0.8, ease: "easeOut" }
-      },
-      exit: { opacity: 0, y: 20, filter: "blur(3px)" },
+      hidden: { opacity: 0, y: 20, filter: "blur(12px)" },
+      visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+      exit: { opacity: 0, y: 20, filter: "blur(12px)" },
     },
   },
   scale: {

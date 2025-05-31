@@ -129,7 +129,7 @@ export default function ExpertsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30 pt-24">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
       <main className="flex-1">
         <Hero
           title="Monetize the Stack You Already Use"

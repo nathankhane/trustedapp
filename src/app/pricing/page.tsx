@@ -84,7 +84,7 @@ export default function PricingPage() {
 
   return (
     <>
-      <section className="min-h-screen py-24 pt-24 lg:pt-32 bg-background">
+      <section className="min-h-screen py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

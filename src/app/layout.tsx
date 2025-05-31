@@ -34,7 +34,7 @@ export default function RootLayout({
         <ThemeProvider>
           <HeroHeader />
           <div className="min-h-screen flex flex-col">
-            <main className="flex-1 pt-16 sm:pt-20">{children}</main>
+            <main className="flex-1 pt-[72px]">{children}</main>
             <FooterSection />
           </div>
           {/* Theme toggle positioned as floating button */}

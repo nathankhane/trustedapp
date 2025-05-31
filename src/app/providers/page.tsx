@@ -242,7 +242,7 @@ export default function ProviderMarketplace() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30 pt-24">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
       <main className="flex-1">
         <Hero
           title="Book Vetted Founders in 60 Seconds"

@@ -131,7 +131,7 @@ export default function TestimonialsPage() {
   ];
 
   return (
-    <div className="flex-1 w-full pt-24 lg:pt-32">
+    <div className="flex-1 w-full">
       {/* Featured Testimonial */}
       <section className="bg-gradient-to-br from-muted/30 to-muted/50 py-16">
         <div className="mx-auto max-w-4xl px-6">
