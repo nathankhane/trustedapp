@@ -286,8 +286,8 @@ export default function ProviderMarketplace() {
         </div>
 
         {/* Providers Grid */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 max-w-7xl pb-20 sm:pb-24 lg:pb-28">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {filteredExperts.map((expert, index) => (
               <motion.div
                 key={expert.id}
@@ -304,7 +304,7 @@ export default function ProviderMarketplace() {
                 className="group relative bg-card/80 backdrop-blur-lg rounded-3xl shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 overflow-hidden border border-border/50 hover:border-primary/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex flex-col h-full p-5 md:p-6">
+                <div className="relative flex flex-col h-full p-6 md:p-8">
                   <div className="flex items-center justify-between mb-6">
                     <motion.div
                       className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden bg-background shadow-sm group-hover:shadow-md transition-shadow duration-200"

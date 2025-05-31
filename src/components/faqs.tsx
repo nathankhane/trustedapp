@@ -78,9 +78,9 @@ export default function Faqs() {
                   </span>
                 </summary>
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === idx ? "opacity-100 max-h-96 translate-y-0" : "opacity-0 max-h-0 -translate-y-2"}`}
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === idx ? "opacity-100 max-h-[500px] translate-y-0" : "opacity-0 max-h-0 -translate-y-2"}`}
                 >
-                  <div className="mt-2 text-base text-muted-foreground animate-fade-in">
+                  <div className="mt-2 text-sm sm:text-base text-muted-foreground animate-fade-in leading-relaxed">
                     {item.answer}
                   </div>
                 </div>

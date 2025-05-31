@@ -1,10 +1,10 @@
 import HeroSection from "@/components/hero-section";
-import LogoCloud from "@/components/logo-cloud";
+import LogoCloud from "@/components/marketing/logo-cloud";
 import Features from "@/components/features";
 import CommunitySection from "@/components/content-6";
 import { Stats } from "@/components/marketing/Stats";
 import Faqs from "@/components/faqs";
-import CallToAction from "@/components/call-to-action";
+import CallToAction from "@/components/marketing/call-to-action";
 
 export default function Home() {
   return (

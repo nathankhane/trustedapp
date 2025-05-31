@@ -78,7 +78,12 @@ export const HeroHeader = () => {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      className="text-muted-foreground hover:text-foreground block duration-200 transition-colors"
+                      className={cn(
+                        "block duration-200 transition-all px-3 py-2 rounded-lg",
+                        pathname === item.href
+                          ? "text-foreground bg-muted border border-border shadow-sm"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      )}
                     >
                       <span>{item.name}</span>
                     </Link>

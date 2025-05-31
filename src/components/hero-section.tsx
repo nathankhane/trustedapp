@@ -78,16 +78,17 @@ const founders = [
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-background pb-16 sm:pb-24 lg:pb-32">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 flex flex-col items-center">
-        <AnimatedGroup className="w-full">
+    <section className="relative overflow-hidden bg-background pb-16 sm:pb-20 lg:pb-24">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16">
+        <AnimatedGroup className="w-full text-center">
           <h1
             className="
-              max-w-6xl mx-auto text-center font-extrabold leading-tight
-              text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl
+              mx-auto text-center font-bold leading-[1.2] tracking-tight
+              text-4xl sm:text-5xl md:text-6xl lg:text-7xl
               text-transparent bg-clip-text
               bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
-              mb-6
+              mb-8 sm:mb-10 lg:mb-12
+              max-w-5xl px-4
             "
           >
             Turn expertise into recurring revenue.<br className="hidden sm:block" />
@@ -95,7 +96,7 @@ export default function HeroSection() {
           </h1>
           <TextEffect
             as="p"
-            className="text-center text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-3xl mx-auto px-4"
+            className="text-center text-xl sm:text-2xl md:text-2xl text-muted-foreground mb-12 sm:mb-16 lg:mb-20 max-w-3xl mx-auto px-4 leading-relaxed"
             preset="fade-in-blur"
             speedSegment={0.3}
             delay={0.2}
@@ -105,14 +106,14 @@ export default function HeroSection() {
         </AnimatedGroup>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-12 sm:mb-14 w-full sm:w-auto px-4 sm:px-0">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20 sm:mb-24 lg:mb-28 w-full px-4 sm:px-0">
           <Link href="/experts" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto rounded-full bg-background text-foreground px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg border border-border transition hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <button className="w-full sm:w-auto rounded-full bg-background text-foreground px-8 sm:px-10 py-4 text-base sm:text-lg font-semibold shadow-lg border border-border transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:scale-105">
               For Experts &rarr;
             </button>
           </Link>
           <Link href="/providers" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto rounded-full bg-background text-foreground px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg border border-border transition hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 hover:text-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+            <button className="w-full sm:w-auto rounded-full bg-background text-foreground px-8 sm:px-10 py-4 text-base sm:text-lg font-semibold shadow-lg border border-border transition-all duration-300 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 hover:text-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 hover:scale-105">
               For Providers &rarr;
             </button>
           </Link>
@@ -120,7 +121,7 @@ export default function HeroSection() {
 
         {/* Founder Carousel */}
         <div className="w-full flex justify-center px-4 sm:px-0">
-          <div className="relative mx-auto mt-4 max-w-sm sm:max-w-lg w-full">
+          <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-lg w-full">
             <Swiper
               slidesPerView={1}
               loop
