@@ -38,13 +38,13 @@ export default function FAQs() {
       id: "item-5",
       question: "How is TrustedApp different from AppSumo or FounderPass?",
       answer:
-        "Those sites sell discounted licenses. We sell high-signal feedback loops. Vendors pay you for truth bombs; you don't pay them for lifetime deals. Think user-research turbocharged, not bargain-bin SaaS.",
+        "Those sites sell discounted licenses. We sell high-signal feedback loops. Vendors pay you for truth bombs; you don&apos;t pay them for lifetime deals. Think user-research turbocharged, not bargain-bin SaaS.",
     },
     {
       id: "item-6",
       question: "Is there a cost to join?",
       answer:
-        "Founders: zero. Vendors: choose a monthly plan or buy credits à la carte—cancel anytime. TrustedApp only takes a 10% cut after a vendor approves the work, so everyone's incentives stay aligned.",
+        "Founders: zero. Vendors: choose a monthly plan or buy credits à la carte—cancel anytime. TrustedApp only takes a 10% cut after a vendor approves the work, so everyone&apos;s incentives stay aligned.",
     },
   ];
 

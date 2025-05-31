@@ -44,7 +44,7 @@ export default function ContentSection() {
               <blockquote className="border-l-4 pl-4">
                 <p>
                   Using TailsUI has been like unlocking a secret design
-                  superpower. It's the perfect fusion of simplicity and
+                  superpower. It&apos;s the perfect fusion of simplicity and
                   versatility, enabling us to create UIs that are as stunning as
                   they are user-friendly.
                 </p>
