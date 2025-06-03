@@ -43,7 +43,7 @@ export default function TestimonialsPage() {
       avatar: "/images/alan-boehme.jpg",
       fallback: "AB",
       color: avatarColors[0],
-      quote: "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I've earned at the bleeding edge is paying me back every month.",
+      quote: "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I&apos;ve earned at the bleeding edge is paying me back every month.",
     },
     {
       name: "Maya Patel",
@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
       avatar: "/images/maya-patel.jpg",
       fallback: "MP",
       color: avatarColors[1],
-      quote: "Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the 'insights' barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist.",
+      quote: "Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the &apos;insights&apos; barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist.",
     },
     {
       name: "Aisha Rahman",
@@ -161,7 +161,7 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <blockquote className="text-lg text-card-foreground italic group-hover:text-foreground transition-colors duration-200">
-                  "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I've earned at the bleeding edge is paying me back every month."
+                  &quot;After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I&apos;ve earned at the bleeding edge is paying me back every month.&quot;
                 </blockquote>
               </CardContent>
             </Card>
@@ -248,7 +248,7 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <blockquote className="text-lg text-card-foreground italic group-hover:text-foreground transition-colors duration-200">
-                  "Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the 'insights' barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist."
+                  &quot;Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the &apos;insights&apos; barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist.&quot;
                 </blockquote>
               </CardContent>
             </Card>

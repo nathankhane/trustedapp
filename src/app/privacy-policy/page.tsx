@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
                         <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">Privacy Policy</span>
                     </div>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                        Your privacy powers our platform. Here's the short, clear version of what we collect, why, and how we protect it.
+                        Your privacy powers our platform. Here&apos;s the short, clear version of what we collect, why, and how we protect it.
                     </p>
                     <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +74,7 @@ export default function PrivacyPolicyPage() {
                                     </table>
                                 </div>
                                 <p className="text-muted-foreground text-sm mt-4 italic">
-                                    We don't knowingly collect data from anyone under 16.
+                                    We don&apos;t knowingly collect data from anyone under 16.
                                 </p>
                             </div>
                         </section>
@@ -270,7 +270,7 @@ export default function PrivacyPolicyPage() {
 
                             <div className="bg-card rounded-xl p-6 shadow-sm">
                                 <p className="text-muted-foreground text-sm">
-                                    We'll post updates here and, if the change is big, give you 14 days' notice via email or in-app.
+                                    We&apos;ll post updates here and, if the change is big, give you 14 days&apos; notice via email or in-app.
                                 </p>
                             </div>
                         </section>
