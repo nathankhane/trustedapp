@@ -250,34 +250,38 @@ export default function ProviderMarketplace() {
         />
 
         {/* Positive Info Banner */}
-        <div className="flex items-center justify-center bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 text-blue-600 bg-primary/80 backdrop-blur-sm text-sm font-semibold py-3 px-6 rounded-b-2xl shadow-md mb-8 animate-fade-in">
-          <Sparkles className="w-5 h-5 mr-3 text-primary animate-pulse" />
-          <span>
-            TrustedApp accelerates product research and revenue—teams running
-            weekly expert interviews see up to{" "}
-            <span className="font-bold text-primary">2× faster growth</span>{" "}
-            and{" "}
-            <span className="font-bold text-primary">
-              save 20+ hours per sprint
+        <div className="mx-4 sm:mx-6 lg:mx-8 mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 text-blue-600 bg-primary/80 backdrop-blur-sm text-sm font-semibold py-3 sm:py-3 px-4 sm:px-6 rounded-2xl shadow-md animate-fade-in gap-2 sm:gap-0">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary animate-pulse flex-shrink-0" />
+              <span className="text-center sm:text-left text-xs sm:text-sm leading-tight">
+                TrustedApp accelerates product research and revenue—teams running
+                weekly expert interviews see up to{" "}
+                <span className="font-bold text-primary">2× faster growth</span>{" "}
+                and{" "}
+                <span className="font-bold text-primary">
+                  save 20+ hours per sprint
+                </span>
+                .
+              </span>
+            </div>
+            <span className="hidden lg:inline text-muted-foreground text-xs ml-4">
+              Source: McKinsey, Nielsen Norman Group
             </span>
-            .
-          </span>
-          <span className="hidden sm:inline text-muted-foreground text-xs ml-4">
-            Source: McKinsey, Nielsen Norman Group
-          </span>
+          </div>
         </div>
 
         <StatsRibbon />
 
         {/* Search and Filter Section */}
-        <div className="mb-16">
-          <div className="flex gap-4 max-w-2xl mx-auto">
+        <div className="mb-8 sm:mb-12 lg:mb-16 px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-3 sm:gap-4 max-w-2xl mx-auto">
             <div className="flex-1 relative group">
               <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 text-primary transition-colors animate-pulse" />
               <input
                 type="text"
                 placeholder="Search experts..."
-                className="w-full pl-12 pr-4 py-4 bg-card/90 rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm text-foreground placeholder:text-muted-foreground border border-border/20 focus:border-primary/30"
+                className="w-full pl-12 pr-4 py-3 sm:py-4 bg-card/90 rounded-2xl focus:ring-2 focus:ring-primary/20 transition-all duration-200 shadow-sm text-foreground placeholder:text-muted-foreground border border-border/20 focus:border-primary/30 text-sm sm:text-base"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -286,8 +290,8 @@ export default function ProviderMarketplace() {
         </div>
 
         {/* Providers Grid */}
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 max-w-7xl pb-20 sm:pb-24 lg:pb-28">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl pb-16 sm:pb-20 lg:pb-24 xl:pb-28">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
             {filteredExperts.map((expert, index) => (
               <motion.div
                 key={expert.id}
@@ -301,13 +305,13 @@ export default function ProviderMarketplace() {
                   rotateY: 2,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="group relative bg-card/80 backdrop-blur-lg rounded-3xl shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 overflow-hidden border border-border/50 hover:border-primary/30"
+                className="group relative bg-card/80 backdrop-blur-lg rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 overflow-hidden border border-border/50 hover:border-primary/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative flex flex-col h-full p-6 md:p-8">
-                  <div className="flex items-center justify-between mb-6">
+                <div className="relative flex flex-col h-full p-4 sm:p-6 md:p-8">
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
                     <motion.div
-                      className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden bg-background shadow-sm group-hover:shadow-md transition-shadow duration-200"
+                      className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl overflow-hidden bg-background shadow-sm group-hover:shadow-md transition-shadow duration-200"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.2 }}
                     >
@@ -315,22 +319,22 @@ export default function ProviderMarketplace() {
                         <img
                           src="/logos/Trusted_App_PFP-removebg-preview.png"
                           alt="TrustedApp Expert Logo"
-                          className="object-contain p-2 w-full h-full"
+                          className="object-contain p-1.5 sm:p-2 w-full h-full"
                         />
                       ) : (
                         <Image
                           src={expert.companyLogo}
                           alt={expert.company}
                           fill
-                          className="object-contain p-2"
+                          className="object-contain p-1.5 sm:p-2"
                         />
                       )}
                     </motion.div>
                     <motion.div
-                      className="flex items-center space-x-1 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm group-hover:shadow-md transition-all duration-200"
+                      className="flex items-center space-x-1 bg-background/90 backdrop-blur-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-sm group-hover:shadow-md transition-all duration-200"
                       whileHover={{ scale: 1.05 }}
                     >
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
                       <span className="text-xs font-medium text-foreground">
                         {expert.rating}
                       </span>
@@ -340,7 +344,7 @@ export default function ProviderMarketplace() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <motion.button
-                          className="w-full mb-4 px-3 py-2 rounded-xl bg-gradient-to-r from-primary/10 to-accent/10 text-foreground font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center border border-primary/20 hover:border-primary/40"
+                          className="w-full mb-3 sm:mb-4 px-3 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-primary/10 to-accent/10 text-foreground font-semibold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center border border-primary/20 hover:border-primary/40 min-h-[36px] sm:min-h-[40px]"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
@@ -352,44 +356,44 @@ export default function ProviderMarketplace() {
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
-                  <div className="text-primary font-bold text-base md:text-lg mb-1 group-hover:text-primary/80 transition-colors duration-200">
+                  <div className="text-primary font-bold text-sm sm:text-base md:text-lg mb-1 group-hover:text-primary/80 transition-colors duration-200">
                     {expert.role} @ {expert.company}
                   </div>
-                  <p className="text-muted-foreground mb-4 leading-relaxed text-sm md:text-base group-hover:text-foreground/70 transition-colors duration-200">
+                  <p className="text-muted-foreground mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm md:text-base group-hover:text-foreground/70 transition-colors duration-200">
                     {expert.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                     <motion.span
-                      className="inline-flex items-center px-2.5 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium hover:bg-primary/20 transition-colors duration-200"
+                      className="inline-flex items-center px-2 sm:px-2.5 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium hover:bg-primary/20 transition-colors duration-200"
                       whileHover={{ scale: 1.05 }}
                     >
                       Experience: {expert.experience}
                     </motion.span>
                     <motion.span
-                      className="inline-flex items-center px-2.5 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-xs font-medium hover:bg-green-500/20 transition-colors duration-200"
+                      className="inline-flex items-center px-2 sm:px-2.5 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-xs font-medium hover:bg-green-500/20 transition-colors duration-200"
                       whileHover={{ scale: 1.05 }}
                     >
                       Rate: {expert.hourlyRate}
                     </motion.span>
                     <motion.span
-                      className="inline-flex items-center px-2.5 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full text-xs font-medium hover:bg-purple-500/20 transition-colors duration-200"
+                      className="inline-flex items-center px-2 sm:px-2.5 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full text-xs font-medium hover:bg-purple-500/20 transition-colors duration-200"
                       whileHover={{ scale: 1.05 }}
                     >
                       Availability: {expert.availability}
                     </motion.span>
                   </div>
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <div className="flex items-center text-xs text-muted-foreground bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
-                      <MapPin className="w-4 h-4 mr-1.5" />
-                      {expert.location}
+                  <div className="flex items-center justify-between mt-auto pt-2 gap-2">
+                    <div className="flex items-center text-xs text-muted-foreground bg-background/90 backdrop-blur-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-sm flex-shrink-0">
+                      <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5" />
+                      <span className="truncate">{expert.location}</span>
                     </div>
                     <motion.button
-                      className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-xl hover:from-primary/90 hover:to-primary/70 transition-all duration-200 shadow-sm hover:shadow-lg text-sm font-medium"
+                      className="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-lg sm:rounded-xl hover:from-primary/90 hover:to-primary/70 transition-all duration-200 shadow-sm hover:shadow-lg text-xs sm:text-sm font-medium min-h-[36px] sm:min-h-[40px]"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       Send Offer
-                      <ExternalLink className="w-4 h-4 ml-2" />
+                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 ml-1.5 sm:ml-2" />
                     </motion.button>
                   </div>
                 </div>
