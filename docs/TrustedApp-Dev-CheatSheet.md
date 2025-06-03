@@ -1256,4 +1256,137 @@ export function ComponentName({ className, children }: ComponentNameProps) {
 ---
 
 *Last Updated: December 2024 - Post Color Scheme Fix*
-*Version: 2.1.0 - Added comprehensive color troubleshooting section* 
+*Version: 2.1.0 - Added comprehensive color troubleshooting section*
+
+## 🛠️ **UI Debugging & Common Fixes**
+
+### **1. Tooltip Transparency Issues (Radix UI)**
+
+**Problem:** Tooltips appearing transparent/translucent while dropdowns are opaque
+
+**Root Cause:** Radix UI's `TooltipContent` has default transparency that semantic Tailwind classes (`bg-background`, `bg-popover`) don't fully override.
+
+**Solution:**
+```typescript
+// ❌ Wrong - Uses semantic classes that don't override Radix defaults
+<TooltipContent className="bg-background border border-border">
+
+// ✅ Correct - Explicit styling that forces opacity
+<TooltipContent className="bg-white border border-gray-200 shadow-lg z-50 opacity-100">
+  <div className="space-y-2 p-3">
+    <p className="font-semibold text-gray-900">Title</p>
+    <p className="text-sm text-gray-700">Description</p>
+    <div className="text-xs text-gray-500">
+      <p><strong>Detail:</strong> Value</p>
+    </div>
+  </div>
+</TooltipContent>
+```
+
+**Key Fixes:**
+- `bg-white` instead of `bg-background` 
+- `opacity-100` to force full opacity
+- Explicit text colors (`text-gray-900`, `text-gray-700`) instead of semantic classes
+- `border-gray-200` to match dropdown styling
+
+### **2. Content Type Selection with Rich Metadata**
+
+**Implementation:**
+```typescript
+// Content metadata structure
+export const CONTENT_META = {
+  discoveryCall: {
+    label: "Discovery Call",
+    typicalLength: "30 min",
+    deliverables: "Zoom/Meet recording",
+    description: "One-on-one conversation to understand needs, pain points, and workflows",
+  },
+  // ... more content types
+} as const;
+
+// Usage in components
+const contentTypes = Object.keys(CONTENT_META) as ContentType[];
+
+// Select with tooltip
+<Tooltip>
+  <TooltipTrigger asChild>
+    <div>
+      <Select value={contentType} onValueChange={setContentType}>
+        <SelectTrigger>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {contentTypes.map((type) => (
+            <SelectItem key={type} value={type}>
+              {CONTENT_META[type].label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  </TooltipTrigger>
+  <TooltipContent className="max-w-xs bg-white border border-gray-200 shadow-lg z-50 opacity-100">
+    <div className="space-y-2 p-3">
+      <p className="font-semibold text-gray-900">{CONTENT_META[contentType].label}</p>
+      <p className="text-sm text-gray-700">{CONTENT_META[contentType].description}</p>
+      <div className="text-xs text-gray-500 space-y-1">
+        <p><strong>Length:</strong> {CONTENT_META[contentType].typicalLength}</p>
+        <p><strong>Deliverable:</strong> {CONTENT_META[contentType].deliverables}</p>
+      </div>
+    </div>
+  </TooltipContent>
+</Tooltip>
+```
+
+### **3. Animated Reveal Pattern (Recurring Revenue)**
+
+**Implementation:**
+```typescript
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Toggle with animated reveal
+<div className="space-y-4">
+  <div className="flex items-center gap-3">
+    <Switch
+      id="allowShare"
+      checked={allowShare}
+      onCheckedChange={setAllowShare}
+    />
+    <Label htmlFor="allowShare">Enable feature</Label>
+  </div>
+
+  <AnimatePresence>
+    {allowShare && (
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.3 }}
+        className="space-y-4 pl-6 border-l-2 border-muted"
+      >
+        {/* Additional controls */}
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
+```
+
+### **4. Debugging Checklist**
+
+**Visual Issues:**
+- [ ] Check if using semantic vs explicit Tailwind classes
+- [ ] Verify z-index with `z-50` or higher
+- [ ] Test with `opacity-100` for transparency issues
+- [ ] Use browser dev tools to inspect computed styles
+
+**State Issues:**
+- [ ] Console log state values to verify updates
+- [ ] Check useEffect dependencies
+- [ ] Verify Zustand store selectors are working
+- [ ] Test with React Developer Tools
+
+**Component Issues:**
+- [ ] Ensure all required props are passed
+- [ ] Check import paths are correct
+- [ ] Verify component is properly exported
+- [ ] Test isolated component in Storybook/standalone

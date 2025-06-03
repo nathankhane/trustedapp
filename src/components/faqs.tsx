@@ -23,7 +23,7 @@ const faqItems = [
   {
     question: "Who can join as a founder?",
     answer:
-      "Operators who&rsquo;ve raised from top-tier VCs and actively use the tools they&rsquo;re reviewing. We verify funding, role, and tech stack; if you&rsquo;re not hands-on with the product category, you&rsquo;re out.",
+      "Operators who've raised from top-tier VCs and actively use the tools they're reviewing. We verify funding, role, and tech stack; if you're not hands-on with the product category, you're out.",
   },
   {
     question: "How is TrustedApp different from AppSumo or FounderPass?",
@@ -89,7 +89,7 @@ export default function Faqs() {
           </div>
 
           <p className="text-muted-foreground mt-6 px-8">
-            Can&rsquo;t find what you&rsquo;re looking for? Contact our{" "}
+            Can't find what you're looking for? Contact our{" "}
             <Link href="#" className="text-primary font-medium hover:underline">
               customer support team
             </Link>

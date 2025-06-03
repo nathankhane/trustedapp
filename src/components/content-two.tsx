@@ -20,7 +20,7 @@ export default function ContentSection() {
                             <CodeIllustration className="sm:col-span-2" />
                             <div className="mt-6 sm:col-span-3 sm:mt-0 sm:border-l sm:pl-12">
                                 <h3 className="text-foreground text-xl font-semibold">Marketing Campaigns</h3>
-                                <p className="text-muted-foreground mt-4 text-lg">We&rsquo;ll put together your schedule on automatically. You&rsquo;ll keep app deadlines, and will work on the highest priority items first.</p>
+                                <p className="text-muted-foreground mt-4 text-lg">We'll put together your schedule on automatically. You'll keep app deadlines, and will work on the highest priority items first.</p>
                             </div>
                         </div>
                         <div className="grid sm:grid-cols-5">
@@ -29,7 +29,7 @@ export default function ContentSection() {
                             </div>
                             <div className="mt-6 sm:col-span-3 sm:mt-0 sm:border-l sm:pl-12 sm:pt-12">
                                 <h3 className="text-foreground text-xl font-semibold">AI Meeting Scheduler</h3>
-                                <p className="text-muted-foreground mt-4 text-lg">Ask the chat to create or update your events. Ask it how much time you&rsquo;ve spent on demo calls last week. Or have it prepare today&rsquo;s agendas.</p>
+                                <p className="text-muted-foreground mt-4 text-lg">Ask the chat to create or update your events. Ask it how much time you've spent on demo calls last week. Or have it prepare today's agendas.</p>
                             </div>
                         </div>
                     </div>

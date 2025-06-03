@@ -4,19 +4,16 @@ export default function PrivacyPolicyPage() {
     return (
         <div className="min-h-screen bg-background text-foreground">
             {/* Header Section */}
-            <div className="pb-16 px-6">
+            <div className="pb-16 px-6 pt-16">
                 <div className="max-w-4xl mx-auto text-center">
                     <div className="inline-flex items-center gap-2 bg-muted/50 rounded-full px-4 py-2 mb-8">
-                        <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
-                        <span className="text-sm text-muted-foreground">Privacy Policy</span>
+                        <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">Privacy Policy</span>
                     </div>
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-                        TrustedApp Privacy Policy
-                    </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                        Your privacy powers our platform. Here&rsquo;s the short, clear version of what we collect, why, and how we protect it.
+                        Your privacy powers our platform. Here's the short, clear version of what we collect, why, and how we protect it.
                     </p>
                     <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,7 +31,7 @@ export default function PrivacyPolicyPage() {
 
                         {/* Information We Collect */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -77,14 +74,14 @@ export default function PrivacyPolicyPage() {
                                     </table>
                                 </div>
                                 <p className="text-muted-foreground text-sm mt-4 italic">
-                                    We don&rsquo;t knowingly collect data from anyone under 16.
+                                    We don't knowingly collect data from anyone under 16.
                                 </p>
                             </div>
                         </section>
 
                         {/* How We Use It */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -128,7 +125,7 @@ export default function PrivacyPolicyPage() {
 
                         {/* Data Security */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -160,7 +157,7 @@ export default function PrivacyPolicyPage() {
 
                         {/* Sharing & Transfers */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
@@ -172,7 +169,7 @@ export default function PrivacyPolicyPage() {
                             <div className="bg-card rounded-xl p-6 shadow-sm">
                                 <div className="mb-6">
                                     <p className="text-foreground text-lg font-semibold mb-3">
-                                        We <span className="text-destructive italic">never</span> sell your data.
+                                        Keeping your data private is our mission.
                                     </p>
                                     <p className="text-card-foreground mb-4">We share it only with:</p>
                                 </div>
@@ -208,7 +205,7 @@ export default function PrivacyPolicyPage() {
 
                         {/* Cookies */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-yellow-500/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -226,7 +223,7 @@ export default function PrivacyPolicyPage() {
 
                         {/* Your Choices */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
@@ -262,7 +259,7 @@ export default function PrivacyPolicyPage() {
 
                         {/* Changes */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -272,15 +269,15 @@ export default function PrivacyPolicyPage() {
                             </h2>
 
                             <div className="bg-card rounded-xl p-6 shadow-sm">
-                                <p className="text-card-foreground leading-relaxed">
-                                    We&rsquo;ll post updates here and, if the change is big, give you 14 days&rsquo; notice via email or in-app.
+                                <p className="text-muted-foreground text-sm">
+                                    We'll post updates here and, if the change is big, give you 14 days' notice via email or in-app.
                                 </p>
                             </div>
                         </section>
 
                         {/* Contact */}
                         <section className="mb-16">
-                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center justify-center gap-3">
                                 <div className="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center">
                                     <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

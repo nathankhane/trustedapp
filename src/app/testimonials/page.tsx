@@ -27,7 +27,7 @@ const testimonials = {
   featured: {
     name: "Alan Boehme",
     role: "Global 500 CTO, Transformation & Innovation Catalyst",
-    content: "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I&apos;ve earned at the bleeding edge is paying me back every month.",
+    content: "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I've earned at the bleeding edge is paying me back every month.",
     initials: "AB",
     avatar: "",
   },
@@ -43,7 +43,7 @@ export default function TestimonialsPage() {
       avatar: "/images/alan-boehme.jpg",
       fallback: "AB",
       color: avatarColors[0],
-      quote: "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I&rsquo;ve earned at the bleeding edge is paying me back every month.",
+      quote: "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I've earned at the bleeding edge is paying me back every month.",
     },
     {
       name: "Maya Patel",
@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
       avatar: "/images/maya-patel.jpg",
       fallback: "MP",
       color: avatarColors[1],
-      quote: "Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the &rsquo;insights&rsquo; barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist.",
+      quote: "Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the 'insights' barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist.",
     },
     {
       name: "Aisha Rahman",
@@ -67,7 +67,7 @@ export default function TestimonialsPage() {
       avatar: "/images/sophia-lorenzo.jpg",
       fallback: "SL",
       color: avatarColors[3],
-      quote: "TrustedApp surfaces tools that actually solve my clients&apos; problems. I demo, get paid, and grab lifetime discounts all in one workflow—chef&apos;s kiss.",
+      quote: "TrustedApp surfaces tools that actually solve my clients' problems. I demo, get paid, and grab lifetime discounts all in one workflow—chef's kiss.",
     },
     {
       name: "Javier Ortega",
@@ -75,7 +75,7 @@ export default function TestimonialsPage() {
       avatar: "/images/javier-ortega.jpg",
       fallback: "JO",
       color: avatarColors[4],
-      quote: "The dashboard lights up whenever a SaaS we already use wants feedback. It&apos;s basically passive income for taking calls I&apos;d have done for free. My board loves the extra cash flow, I love the validation cycle.",
+      quote: "The dashboard lights up whenever a SaaS we already use wants feedback. It's basically passive income for taking calls I'd have done for free. My board loves the extra cash flow, I love the validation cycle.",
     },
     {
       name: "Liam O'Donnell",
@@ -91,7 +91,7 @@ export default function TestimonialsPage() {
       avatar: "/images/mei-ling-zhou.jpg",
       fallback: "MZ",
       color: avatarColors[6],
-      quote: "I dreaded &apos;expert networks&apos; until I scored two early-access tools through TrustedApp. Post-review, both founders kept me on retainer for growth advice. Double win.",
+      quote: "I dreaded 'expert networks' until I scored two early-access tools through TrustedApp. Post-review, both founders kept me on retainer for growth advice. Double win.",
     },
   ];
   const providerTestimonials = [
@@ -161,7 +161,7 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <blockquote className="text-lg text-card-foreground italic group-hover:text-foreground transition-colors duration-200">
-                  &ldquo;After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I&rsquo;ve earned at the bleeding edge is paying me back every month.&rdquo;
+                  "After two decades stress-testing software stacks, I joined TrustedApp as an Expert. One no-frills review of my go-to tools was enough—within 48 hours SaaS teams were booking discovery calls, and my Stripe dashboard lit up with recurring payouts. At last, the insight I've earned at the bleeding edge is paying me back every month."
                 </blockquote>
               </CardContent>
             </Card>
@@ -248,7 +248,7 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <blockquote className="text-lg text-card-foreground italic group-hover:text-foreground transition-colors duration-200">
-                  &ldquo;Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the &rsquo;insights&rsquo; barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist.&rdquo;
+                  "Hiring agencies for user research felt like burning money in slow-motion—weeks of screening, and the 'insights' barely moved the needle. One TrustedApp campaign put 35 power users of our biggest competitor in front of my PMs this week. We trimmed two sprints of guess-work, closed six net-new accounts straight from the calls, and paid less than one agency retainer. TrustedApp is now baked into every launch checklist."
                 </blockquote>
               </CardContent>
             </Card>

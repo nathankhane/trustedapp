@@ -136,6 +136,15 @@ export default function ExpertsPage() {
           subtitle="Browse live offers from SaaS teams, drop your feedback, collect Stripe payouts—no outreach required."
         />
 
+        {/* Revenue Calculator Section - Moved to top */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl mb-12 sm:mb-16 lg:mb-20">
+          <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">Estimate Your Revenue</h2>
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">See what your expertise could earn on TrustedApp.</p>
+          </div>
+          <RevenueCalculator />
+        </div>
+
         {/* Search and Filter Section */}
         <div className="mb-8 sm:mb-12 lg:mb-16 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-2xl mx-auto">
@@ -258,15 +267,6 @@ export default function ExpertsPage() {
               </motion.div>
             ))}
           </div>
-        </div>
-
-        {/* Revenue Calculator Section */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl mb-16 sm:mb-20">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 sm:mb-4">Estimate Your Revenue</h2>
-            <p className="text-base sm:text-lg text-muted-foreground">See what your expertise could earn on TrustedApp.</p>
-          </div>
-          <RevenueCalculator />
         </div>
       </main>
     </div>

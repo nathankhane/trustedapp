@@ -63,7 +63,7 @@ export default function LogoCloud() {
             alt={`${name} logo`}
             height={20}
             width={60}
-            className="opacity-80 grayscale hover:opacity-100 hover:grayscale-0 transition"
+            className="opacity-80 sm:grayscale hover:opacity-100 hover:grayscale-0 transition"
             unoptimized
           />
         ))}
