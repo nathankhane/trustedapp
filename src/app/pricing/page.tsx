@@ -1,64 +1,8 @@
 "use client";
 
-import { PriceCard } from "@/components/marketing/PriceCard";
+import { PricingTable } from "@/components/PricingTable";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-const plans = [
-  {
-    name: "Pay-as-you-go",
-    price: null,
-    note: "$49 per insight",
-    perks: ["Buy credits à la carte", "No seat limits", "Stripe checkout—done"],
-    cta: { label: "Buy Credits", href: "/buy" },
-    featured: false,
-  },
-  {
-    name: "Launch",
-    price: "$299",
-    unit: "/ mo",
-    note: "20 credits · 3 seats",
-    perks: [
-      "Standard AI matching",
-      "Campaign dashboard",
-      "Instant Stripe payouts",
-      "Email support",
-    ],
-    cta: { label: "Get Started", href: "/signup?plan=launch" },
-    featured: false,
-  },
-  {
-    name: "Scale",
-    price: "$799",
-    unit: "/ mo",
-    note: "60 credits · 10 seats",
-    perks: [
-      "Priority matching",
-      "Advanced analytics & CSV",
-      "Slack alerts",
-      "Dedicated CSM",
-    ],
-    cta: { label: "Get Started", href: "/signup?plan=scale" },
-    featured: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Let's talk",
-    unit: "",
-    note: "Custom contract",
-    perks: [
-      "Unlimited roll-over credits",
-      "Unlimited seats + SSO",
-      "Private founder panels",
-      "Dedicated LLM / API access",
-      "Full BI feed & webhooks",
-      "Shared Slack channel",
-      "Contracted SLAs",
-    ],
-    cta: { label: "Contact Us", href: "/contactus" },
-    featured: false,
-  },
-];
 
 const faqItems = [
   {
@@ -77,6 +21,14 @@ const faqItems = [
     question: "Do I need a contract?",
     answer: "Monthly self-serve; cancel anytime. Scale plans use an MSA.",
   },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit cards through Stripe. Enterprise plans can use invoicing.",
+  },
+  {
+    question: "Can I switch plans anytime?",
+    answer: "Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the next billing cycle.",
+  },
 ];
 
 export default function PricingPage() {
@@ -84,42 +36,57 @@ export default function PricingPage() {
 
   return (
     <>
-      <section className="min-h-screen py-24 bg-background">
+      {/* Hero Section */}
+      <section className="pt-24 pb-8 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto"
           >
-            <h2 className="text-4xl font-bold tracking-tight mb-4 text-foreground">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-6 text-foreground">
               Fair, usage-based pricing
-            </h2>
-            <p className="text-xl text-muted-foreground">
+            </h1>
+            <p className="text-xl lg:text-2xl text-muted-foreground mb-8">
               Pay only for insights that move revenue. Cancel anytime.
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {plans.map((plan, i) => (
-              <PriceCard key={plan.name} {...plan} index={i} />
-            ))}
-          </div>
-
-          <p className="mt-12 text-center text-sm text-muted-foreground">
-            *Annual contracts save 20% on Launch & Scale.*
-          </p>
         </div>
       </section>
+
+      {/* Pricing Table */}
+      <PricingTable />
+
+      {/* Additional Info */}
+      <section className="py-8 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <p className="text-sm text-muted-foreground">
+              *Annual contracts save 10% and include additional benefits.*
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Pricing FAQs Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-muted/20">
         <div className="mx-auto max-w-3xl px-4 md:px-6">
           <div className="mx-auto max-w-xl text-center">
             <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl mb-4 text-foreground">
-              FAQs
+              Frequently Asked Questions
             </h2>
+            <p className="text-xl text-muted-foreground mb-12">
+              Everything you need to know about our pricing
+            </p>
           </div>
-          <div className="mx-auto mt-12 max-w-xl">
+          <div className="mx-auto mt-12 max-w-2xl">
             <div className="space-y-6">
               {faqItems.map((item: { question: string; answer: string }, idx: number) => (
                 <motion.details

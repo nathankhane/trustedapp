@@ -1,0 +1,49 @@
+# TrustedApp Site Refactor Rules
+
+## Tech Stack
+- Next.js 14 App Router + TypeScript
+- Tailwind v3
+- shadcn/ui components
+- Framer Motion for animations
+
+## Brand Palette
+- Background: #0F0F0F
+- Text: #FAFAFA  
+- Primary accent: #7F5BFF
+- Success accent: #14E956
+
+## Typography
+- Hero headings: display-4xl (80/72/64 px clamps)
+- Body text: Inter font-family
+- Headings: font-weight 500+
+
+## Component Patterns
+- Use `className={cn("rounded-2xl shadow-md", props.className)}` pattern
+- Framer Motion: `<motion.div initial={{opacity:0, y:16}} whileInView={{opacity:1, y:0}} transition={{duration:0.6}} />`
+- Button hover: `scale-[1.03] shadow-lg`
+
+## Code Style
+- No `any` types - use strict TypeScript
+- Feature-based folder structure in src/
+- All strings behind i18n `t()` helper
+- Export interfaces at top of file
+- Use parallel tool calls when possible
+
+## Animation Rules
+- Fade-in on section intersect
+- Count-up on stat bar  
+- Button hover: scale 1.03 + shadow-lg
+- Debounced inputs: 300ms
+
+## Accessibility
+- WCAG AA compliance
+- Color contrast 4.5:1
+- Focus rings on interactive elements
+- aria-labels on modals
+- Semantic HTML structure
+
+## Performance
+- Image srcset + next/image
+- Lighthouse 90+ mobile target
+- Prefetch route links
+- Component lazy loading where appropriate 

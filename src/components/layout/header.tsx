@@ -6,14 +6,15 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { t } from "@/lib/i18n";
 
 const menuItems = [
-  { name: "Team", href: "/team" },
-  { name: "Solution", href: "/solution" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Testimonials", href: "/testimonials" },
-  { name: "Experts", href: "/experts" },
-  { name: "Providers", href: "/providers" },
+  { name: t('nav.team'), href: "/team" },
+  { name: t('nav.solution'), href: "/solution" },
+  { name: t('nav.pricing'), href: "/pricing" },
+  { name: t('nav.testimonials'), href: "/testimonials" },
+  { name: t('nav.experts'), href: "/experts" },
+  { name: t('nav.providers'), href: "/providers" },
 ];
 
 export const HeroHeader = () => {
@@ -115,22 +116,14 @@ export const HeroHeader = () => {
               </ul>
             </div>
 
-            {/* Desktop Auth Buttons */}
+            {/* Desktop Right Utility Group - Single CTA only */}
             <div className="hidden lg:flex lg:items-center lg:gap-3">
               <Button
                 asChild
-                variant="outline"
                 size="sm"
-                className="hover:scale-105 transition-transform duration-200 hover:shadow-md"
+                className="hover:scale-[1.03] transition-transform duration-200 hover:shadow-lg bg-gradient-to-r from-[#7F5BFF] to-purple-600 hover:from-[#7F5BFF]/90 hover:to-purple-600/90"
               >
-                <Link href="/login">Login</Link>
-              </Button>
-              <Button
-                asChild
-                size="sm"
-                className="hover:scale-105 transition-transform duration-200 hover:shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-              >
-                <Link href="/signup">Sign Up</Link>
+                <Link href="/signup">{t('nav.requestAccess')}</Link>
               </Button>
             </div>
           </div>
@@ -170,20 +163,11 @@ export const HeroHeader = () => {
                 <div className="flex flex-col space-y-4">
                   <Button
                     asChild
-                    variant="outline"
                     size="lg"
-                    className="hover:scale-105 transition-transform duration-200 hover:shadow-md"
+                    className="hover:scale-[1.03] transition-transform duration-200 hover:shadow-lg bg-gradient-to-r from-[#7F5BFF] to-purple-600 hover:from-[#7F5BFF]/90 hover:to-purple-600/90"
                     onClick={() => setMenuState(false)}
                   >
-                    <Link href="/login">Login</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="hover:scale-105 transition-transform duration-200 hover:shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                    onClick={() => setMenuState(false)}
-                  >
-                    <Link href="/signup">Sign Up</Link>
+                    <Link href="/signup">{t('nav.requestAccess')}</Link>
                   </Button>
                 </div>
               </div>
