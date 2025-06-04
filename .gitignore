@@ -52,3 +52,6 @@ Thumbs.db
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Archive scripts should be tracked
+!scripts/*.sh
