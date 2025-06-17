@@ -197,20 +197,40 @@ export default function FeaturesSection() {
                   delay: index * 0.5
                 }}
               >
-                {/* Enhanced Card Decorator */}
-                <EnhancedCardDecorator
-                  icon={feature.icon}
-                  shouldReduceMotion={shouldReduceMotion}
-                  index={index}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 transition-opacity group-hover:opacity-100"
+                  animate={{
+                    background: [
+                      "linear-gradient(45deg, rgba(59, 130, 246, 0.05), rgba(168, 85, 247, 0.05))",
+                      "linear-gradient(45deg, rgba(168, 85, 247, 0.05), rgba(236, 72, 153, 0.05))",
+                      "linear-gradient(45deg, rgba(236, 72, 153, 0.05), rgba(59, 130, 246, 0.05))"
+                    ]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.7
+                  }}
                 />
-
-                <div className="relative z-10 p-8 lg:p-10">
-                  <h3 className="mb-4 text-xl font-semibold text-card-foreground group-hover:text-primary transition-colors duration-200">
+                <div className="relative flex flex-col items-center p-8">
+                  <EnhancedCardDecorator index={index}>{feature.icon}</EnhancedCardDecorator>
+                  <motion.h3
+                    className="mt-6 text-xl font-semibold text-center text-card-foreground"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: index * 0.2 + 0.5 }}
+                  >
                     {feature.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
+                  </motion.h3>
+                  <motion.p
+                    className="mt-4 text-base text-muted-foreground text-center"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: index * 0.2 + 0.7 }}
+                  >
                     {feature.description}
-                  </p>
+                  </motion.p>
                 </div>
 
                 {/* Performance-optimized floating particles */}
@@ -256,41 +276,48 @@ export default function FeaturesSection() {
   );
 }
 
-// Performance-optimized EnhancedCardDecorator
-const EnhancedCardDecorator: React.FC<{
-  icon: ReactNode;
-  shouldReduceMotion?: boolean;
-  index: number;
-}> = ({ icon, shouldReduceMotion, index }) => {
-  return (
-    <div className="absolute inset-0 pointer-events-none">
-      {/* Background gradient on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-
-      {/* Icon container with optimized animations */}
+const EnhancedCardDecorator = ({ children, index }: { children: ReactNode; index: number }) => (
+  <motion.div
+    className="relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:bg-white/5 dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]"
+    whileHover={{
+      y: -8,
+      transition: { duration: 0.3, ease: "easeOut" }
+    }}
+  >
+    <motion.div
+      aria-hidden
+      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px]"
+      animate={{
+        opacity: [0.3, 0.7, 0.3],
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: index * 0.4
+      }}
+    />
+    <div
+      aria-hidden
+      className="bg-radial to-background absolute inset-0 from-transparent to-75%"
+    />
+    <motion.div
+      className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-l border-t rounded-lg shadow-lg transition-transform group-hover:scale-110"
+      whileHover={{
+        y: -4,
+        scale: 1.1,
+        boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)",
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
+    >
       <motion.div
-        className="absolute top-6 left-6 w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center backdrop-blur-sm"
-        whileHover={shouldReduceMotion ? {} : {
-          scale: 1.1,
-          rotate: 5,
-          transition: { duration: 0.2 }
+        whileHover={{
+          scale: 1.2,
+          transition: { duration: 0.3, ease: "easeOut" }
         }}
-        style={{ willChange: shouldReduceMotion ? "auto" : "transform" }}
       >
-        <div className="text-primary">
-          {icon}
-        </div>
-
-        {/* Grid pattern background - static for performance */}
-        <div className="absolute inset-0 rounded-xl" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-          backgroundSize: '8px 8px'
-        }} />
+        {children}
       </motion.div>
-
-      {/* Corner accents - simplified for mobile */}
-      <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary/20 rounded-tr-lg hidden md:block" />
-      <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-accent/20 rounded-bl-lg hidden md:block" />
-    </div>
-  );
-};
+    </motion.div>
+  </motion.div>
+);
