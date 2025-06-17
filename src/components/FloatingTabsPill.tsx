@@ -17,7 +17,7 @@ export default function FloatingTabsPill({ active, onActiveChange, isScrolled }:
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-full shadow-xl"
+            className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-full shadow-xl"
         >
             <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
                 {(['expert', 'provider'] as const).map((p) => (

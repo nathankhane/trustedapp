@@ -184,11 +184,11 @@
 
   /* Mobile-optimized interactions */
   @media (max-width: 768px) {
-    .hover\\:scale-105:hover {
+    .hover\:scale-105:hover {
       transform: scale(1.02);
     }
 
-    .hover\\:shadow-xl:hover {
+    .hover\:shadow-xl:hover {
       box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
     }
   }
