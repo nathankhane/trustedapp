@@ -107,7 +107,7 @@ export default function FeaturesSection() {
               backgroundSize: "200% 200%"
             }}
           >
-            Partnering VC-backed founders with the SaaS they can't live without.
+            Partnering VC-backed founders with the SaaS they can&apos;t live without.
           </motion.h2>
           <motion.p
             className="mt-6 text-xl text-muted-foreground"
