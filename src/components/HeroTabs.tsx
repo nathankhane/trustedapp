@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { AnimatedGroup } from './ui/animated-group';
 import { TextEffect } from './ui/text-effect';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import RevenueCalculator from './RevenueCalculator';
 import { UserCheck, MessageSquare, DollarSign, FileText, Users, TrendingUp } from 'lucide-react';
 import FloatingTabsPill from './FloatingTabsPill';
@@ -102,6 +102,8 @@ const heroGradient = 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-50
 export default function HeroTabs() {
     const router = useRouter();
     const search = useSearchParams();
+    const shouldReduceMotion = useReducedMotion() ?? false;
+
     const [active, setActive] = useState<'expert' | 'provider'>(
         (search.get('persona') as 'expert' | 'provider') ?? 'expert'
     );
@@ -121,19 +123,52 @@ export default function HeroTabs() {
 
     const data = personas[active];
 
-    return (
-        <>
-            {/* Floating Tabs Pill - only show when scrolled */}
-            {isScrolled && (
-                <FloatingTabsPill
-                    active={active}
-                    onActiveChange={setActive}
-                    isScrolled={isScrolled}
-                />
-            )}
+    // Performance-optimized animation variants
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 40,
+            scale: shouldReduceMotion ? 1 : 0.95
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: shouldReduceMotion ? 0.1 : 0.7,
+                ease: [0.25, 0.46, 0.45, 0.94]
+            }
+        }
+    };
 
-            <section className="relative overflow-hidden bg-background pb-16 sm:pb-20 lg:pb-24">
-                <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16">
+    const staggerContainer = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.12,
+                delayChildren: shouldReduceMotion ? 0 : 0.1
+            }
+        }
+    };
+
+    return (
+        <div className="relative">
+            {/* Hero Section */}
+            <section
+                className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20 sm:px-6 lg:px-8"
+                data-animate
+            >
+                {/* Background Elements - Reduced on mobile */}
+                {!shouldReduceMotion && (
+                    <div className="absolute inset-0 -z-10 hidden md:block">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20" />
+                        <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-blue-400/5 blur-3xl dark:bg-blue-400/10" />
+                        <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-purple-400/5 blur-3xl dark:bg-purple-400/10" />
+                    </div>
+                )}
+
+                <div className="mx-auto w-full max-w-7xl">
                     {/* Tabs */}
                     <div className="flex justify-center mb-8">
                         <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
@@ -142,13 +177,12 @@ export default function HeroTabs() {
                                     key={p}
                                     onClick={() => setActive(p)}
                                     className={cn(
-                                        "px-4 sm:px-6 py-2 text-sm sm:text-base font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2",
+                                        "px-4 sm:px-6 py-2 text-sm sm:text-base font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 touch-target",
                                         active === p
                                             ? 'bg-white dark:bg-gray-900 shadow-sm text-gray-900 dark:text-white'
                                             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                     )}
                                     aria-selected={active === p}
-                                    aria-controls={`hero-${p}`}
                                     role="tab"
                                 >
                                     {p === 'provider' ? 'Provider' : 'Expert'}
@@ -157,58 +191,80 @@ export default function HeroTabs() {
                         </div>
                     </div>
 
-                    {/* Animated Hero Content */}
                     <AnimatedGroup className="w-full text-center">
-                        <h1
+                        <motion.h1
                             className={`mx-auto text-center font-bold leading-[1.15] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${heroGradient} mb-8 sm:mb-10 lg:mb-12 max-w-5xl px-4`}
+                            style={{ willChange: shouldReduceMotion ? "auto" : "transform" }}
                         >
                             {data.h1}
-                        </h1>
+                        </motion.h1>
                         <div className="text-center text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 sm:mb-12 lg:mb-14 max-w-3xl mx-auto px-4 leading-relaxed">
                             {active === 'expert' ? (
                                 <TextEffect
-                                    preset="fade-in-blur"
-                                    speedSegment={0.3}
-                                    delay={0.2}
+                                    preset={shouldReduceMotion ? "fade" : "fade-in-blur"}
+                                    speedSegment={shouldReduceMotion ? 1 : 0.3}
+                                    delay={shouldReduceMotion ? 0 : 0.2}
                                 >
                                     TrustedApp matches you with providers who&apos;ll pay for your product feedback, content, and discovery calls.
                                 </TextEffect>
                             ) : (
                                 <TextEffect
-                                    preset="fade-in-blur"
-                                    speedSegment={0.3}
-                                    delay={0.2}
+                                    preset={shouldReduceMotion ? "fade" : "fade-in-blur"}
+                                    speedSegment={shouldReduceMotion ? 1 : 0.3}
+                                    delay={shouldReduceMotion ? 0 : 0.2}
                                 >
                                     {data.sub}
                                 </TextEffect>
                             )}
                         </div>
-                        <a
-                            href={data.cta.href}
-                            className="inline-block rounded-full bg-primary text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-lg border border-primary/20 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 hover:scale-[1.03]"
-                        >
-                            {data.cta.label} →
-                        </a>
                     </AnimatedGroup>
+
+                    {/* CTA Buttons with performance optimization */}
+                    <motion.div
+                        className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+                        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.4 }}
+                    >
+                        <motion.button
+                            className="px-6 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-base sm:text-lg transition-all duration-200 hover:scale-[1.03] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 touch-target"
+                            whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                            whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                            style={{ willChange: shouldReduceMotion ? "auto" : "transform" }}
+                        >
+                            {data.cta.label}
+                        </motion.button>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Why Choose Trusted Section */}
-            <section className="relative z-10 bg-muted/20 pt-16 pb-16">
+            <section className="py-16 lg:py-24 bg-muted/30">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <h2 className={`mb-10 sm:mb-12 lg:mb-16 text-2xl sm:text-3xl md:text-4xl font-bold text-center ${heroGradient}`}>
                         Why Choose Trusted
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
                         {data.why.map((card, i) => (
                             <motion.div
                                 key={card.title}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                className="rounded-2xl bg-card shadow-lg border border-border/50 p-6 sm:p-7 flex flex-col items-center justify-center text-center h-full transition-all duration-300 cursor-pointer group hover:shadow-xl hover:border-primary/20 hover:shadow-primary/10"
-                                style={{ minHeight: 220 }}
+                                variants={cardVariants}
+                                className="rounded-2xl bg-card shadow-lg border border-border/50 p-6 sm:p-7 flex flex-col items-center justify-center text-center h-full transition-all duration-300 cursor-pointer group hover:shadow-xl hover:border-primary/20 hover:shadow-primary/10 touch-target"
+                                style={{
+                                    minHeight: 220,
+                                    willChange: shouldReduceMotion ? "auto" : "transform"
+                                }}
+                                whileHover={shouldReduceMotion ? {} : {
+                                    y: -4,
+                                    scale: 1.02,
+                                    transition: { duration: 0.2, ease: "easeOut" }
+                                }}
                             >
                                 <div className={`text-base sm:text-lg font-semibold mb-4 text-center ${heroGradient} group-hover:drop-shadow-md`}>
                                     {card.title}
@@ -218,38 +274,49 @@ export default function HeroTabs() {
                                 </div>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* How it Works Section */}
-            <section className="relative z-10 bg-background pt-16 pb-16">
+            <section className="py-16 lg:py-24 bg-background">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        className="text-center mb-16"
+                        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-12 sm:mb-16"
+                        viewport={{ once: true }}
+                        transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
                     >
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-                            How it works
+                        <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 ${heroGradient}`}>
+                            How it Works
                         </h2>
-                        <p className="mb-8 text-center text-muted-foreground text-base sm:text-lg md:text-xl max-w-3xl mx-auto">
+                        <p className="text-muted-foreground text-lg sm:text-xl max-w-3xl mx-auto">
                             {data.howItWorks.subtitle}
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                    >
                         {data.howItWorks.steps.map((step, i) => (
                             <motion.div
                                 key={step.title}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                className="rounded-2xl border border-border bg-card p-6 sm:p-8 flex flex-col items-center text-center h-full transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:shadow-primary/10"
-                                style={{ minHeight: 300 }}
+                                variants={cardVariants}
+                                className="rounded-2xl border border-border bg-card p-6 sm:p-8 flex flex-col items-center text-center h-full transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:shadow-primary/10 touch-target"
+                                style={{
+                                    minHeight: 300,
+                                    willChange: shouldReduceMotion ? "auto" : "transform"
+                                }}
+                                whileHover={shouldReduceMotion ? {} : {
+                                    y: -4,
+                                    scale: 1.02,
+                                    transition: { duration: 0.2, ease: "easeOut" }
+                                }}
                             >
                                 <div className="text-muted-foreground mb-6">
                                     <step.icon size={40} className="mx-auto sm:w-12 sm:h-12" />
@@ -260,12 +327,12 @@ export default function HeroTabs() {
                                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6 flex-grow">
                                     {step.desc}
                                 </p>
-                                <button className="px-4 sm:px-6 py-2 border border-border rounded-lg text-muted-foreground font-medium hover:bg-muted/30 hover:text-foreground transition-colors duration-200 text-sm sm:text-base">
+                                <button className="px-4 sm:px-6 py-2 border border-border rounded-lg text-muted-foreground font-medium hover:bg-muted/30 hover:text-foreground transition-colors duration-200 text-sm sm:text-base touch-target">
                                     {step.cta.label}
                                 </button>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -299,6 +366,6 @@ export default function HeroTabs() {
                     </div>
                 </section>
             )}
-        </>
+        </div>
     );
 } 
