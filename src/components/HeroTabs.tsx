@@ -103,7 +103,7 @@ export default function HeroTabs() {
     const router = useRouter();
     const search = useSearchParams();
     const [active, setActive] = useState<'expert' | 'provider'>(
-        (search.get('persona') as 'expert' | 'provider') ?? 'provider'
+        (search.get('persona') as 'expert' | 'provider') ?? 'expert'
     );
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -137,7 +137,7 @@ export default function HeroTabs() {
                     {/* Tabs */}
                     <div className="flex justify-center mb-8">
                         <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
-                            {(['provider', 'expert'] as const).map((p) => (
+                            {(['expert', 'provider'] as const).map((p) => (
                                 <button
                                     key={p}
                                     onClick={() => setActive(p)}
@@ -207,13 +207,13 @@ export default function HeroTabs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.3 }}
                                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                className="rounded-2xl bg-card shadow-lg border border-border/50 p-6 sm:p-7 flex flex-col items-center text-center h-full transition-all duration-300 cursor-pointer group hover:shadow-xl hover:border-primary/20 hover:shadow-primary/10"
+                                className="rounded-2xl bg-card shadow-lg border border-border/50 p-6 sm:p-7 flex flex-col items-center justify-center text-center h-full transition-all duration-300 cursor-pointer group hover:shadow-xl hover:border-primary/20 hover:shadow-primary/10"
                                 style={{ minHeight: 220 }}
                             >
-                                <div className={`text-base sm:text-lg font-semibold mb-2 ${heroGradient} group-hover:drop-shadow-md`}>
+                                <div className={`text-base sm:text-lg font-semibold mb-4 text-center ${heroGradient} group-hover:drop-shadow-md`}>
                                     {card.title}
                                 </div>
-                                <div className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                                <div className="text-muted-foreground text-sm sm:text-base leading-relaxed text-center">
                                     {card.desc}
                                 </div>
                             </motion.div>
