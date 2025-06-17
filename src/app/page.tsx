@@ -15,7 +15,9 @@ export default function Home() {
           <HeroTabs />
         </Suspense>
         <TrustedByTeamsAt />
-        <Features />
+        <Suspense fallback={<div className="h-24 flex items-center justify-center">Loading features...</div>}>
+          <Features />
+        </Suspense>
         <CommunitySection />
         <Stats />
         <Faqs />
