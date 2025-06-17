@@ -102,6 +102,7 @@ export default function FeaturesSection() {
       ref={containerRef}
       className="py-16 md:py-32 bg-background overflow-hidden relative"
       data-animate
+      key={persona}
     >
       {/* Animated background elements - disabled on reduced motion */}
       {!shouldReduceMotion && (
@@ -127,9 +128,10 @@ export default function FeaturesSection() {
 
       <div className="mx-auto max-w-5xl px-6 overflow-visible relative z-10">
         <motion.div
+          key={`features-header-${persona}`}
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ amount: 0.3 }}
           transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, ease: "easeOut" }}
           className="text-center"
         >
@@ -157,7 +159,7 @@ export default function FeaturesSection() {
             className="mt-6 text-xl text-muted-foreground"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.3 }}
             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.2 }}
           >
             SaaS companies, reward the founders who love you.
@@ -165,15 +167,16 @@ export default function FeaturesSection() {
         </motion.div>
 
         <motion.div
+          key={`features-grid-${persona}`}
           className="mx-auto mt-16 grid max-w-sm gap-8 md:mt-24 md:max-w-none md:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ amount: 0.2 }}
         >
           {features.map((feature, index) => (
             <motion.div
-              key={feature.title}
+              key={`${persona}-${feature.title}-${index}`}
               variants={itemVariants}
               whileHover={shouldReduceMotion ? {} : {
                 y: -10,
@@ -219,6 +222,7 @@ export default function FeaturesSection() {
                     className="mt-6 text-xl font-semibold text-center text-card-foreground"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
+                    viewport={{ amount: 0.3 }}
                     transition={{ delay: index * 0.2 + 0.5 }}
                   >
                     {feature.title}
@@ -227,6 +231,7 @@ export default function FeaturesSection() {
                     className="mt-4 text-base text-muted-foreground text-center"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
+                    viewport={{ amount: 0.3 }}
                     transition={{ delay: index * 0.2 + 0.7 }}
                   >
                     {feature.description}

@@ -201,16 +201,24 @@ export default function HeroTabs() {
                             </div>
                         </div>
 
-                        <AnimatedGroup className="w-full text-center">
+                        <AnimatedGroup className="w-full text-center" key={active}>
                             <motion.h1
+                                key={`h1-${active}`}
                                 className={`mx-auto text-center font-bold leading-[1.15] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${heroGradient} mb-8 sm:mb-10 lg:mb-12 max-w-5xl px-4`}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
                                 style={{ willChange: shouldReduceMotion ? "auto" : "transform" }}
                             >
                                 {data.h1}
                             </motion.h1>
-                            <div className="text-center text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 sm:mb-12 lg:mb-14 max-w-3xl mx-auto px-4 leading-relaxed">
+                            <div
+                                key={`subtitle-${active}`}
+                                className="text-center text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 sm:mb-12 lg:mb-14 max-w-3xl mx-auto px-4 leading-relaxed"
+                            >
                                 {active === 'expert' ? (
                                     <TextEffect
+                                        key="expert-text"
                                         preset={shouldReduceMotion ? "fade" : "fade-in-blur"}
                                         speedSegment={shouldReduceMotion ? 1 : 0.3}
                                         delay={shouldReduceMotion ? 0 : 0.2}
@@ -219,6 +227,7 @@ export default function HeroTabs() {
                                     </TextEffect>
                                 ) : (
                                     <TextEffect
+                                        key="provider-text"
                                         preset={shouldReduceMotion ? "fade" : "fade-in-blur"}
                                         speedSegment={shouldReduceMotion ? 1 : 0.3}
                                         delay={shouldReduceMotion ? 0 : 0.2}
@@ -231,6 +240,7 @@ export default function HeroTabs() {
 
                         {/* CTA Buttons with gradient hover animation */}
                         <motion.div
+                            key={`cta-${active}`}
                             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -256,11 +266,12 @@ export default function HeroTabs() {
                             Why Choose Trusted
                         </h2>
                         <motion.div
+                            key={`why-choose-${active}`}
                             className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
                             variants={staggerContainer}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, amount: 0.3 }}
+                            viewport={{ amount: 0.3 }}
                         >
                             {data.why.map((card, i) => (
                                 <motion.div
@@ -293,10 +304,11 @@ export default function HeroTabs() {
                 <section className="py-16 lg:py-24 bg-background">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <motion.div
+                            key={`how-it-works-header-${active}`}
                             className="text-center mb-16"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ amount: 0.3 }}
                             transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
                         >
                             <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 ${heroGradient}`}>
@@ -308,11 +320,12 @@ export default function HeroTabs() {
                         </motion.div>
 
                         <motion.div
+                            key={`how-it-works-steps-${active}`}
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto"
                             variants={staggerContainer}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, amount: 0.2 }}
+                            viewport={{ amount: 0.2 }}
                         >
                             {data.howItWorks.steps.map((step, i) => (
                                 <motion.div
@@ -352,9 +365,10 @@ export default function HeroTabs() {
                     <section className="relative z-10 bg-muted/30 pt-16 pb-20">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
+                                key={`revenue-header-${active}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
+                                viewport={{ amount: 0.3 }}
                                 transition={{ duration: 0.6 }}
                                 className="text-center mb-8 sm:mb-12"
                             >
@@ -367,9 +381,10 @@ export default function HeroTabs() {
                             </motion.div>
 
                             <motion.div
+                                key={`revenue-calculator-${active}`}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
+                                viewport={{ amount: 0.3 }}
                                 transition={{ duration: 0.7, delay: 0.2 }}
                             >
                                 <RevenueCalculator />
