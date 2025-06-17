@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function CallToAction() {
   const [selected, setSelected] = useState<"expert" | "provider">("expert");
   return (
-    <section className="py-16 md:py-32 bg-background">
+    <section className="py-12 sm:py-16 lg:py-20 bg-background">
       <div className="mx-auto max-w-2xl px-6 flex flex-col items-center">
         <div className="flex mb-8 rounded-full bg-muted p-1 w-fit">
           <button

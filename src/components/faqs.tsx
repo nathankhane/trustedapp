@@ -41,7 +41,7 @@ export default function Faqs() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-3xl px-4 md:px-6">
         <div className="mx-auto max-w-xl text-center">
           <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl mb-4">
