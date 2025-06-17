@@ -260,14 +260,14 @@ export default function HeroTabs() {
                 </section>
 
                 {/* Why Choose Trusted Section */}
-                <section className="py-16 lg:py-24 bg-muted/30">
+                <section className="py-20 sm:py-24 lg:py-32 bg-muted/30">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <h2 className={`mb-10 sm:mb-12 lg:mb-16 text-2xl sm:text-3xl md:text-4xl font-bold text-center ${heroGradient}`}>
+                        <h2 className={`mb-12 sm:mb-16 lg:mb-20 text-2xl sm:text-3xl md:text-4xl font-bold text-center ${heroGradient}`}>
                             Why Choose Trusted
                         </h2>
                         <motion.div
                             key={`why-choose-${active}`}
-                            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+                            className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12"
                             variants={staggerContainer}
                             initial="hidden"
                             whileInView="visible"
@@ -301,11 +301,11 @@ export default function HeroTabs() {
                 </section>
 
                 {/* How it Works Section */}
-                <section className="py-16 lg:py-24 bg-background">
+                <section className="py-20 sm:py-24 lg:py-32 bg-background">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <motion.div
                             key={`how-it-works-header-${active}`}
-                            className="text-center mb-16"
+                            className="text-center mb-16 sm:mb-20 lg:mb-24"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ amount: 0.3 }}
@@ -321,7 +321,7 @@ export default function HeroTabs() {
 
                         <motion.div
                             key={`how-it-works-steps-${active}`}
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto"
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto"
                             variants={staggerContainer}
                             initial="hidden"
                             whileInView="visible"
@@ -362,7 +362,7 @@ export default function HeroTabs() {
 
                 {/* Revenue Calculator Section - Only for Experts */}
                 {active === 'expert' && (
-                    <section className="relative z-10 bg-muted/30 pt-16 pb-20">
+                    <section className="relative z-10 bg-muted/30 py-20 sm:py-24 lg:py-32">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
                                 key={`revenue-header-${active}`}
@@ -370,7 +370,7 @@ export default function HeroTabs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ amount: 0.3 }}
                                 transition={{ duration: 0.6 }}
-                                className="text-center mb-8 sm:mb-12"
+                                className="text-center mb-12 sm:mb-16 lg:mb-20"
                             >
                                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
                                     Estimate Your Revenue
