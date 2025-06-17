@@ -159,7 +159,7 @@
       perspective: 1000;
     }
 
-    /* Comprehensive mobile Safari fixes for position: fixed */
+    /* Ensure fixed elements maintain proper positioning on mobile */
     .fixed,
     [class*="fixed"],
     header {
@@ -167,38 +167,29 @@
       backface-visibility: visible;
       -webkit-perspective: none;
       perspective: none;
-      /* Force hardware acceleration for smooth scrolling */
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-      /* Ensure fixed positioning works on iOS Safari */
-      position: fixed !important;
+    }
+
+    /* Mobile Safari fixed positioning fixes */
+    header.fixed {
+      /* Force hardware acceleration without breaking fixed positioning */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
-    }
-
-    /* Mobile Safari specific fixes for header */
-    header[class*="fixed"] {
-      /* Disable backdrop-blur on mobile to prevent stacking context issues */
+      /* Ensure no backdrop-blur creates stacking contexts on mobile */
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
-      /* Use solid background instead of blur on mobile */
-      background: hsl(var(--background)) !important;
-      /* Ensure it stays above all content */
-      z-index: 9999 !important;
-      /* Force position fixed */
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
     }
 
-    /* Fix nav element backdrop-blur on mobile */
+    /* Disable backdrop-blur on mobile for fixed elements to prevent stacking context issues */
+    header .backdrop-blur-md,
+    header [class*="backdrop-blur"] {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Ensure navigation doesn't create transform stacking contexts on mobile */
     header nav {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      background: hsl(var(--background)) !important;
-      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1) !important;
+      transform: none !important;
+      -webkit-transform: none !important;
     }
   }
 }

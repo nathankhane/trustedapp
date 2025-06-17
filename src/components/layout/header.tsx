@@ -61,17 +61,17 @@ export const HeroHeader = () => {
         className={cn(
           "mx-auto transition-all duration-500 ease-out",
           isScrolled
-            ? "mt-2 max-w-5xl rounded-2xl shadow-md bg-background/95 backdrop-blur-md"
+            ? "mt-2 max-w-5xl rounded-2xl shadow-md bg-background/95 lg:backdrop-blur-md"
             : "mt-0 max-w-6xl"
         )}
       >
         <div className="px-4 lg:px-6">
           <div className={cn(
-            "flex items-center justify-between transition-all duration-500",
+            "flex items-center justify-between lg:justify-start lg:relative transition-all duration-500",
             isScrolled ? "py-2 lg:py-3" : "py-4 lg:py-5"
           )}>
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center lg:flex-shrink-0">
               <Link
                 href="/"
                 className="flex items-center space-x-2 transition-transform hover:scale-105 duration-200"
@@ -81,8 +81,8 @@ export const HeroHeader = () => {
               </Link>
             </div>
 
-            {/* Centered Desktop Navigation */}
-            <div className="hidden lg:flex lg:items-center lg:justify-center lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
+            {/* Centered Desktop Navigation - Using Flexbox instead of Transform */}
+            <div className="hidden lg:flex lg:items-center lg:justify-center lg:flex-1">
               <ul className="flex gap-6 text-sm">
                 {menuItems.map((item) => (
                   <li key={item.href}>
@@ -97,7 +97,7 @@ export const HeroHeader = () => {
                     >
                       {/* Background highlight on hover */}
                       <span className="absolute inset-0 bg-[#7F5BFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></span>
-                      {/* Purple underline - always visible if active, on hover otherwise */}
+                      {/* Purple underline - using margin centering instead of transform */}
                       <span className={cn(
                         "absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-[#7F5BFF] transition-all duration-300",
                         pathname === item.href
@@ -111,8 +111,8 @@ export const HeroHeader = () => {
               </ul>
             </div>
 
-            {/* Right side buttons - updated spacing to match screenshot */}
-            <div className="hidden lg:flex items-center gap-3">
+            {/* Right side buttons */}
+            <div className="hidden lg:flex items-center gap-3 lg:flex-shrink-0">
               <Button
                 variant="ghost"
                 asChild
