@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { HeroHeader } from "@/components/layout/header";
+import SiteHeader from "@/components/site-header";
 import FooterSection from "@/components/layout/footer";
 import { SimpleToggle } from "@/components/ui/mode-toggle";
 
@@ -32,9 +32,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
       >
         <ThemeProvider>
-          <HeroHeader />
+          <SiteHeader />
           <div className="min-h-screen flex flex-col">
-            <main className="flex-1 pt-[72px]">{children}</main>
+            <main className="flex-1 pt-14">{children}</main>
             <FooterSection />
           </div>
           {/* Theme toggle positioned as floating button */}
