@@ -166,19 +166,12 @@ export default function HeroTabs() {
             <div className="relative">
                 {/* Hero Section */}
                 <section
-                    className="relative flex min-h-screen flex-col items-center justify-start pt-8 pb-20 sm:pt-16 sm:pb-20 lg:justify-center lg:py-20 overflow-hidden px-4 sm:px-6 lg:px-8"
+                    className="relative flex min-h-screen flex-col items-center justify-start pt-8 pb-20 sm:pt-16 sm:pb-20 lg:justify-center lg:py-20 overflow-hidden px-4 sm:px-6 lg:px-8 bg-background"
                     data-animate
                 >
-                    {/* Background Elements - Reduced on mobile */}
-                    {!shouldReduceMotion && (
-                        <div className="absolute inset-0 -z-10 hidden md:block">
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20" />
-                            <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-blue-400/5 blur-3xl dark:bg-blue-400/10" />
-                            <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-purple-400/5 blur-3xl dark:bg-purple-400/10" />
-                        </div>
-                    )}
+                    {/* Background Elements - Completely removed */}
 
-                    <div className="mx-auto w-full max-w-7xl">
+                    <div className="relative z-10 flex flex-col w-full">
                         {/* Tabs */}
                         <div className="flex justify-center mb-8">
                             <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
@@ -260,7 +253,7 @@ export default function HeroTabs() {
                 </section>
 
                 {/* Why Choose Trusted Section */}
-                <section className="py-20 sm:py-24 lg:py-32 bg-muted/30">
+                <section className="py-20 sm:py-24 lg:py-32 bg-background">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <h2 className={`mb-12 sm:mb-16 lg:mb-20 text-2xl sm:text-3xl md:text-4xl font-bold text-center ${heroGradient}`}>
                             Why Choose Trusted

@@ -245,6 +245,138 @@ const staggerContainer = {
 
 ## 🌙 **Theme System**
 
+### **🚨 CRITICAL: Dark Mode Issues & Solutions**
+
+**Recently Fixed Major Issues:**
+- ❌ **globals.css had duplicate/conflicting CSS variables** causing theme inconsistencies
+- ❌ **Body hardcoded to `bg-white`** overriding dark mode background
+- ❌ **Components using manual dark mode classes** instead of semantic colors
+- ❌ **Missing FOUC (Flash of Unstyled Content) prevention**
+- ❌ **ThemeProvider not properly configured**
+
+#### **✅ Dark Mode Infrastructure Fixes Applied:**
+
+**1. globals.css Cleanup:**
+```css
+/* Fixed: Removed duplicate @layer base sections */
+/* Fixed: Unified CSS variable definitions */
+/* Fixed: Removed hardcoded body { @apply bg-white } */
+
+/* ✅ Correct body styling */
+body {
+  @apply min-h-screen bg-background font-sans antialiased;
+}
+```
+
+**2. FOUC Prevention Script:**
+```typescript
+// Added to layout.tsx <head>
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      try {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      } catch (_) {}
+    `,
+  }}
+/>
+```
+
+**3. Enhanced ThemeProvider:**
+```typescript
+<NextThemesProvider
+  attribute="class"
+  defaultTheme="system"
+  enableSystem
+  disableTransitionOnChange={false}
+  enableColorScheme
+>
+  {children}
+</NextThemesProvider>
+```
+
+### **🚨 NEVER Use These (Hardcoded Colors):**
+```css
+/* Background Colors - AVOID */
+bg-white, bg-black, bg-[#hex], bg-gray-*
+
+/* Text Colors - AVOID */  
+text-white, text-black, text-gray-*, hover:text-black
+
+/* Manual Dark Mode - AVOID */
+bg-white dark:bg-gray-950
+text-gray-500 dark:text-gray-400
+```
+
+### **✅ ALWAYS Use These (Semantic Colors):**
+```css
+/* Backgrounds */
+bg-background        /* Main page background */
+bg-card             /* Card/elevated surfaces */
+bg-muted            /* Subtle backgrounds */
+bg-popover          /* Popover/dropdown backgrounds */
+
+/* Text Colors */
+text-foreground      /* Primary text */
+text-muted-foreground /* Secondary/subtle text */
+text-card-foreground  /* Text on cards */
+
+/* Interactive Elements */
+text-primary         /* Links, buttons, accents */
+hover:text-foreground /* Hover states */
+border-border        /* All borders */
+
+/* Transparency & Effects */
+bg-background/50     /* Semi-transparent backgrounds */
+backdrop-blur-sm     /* Glass effects */
+```
+
+### **🔧 Component Dark Mode Patterns:**
+
+**Pricing Table Pattern:**
+```typescript
+// ✅ Correct: Uses manual dark mode for specific design requirements
+className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700"
+
+// Note: This component kept manual classes for design consistency
+// Most components should use semantic colors instead
+```
+
+**FloatingTabsPill Pattern:**
+```typescript
+// ✅ Semantic colors for pills
+<div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
+  <button className={cn(
+    "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
+    active === option
+      ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+  )}>
+    {option}
+  </button>
+</div>
+```
+
+**RoleHero Background Removal:**
+```typescript
+// ✅ Conditional background for role-based components
+{role !== "neutral" && !className?.includes('bg-white') && (
+  <div className={cn("absolute inset-0 bg-gradient-to-br", backgroundClass)} />
+)}
+```
+
+### **🛡️ Dark Mode Testing Checklist:**
+- [ ] Test both light and dark modes on every component
+- [ ] Verify no FOUC (flash) on page load/refresh  
+- [ ] Check semantic colors render correctly
+- [ ] Ensure overlay backgrounds have proper transparency
+- [ ] Test theme toggle functionality
+- [ ] Verify text contrast meets accessibility standards
+
 ### **Theme Toggle Usage**
 ```typescript
 // Floating theme toggle (main implementation)
@@ -271,24 +403,6 @@ setMode("system")   // Follow system preference
 // Check current resolved theme
 if (resolvedTheme === "dark") {
   // Dark mode specific logic
-}
-```
-
-### **Theme Provider Setup**
-```typescript
-// In layout.tsx or _app.tsx
-import { ThemeProvider } from "@/components/providers/theme-provider"
-
-export default function RootLayout({ children }) {
-  return (
-    <html suppressHydrationWarning>
-      <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
 }
 ```
 
@@ -748,11 +862,61 @@ git branch -d feature/component-name
 
 ## 🎨 **Color Scheme & Theme System**
 
-### **🚨 CRITICAL: Avoiding Color Issues**
+### **🚨 CRITICAL: Dark Mode Issues & Solutions**
 
-Our app had several color scheme issues where components remained perpetually dark or light regardless of theme mode. Here's what we fixed and how to prevent future issues:
+**Recently Fixed Major Issues:**
+- ❌ **globals.css had duplicate/conflicting CSS variables** causing theme inconsistencies
+- ❌ **Body hardcoded to `bg-white`** overriding dark mode background
+- ❌ **Components using manual dark mode classes** instead of semantic colors
+- ❌ **Missing FOUC (Flash of Unstyled Content) prevention**
+- ❌ **ThemeProvider not properly configured**
 
-#### **❌ NEVER Use These (Hardcoded Colors):**
+#### **✅ Dark Mode Infrastructure Fixes Applied:**
+
+**1. globals.css Cleanup:**
+```css
+/* Fixed: Removed duplicate @layer base sections */
+/* Fixed: Unified CSS variable definitions */
+/* Fixed: Removed hardcoded body { @apply bg-white } */
+
+/* ✅ Correct body styling */
+body {
+  @apply min-h-screen bg-background font-sans antialiased;
+}
+```
+
+**2. FOUC Prevention Script:**
+```typescript
+// Added to layout.tsx <head>
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      try {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      } catch (_) {}
+    `,
+  }}
+/>
+```
+
+**3. Enhanced ThemeProvider:**
+```typescript
+<NextThemesProvider
+  attribute="class"
+  defaultTheme="system"
+  enableSystem
+  disableTransitionOnChange={false}
+  enableColorScheme
+>
+  {children}
+</NextThemesProvider>
+```
+
+### **🚨 NEVER Use These (Hardcoded Colors):**
 ```css
 /* Background Colors - AVOID */
 bg-white, bg-black, bg-[#hex], bg-gray-*
@@ -765,7 +929,7 @@ bg-white dark:bg-gray-950
 text-gray-500 dark:text-gray-400
 ```
 
-#### **✅ ALWAYS Use These (Semantic Colors):**
+### **✅ ALWAYS Use These (Semantic Colors):**
 ```css
 /* Backgrounds */
 bg-background        /* Main page background */
@@ -784,58 +948,51 @@ hover:text-foreground /* Hover states */
 border-border        /* All borders */
 
 /* Transparency & Effects */
-bg-background/80     /* Semi-transparent backgrounds */
+bg-background/50     /* Semi-transparent backgrounds */
 backdrop-blur-sm     /* Glass effects */
 ```
 
-#### **🔧 Fixed Components:**
-- **Footer**: `bg-[#fafafa]` → `bg-background/80 backdrop-blur-sm`
-- **Privacy Policy**: `bg-[#0a0a0a] text-gray-100` → `bg-background text-foreground`
-- **Team Section**: `bg-white dark:bg-gray-950` → `bg-card text-card-foreground`
-- **Call-to-Action**: `bg-white text-gray-600` → `bg-background text-muted-foreground`
-- **Header**: Enhanced transparency with `bg-background/70`
-- **Pricing Page**: `bg-gradient-to-br from-white via-[#f9fafb] to-white` → `bg-background`
-- **PriceCard**: `bg-white/80` → `bg-card/80 backdrop-blur-md`
-- **Hero Section**: `bg-gradient-to-br from-blue-50 via-white to-purple-50` → `bg-background`
-- **Features Section**: `bg-white shadow` → `bg-card border border-border shadow`
-- **Solution Page**: `bg-gradient-to-br from-white via-[#f9fafb] to-white` → `bg-background`
-- **About Page**: `bg-gradient-to-b from-blue-50 via-white to-white` → `bg-background`
-- **Testimonials Page**: All hardcoded backgrounds converted to semantic colors
+### **🔧 Component Dark Mode Patterns:**
 
-#### **🎨 Complete Color Mapping Guide:**
+**Pricing Table Pattern:**
 ```typescript
-const COLOR_MIGRATION = {
-  // Backgrounds
-  'bg-white': 'bg-background',
-  'bg-black': 'bg-background', 
-  'bg-gray-50': 'bg-muted/30',
-  'bg-gray-100': 'bg-muted/50',
-  'bg-gray-900': 'bg-card',
-  'bg-gray-950': 'bg-card',
-  'bg-[#fafafa]': 'bg-background/80',
-  'bg-[#0a0a0a]': 'bg-background',
+// ✅ Correct: Uses manual dark mode for specific design requirements
+className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700"
 
-  // Text Colors
-  'text-black': 'text-foreground',
-  'text-white': 'text-foreground',
-  'text-gray-400': 'text-muted-foreground',
-  'text-gray-500': 'text-muted-foreground', 
-  'text-gray-600': 'text-muted-foreground',
-  'text-gray-700': 'text-foreground/80',
-  'text-gray-900': 'text-foreground',
-
-  // Interactive
-  'hover:text-black': 'hover:text-foreground',
-  'hover:text-white': 'hover:text-foreground',
-  'border-gray-300': 'border-border',
-  'border-gray-800': 'border-border',
-
-  // Form Elements
-  'focus:ring-blue-500': 'focus:ring-primary/50',
-  'bg-blue-500': 'bg-primary',
-  'text-blue-600': 'text-primary'
-}
+// Note: This component kept manual classes for design consistency
+// Most components should use semantic colors instead
 ```
+
+**FloatingTabsPill Pattern:**
+```typescript
+// ✅ Semantic colors for pills
+<div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
+  <button className={cn(
+    "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
+    active === option
+      ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+  )}>
+    {option}
+  </button>
+</div>
+```
+
+**RoleHero Background Removal:**
+```typescript
+// ✅ Conditional background for role-based components
+{role !== "neutral" && !className?.includes('bg-white') && (
+  <div className={cn("absolute inset-0 bg-gradient-to-br", backgroundClass)} />
+)}
+```
+
+### **🛡️ Dark Mode Testing Checklist:**
+- [ ] Test both light and dark modes on every component
+- [ ] Verify no FOUC (flash) on page load/refresh  
+- [ ] Check semantic colors render correctly
+- [ ] Ensure overlay backgrounds have proper transparency
+- [ ] Test theme toggle functionality
+- [ ] Verify text contrast meets accessibility standards
 
 ### **Theme Toggle Usage**
 ```typescript
@@ -865,13 +1022,6 @@ if (resolvedTheme === "dark") {
   // Dark mode specific logic
 }
 ```
-
-### **🛡️ Prevention Guidelines**
-1. **Always test both light and dark modes** when developing
-2. **Use semantic colors exclusively** - never hardcode colors
-3. **Prefer transparency** for overlays: `bg-background/80 backdrop-blur-sm`
-4. **Add transition effects** for smooth theme changes: `transition-colors`
-5. **Lint rule suggestion**: Add ESLint rule to catch hardcoded colors
 
 ---
 
@@ -1390,3 +1540,83 @@ import { motion, AnimatePresence } from 'framer-motion';
 - [ ] Check import paths are correct
 - [ ] Verify component is properly exported
 - [ ] Test isolated component in Storybook/standalone
+```
+
+## 💰 **Pricing Table Component Patterns**
+
+### **Default Tier Data Structure:**
+```typescript
+const defaultTiers: PricingTier[] = [
+  {
+    name: "Self-Serve",
+    price: 49,
+    yearlyPrice: 49 * 10, // 10 months for yearly
+    priceLabel: "$49",
+    credits: "per insight",
+    description: "",
+    features: [
+      "Quick user surveys (5-10 min)",
+      "Automated matching & scheduling",
+      "Basic demographic filters",
+      "Email support",
+    ],
+    popular: false,
+  },
+  // ... other tiers
+]
+```
+
+### **Enterprise Button Integration:**
+```typescript
+// ✅ Calendly integration for Enterprise tier
+{tier.name === "Enterprise" ? (
+  <a
+    href="https://calendly.com/trustedapp/30min"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block w-full"
+  >
+    <Button variant="outline" className="w-full">
+      Contact Sales
+    </Button>
+  </a>
+) : (
+  <Button onClick={() => handleGetStarted(tier.name)}>
+    Get Started
+  </Button>
+)}
+```
+
+### **Pricing Animation Patterns:**
+```typescript
+// ✅ Pricing card entrance animation
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: index * 0.1 }}
+  viewport={{ once: true }}
+>
+  {/* Card content */}
+</motion.div>
+
+// ✅ Button hover effects
+className="hover:scale-[1.02] hover:shadow-lg transition-all duration-200"
+```
+
+### **Pricing Table Layout Pattern:**
+```typescript
+// ✅ Responsive grid with proper constraints
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div className="grid gap-8 lg:grid-cols-4 lg:gap-6">
+    {tiers.map((tier, index) => (
+      <motion.div key={tier.name} className="relative max-w-xs mx-auto">
+        {/* Pricing card content */}
+      </motion.div>
+    ))}
+  </div>
+</div>
+```
+
+---
+
+## 🎬 **Animation System**

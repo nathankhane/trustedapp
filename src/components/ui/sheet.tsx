@@ -26,12 +26,39 @@ const SheetContext = React.createContext<{
 export function Sheet({ children }: SheetProps) {
     const [open, setOpen] = React.useState(false)
 
+    // Close sheet on escape key
+    React.useEffect(() => {
+        if (!open) return
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                setOpen(false)
+            }
+        }
+
+        document.addEventListener("keydown", onKeyDown)
+        return () => document.removeEventListener("keydown", onKeyDown)
+    }, [open])
+
+    // Prevent body scroll when sheet is open
+    React.useEffect(() => {
+        if (open) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset'
+        }
+    }, [open])
+
     return (
         <SheetContext.Provider value={{ open, setOpen }}>
             {children}
             {open && (
                 <div
-                    className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
+                    className="fixed inset-0 z-[70] bg-background/80 backdrop-blur-sm"
                     onClick={() => setOpen(false)}
                 />
             )}
@@ -69,7 +96,7 @@ export function SheetContent({ children, side = "right", className }: SheetConte
     return (
         <div
             className={cn(
-                "fixed z-50 bg-background shadow-lg transition-transform duration-300 ease-in-out",
+                "fixed z-[80] bg-background shadow-lg transition-transform duration-300 ease-in-out border-l border-border",
                 sideClasses[side],
                 className
             )}

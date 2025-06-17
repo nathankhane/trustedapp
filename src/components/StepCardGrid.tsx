@@ -14,6 +14,7 @@ import {
     RefreshCw,
     LucideIcon
 } from "lucide-react";
+import { PillToggle } from '@/components/ui/pill-toggle';
 
 export interface StepItem {
     title: string;
@@ -239,74 +240,28 @@ const MobileTabsSection: React.FC<{
 }> = ({ expertsSteps, providersSteps, renderStepCards }) => {
     const [activeTab, setActiveTab] = React.useState<"experts" | "providers">("experts");
 
+    const TAB_OPTIONS = [
+        { value: "experts" as const, label: "For Experts" },
+        { value: "providers" as const, label: "For SaaS Providers" },
+    ];
+
     return (
         <>
-            {/* Tab Navigation */}
-            <div className="grid grid-cols-2 gap-2 mb-8 p-1 bg-muted rounded-lg">
-                <button
-                    onClick={() => setActiveTab("experts")}
-                    className={cn(
-                        "py-2 px-4 rounded-md font-medium transition-all duration-200",
-                        activeTab === "experts"
-                            ? "bg-primary text-primary-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground"
-                    )}
-                    aria-pressed={activeTab === "experts"}
-                >
-                    For Experts
-                </button>
-                <button
-                    onClick={() => setActiveTab("providers")}
-                    className={cn(
-                        "py-2 px-4 rounded-md font-medium transition-all duration-200",
-                        activeTab === "providers"
-                            ? "bg-primary text-primary-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground"
-                    )}
-                    aria-pressed={activeTab === "providers"}
-                >
-                    For Providers
-                </button>
+            {/* Tab Navigation - Updated to pill style */}
+            <div className="flex justify-center mb-8">
+                <PillToggle
+                    options={TAB_OPTIONS}
+                    active={activeTab}
+                    onActiveChange={setActiveTab}
+                />
             </div>
 
             {/* Tab Content */}
-            <div className="relative">
-                {activeTab === "experts" && (
-                    <div id="experts-flow">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="text-center mb-8"
-                        >
-                            <h3 className="text-2xl font-bold text-foreground mb-2">
-                                How Experts Earn
-                            </h3>
-                            <p className="text-muted-foreground">
-                                Turn your expertise into recurring revenue
-                            </p>
-                        </motion.div>
-                        {renderStepCards(expertsSteps, "experts")}
-                    </div>
-                )}
-
-                {activeTab === "providers" && (
-                    <div id="providers-flow">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="text-center mb-8"
-                        >
-                            <h3 className="text-2xl font-bold text-foreground mb-2">
-                                How Providers Get Insights
-                            </h3>
-                            <p className="text-muted-foreground">
-                                Access vetted users in 24 hours
-                            </p>
-                        </motion.div>
-                        {renderStepCards(providersSteps, "providers")}
-                    </div>
+            <div className="space-y-8">
+                {activeTab === "experts" ? (
+                    <div>{renderStepCards(expertsSteps, "experts")}</div>
+                ) : (
+                    <div>{renderStepCards(providersSteps, "providers")}</div>
                 )}
             </div>
         </>

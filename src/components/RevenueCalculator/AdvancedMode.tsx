@@ -7,7 +7,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ContentType, Role, Rarity, CONTENT_META } from '@/lib/rateMatrix';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AdvancedMode() {
@@ -42,6 +42,7 @@ export default function AdvancedMode() {
         setConversionsPerMonth,
     } = useCalculatorStore();
 
+    const [hoveredType, setHoveredType] = useState<ContentType | null>(null);
     const contentTypes = Object.keys(CONTENT_META) as ContentType[];
     const roles: Role[] = ["Individual Contributor", "Manager", "Exec / Founder"];
     const rarities: Rarity[] = ["Common", "Niche", "Rare"];
@@ -61,6 +62,9 @@ export default function AdvancedMode() {
             console.warn("Pick a rev-share percentage when allowing content sharing.");
         }
     }, [allowShare, shareRevPct]);
+
+    // Show info for hovered type, fallback to selected type
+    const displayType = hoveredType || contentType;
 
     return (
         <TooltipProvider>
@@ -111,7 +115,12 @@ export default function AdvancedMode() {
                                         </SelectTrigger>
                                         <SelectContent>
                                             {contentTypes.map((type) => (
-                                                <SelectItem key={type} value={type}>
+                                                <SelectItem
+                                                    key={type}
+                                                    value={type}
+                                                    onMouseEnter={() => setHoveredType(type)}
+                                                    onMouseLeave={() => setHoveredType(null)}
+                                                >
                                                     {CONTENT_META[type].label}
                                                 </SelectItem>
                                             ))}
@@ -119,13 +128,13 @@ export default function AdvancedMode() {
                                     </Select>
                                 </div>
                             </TooltipTrigger>
-                            <TooltipContent className="max-w-xs bg-popover border border-border shadow-lg z-50 opacity-100">
+                            <TooltipContent className="max-w-xs bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl z-50">
                                 <div className="space-y-2 p-3">
-                                    <p className="font-semibold text-popover-foreground">{CONTENT_META[contentType].label}</p>
-                                    <p className="text-sm text-muted-foreground">{CONTENT_META[contentType].description}</p>
+                                    <p className="font-semibold text-popover-foreground">{CONTENT_META[displayType].label}</p>
+                                    <p className="text-sm text-muted-foreground">{CONTENT_META[displayType].description}</p>
                                     <div className="text-xs text-muted-foreground space-y-1">
-                                        <p><strong>Length:</strong> {CONTENT_META[contentType].typicalLength}</p>
-                                        <p><strong>Deliverable:</strong> {CONTENT_META[contentType].deliverables}</p>
+                                        <p><strong>Length:</strong> {CONTENT_META[displayType].typicalLength}</p>
+                                        <p><strong>Deliverable:</strong> {CONTENT_META[displayType].deliverables}</p>
                                     </div>
                                 </div>
                             </TooltipContent>
@@ -195,7 +204,7 @@ export default function AdvancedMode() {
                                                 Expected conversions / mo: {conversionsPerMonth}
                                             </Label>
                                         </TooltipTrigger>
-                                        <TooltipContent>
+                                        <TooltipContent className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl">
                                             <p>Avg for similar experts last quarter</p>
                                         </TooltipContent>
                                     </Tooltip>

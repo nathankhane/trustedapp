@@ -103,7 +103,6 @@ export default function SolutionPage() {
         role="neutral"
         headline="Great products are built with real operators, not cold surveys."
         subline="TrustedApp drops a vetted founder council into your workflow—pay only for insights that move revenue."
-        className="bg-white"
       />
 
       {/* Role Flows - Desktop: dual columns, Mobile: tabs */}
@@ -117,8 +116,6 @@ export default function SolutionPage() {
 
       {/* Proof Bar - Metrics */}
       <ProofSection metrics={metrics} />
-
-
 
       {/* FAQ Section */}
       <FAQSection expertFAQs={expertFAQs} providerFAQs={providerFAQs} />

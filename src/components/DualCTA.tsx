@@ -28,15 +28,10 @@ export const DualCTA: React.FC<DualCTAProps> = ({
     return (
         <>
             <section className={cn(
-                "relative py-20 lg:py-28 overflow-hidden",
-                "bg-gradient-to-br from-primary/5 via-accent/5 to-purple-500/10",
+                "relative py-20 lg:py-28 overflow-hidden bg-background",
                 className
             )}>
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-30">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(127,91,255,0.1),transparent_70%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(127,91,255,0.05)_50%,transparent_75%)]" />
-                </div>
+                {/* Background Pattern - Removed */}
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <motion.div
@@ -146,7 +141,7 @@ export const DualCTA: React.FC<DualCTAProps> = ({
                                     alt="Bild AI"
                                     width={120}
                                     height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-all duration-200 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                                 />
                             </div>
                             <div className="flex items-center">
@@ -155,7 +150,7 @@ export const DualCTA: React.FC<DualCTAProps> = ({
                                     alt="AirBills"
                                     width={120}
                                     height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-all duration-200 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                                 />
                             </div>
                             <div className="flex items-center">
@@ -164,7 +159,7 @@ export const DualCTA: React.FC<DualCTAProps> = ({
                                     alt="BillTrim Inc"
                                     width={120}
                                     height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-all duration-200 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                                 />
                             </div>
                             <div className="flex items-center">
@@ -173,7 +168,7 @@ export const DualCTA: React.FC<DualCTAProps> = ({
                                     alt="ClickUp"
                                     width={120}
                                     height={32}
-                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-all duration-200 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                                 />
                             </div>
                         </div>

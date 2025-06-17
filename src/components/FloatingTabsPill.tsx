@@ -2,13 +2,18 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { PillToggle } from "@/components/ui/pill-toggle";
 
 interface FloatingTabsPillProps {
     active: 'expert' | 'provider';
     onActiveChange: (active: 'expert' | 'provider') => void;
     isScrolled: boolean;
 }
+
+const FLOATING_OPTIONS = [
+    { value: "expert" as const, label: "Expert" },
+    { value: "provider" as const, label: "Provider" },
+];
 
 export default function FloatingTabsPill({ active, onActiveChange, isScrolled }: FloatingTabsPillProps) {
     return (
@@ -17,26 +22,14 @@ export default function FloatingTabsPill({ active, onActiveChange, isScrolled }:
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-full shadow-xl"
+            className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-full shadow-xl p-1"
         >
-            <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
-                {(['expert', 'provider'] as const).map((p) => (
-                    <button
-                        key={p}
-                        onClick={() => onActiveChange(p)}
-                        className={cn(
-                            "px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-                            active === p
-                                ? 'bg-white dark:bg-gray-900 shadow-sm text-gray-900 dark:text-white'
-                                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                        )}
-                        aria-selected={active === p}
-                        role="tab"
-                    >
-                        {p === 'provider' ? 'Provider' : 'Expert'}
-                    </button>
-                ))}
-            </div>
+            <PillToggle
+                options={FLOATING_OPTIONS}
+                active={active}
+                onActiveChange={onActiveChange}
+                size="sm"
+            />
         </motion.div>
     );
 } 

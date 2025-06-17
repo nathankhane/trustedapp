@@ -50,8 +50,8 @@ export const RoleHero: React.FC<RoleHeroProps> = ({
                 className
             )}
         >
-            {/* Background gradient - only show if not forced to white */}
-            {!className?.includes('bg-white') && (
+            {/* Background gradient - only show for experts/providers, not neutral */}
+            {role !== "neutral" && !className?.includes('bg-white') && (
                 <div className={cn(
                     "absolute inset-0 bg-gradient-to-br",
                     backgroundClass

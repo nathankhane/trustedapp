@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ContentType, CONTENT_META } from '@/lib/rateMatrix';
+import { useState } from 'react';
 
 export default function SimpleMode() {
     const {
@@ -15,10 +16,14 @@ export default function SimpleMode() {
         setContentType
     } = useCalculatorStore();
 
+    const [hoveredType, setHoveredType] = useState<ContentType | null>(null);
     const contentTypes = Object.keys(CONTENT_META) as ContentType[];
 
     // Validation: clamp to 10 hours max
     const maxHours = Math.min(10, Math.floor(10 / (sessionLength / 60)));
+
+    // Show info for hovered type, fallback to selected type
+    const displayType = hoveredType || contentType;
 
     return (
         <TooltipProvider>
@@ -40,7 +45,12 @@ export default function SimpleMode() {
                                         </SelectTrigger>
                                         <SelectContent>
                                             {contentTypes.map((type) => (
-                                                <SelectItem key={type} value={type}>
+                                                <SelectItem
+                                                    key={type}
+                                                    value={type}
+                                                    onMouseEnter={() => setHoveredType(type)}
+                                                    onMouseLeave={() => setHoveredType(null)}
+                                                >
                                                     {CONTENT_META[type].label}
                                                 </SelectItem>
                                             ))}
@@ -48,13 +58,13 @@ export default function SimpleMode() {
                                     </Select>
                                 </div>
                             </TooltipTrigger>
-                            <TooltipContent className="max-w-xs bg-popover border border-border shadow-lg z-50 opacity-100">
+                            <TooltipContent className="max-w-xs bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl z-50">
                                 <div className="space-y-2 p-3">
-                                    <p className="font-semibold text-popover-foreground">{CONTENT_META[contentType].label}</p>
-                                    <p className="text-sm text-muted-foreground">{CONTENT_META[contentType].description}</p>
+                                    <p className="font-semibold text-popover-foreground">{CONTENT_META[displayType].label}</p>
+                                    <p className="text-sm text-muted-foreground">{CONTENT_META[displayType].description}</p>
                                     <div className="text-xs text-muted-foreground space-y-1">
-                                        <p><strong>Length:</strong> {CONTENT_META[contentType].typicalLength}</p>
-                                        <p><strong>Deliverable:</strong> {CONTENT_META[contentType].deliverables}</p>
+                                        <p><strong>Length:</strong> {CONTENT_META[displayType].typicalLength}</p>
+                                        <p><strong>Deliverable:</strong> {CONTENT_META[displayType].deliverables}</p>
                                     </div>
                                 </div>
                             </TooltipContent>

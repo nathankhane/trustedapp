@@ -49,16 +49,14 @@ export function SimpleToggle() {
     };
 
     return (
-        <Button
-            variant="ghost"
-            size="icon"
+        <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="bg-background/80 backdrop-blur-xl hover:bg-background/95 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 border-0"
+            className="group relative flex h-10 w-10 items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm border border-border/40 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:bg-background/95"
         >
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all duration-500 ease-in-out dark:-rotate-90 dark:scale-0 text-muted-foreground" />
+            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all duration-500 ease-in-out dark:rotate-0 dark:scale-100 text-muted-foreground" />
             <span className="sr-only">Toggle theme</span>
-        </Button>
+        </button>
     );
 } 

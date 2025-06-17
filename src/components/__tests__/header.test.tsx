@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { HeroHeader } from '../header';
+import { HeroHeader } from '../layout/header';
 
 // Mock usePathname hook
 jest.mock('next/navigation', () => ({
@@ -15,6 +15,19 @@ jest.mock('framer-motion', () => ({
     },
 }));
 
+// Mock i18n
+jest.mock('@/lib/i18n', () => ({
+    t: (key: string) => {
+        const translations: Record<string, string> = {
+            'nav.solution': 'Solution',
+            'nav.pricing': 'Pricing',
+            'nav.team': 'Team',
+            'nav.requestAccess': 'Request Access',
+        };
+        return translations[key] || key;
+    },
+}));
+
 describe('HeroHeader', () => {
     beforeEach(() => {
         // Reset window.scrollY
@@ -24,73 +37,75 @@ describe('HeroHeader', () => {
         });
     });
 
-    it('renders How it Works navigation link', () => {
+    it('renders Solution navigation link', () => {
         const { usePathname } = require('next/navigation');
         usePathname.mockReturnValue('/');
 
         render(<HeroHeader />);
 
         // Use getAllByText since there are mobile and desktop nav items
-        expect(screen.getAllByText('How it Works').length).toBeGreaterThanOrEqual(1);
+        expect(screen.getAllByText('Solution').length).toBeGreaterThanOrEqual(1);
     });
 
-    it('highlights How it Works link when on solution page', () => {
+    it('highlights Solution link when on solution page', () => {
         const { usePathname } = require('next/navigation');
         usePathname.mockReturnValue('/solution');
 
         render(<HeroHeader />);
 
         // Check the first instance (desktop nav)
-        const howItWorksLinks = screen.getAllByText('How it Works');
-        const howItWorksLink = howItWorksLinks[0].closest('a');
-        expect(howItWorksLink).toHaveClass('text-foreground');
-        expect(howItWorksLink).toHaveClass('bg-muted');
+        const solutionLinks = screen.getAllByText('Solution');
+        const solutionLink = solutionLinks[0].closest('a');
+        expect(solutionLink).toHaveClass('text-foreground');
+        expect(solutionLink).toHaveClass('bg-muted/20');
     });
 
-    it('does not highlight How it Works link when on other pages', () => {
+    it('does not highlight Solution link when on other pages', () => {
         const { usePathname } = require('next/navigation');
         usePathname.mockReturnValue('/pricing');
 
         render(<HeroHeader />);
 
         // Check the first instance (desktop nav)
-        const howItWorksLinks = screen.getAllByText('How it Works');
-        const howItWorksLink = howItWorksLinks[0].closest('a');
-        expect(howItWorksLink).toHaveClass('text-muted-foreground');
-        expect(howItWorksLink).not.toHaveClass('bg-muted');
+        const solutionLinks = screen.getAllByText('Solution');
+        const solutionLink = solutionLinks[0].closest('a');
+        expect(solutionLink).toHaveClass('text-muted-foreground');
+        expect(solutionLink).not.toHaveClass('bg-muted/20');
     });
 
-    it('has correct href for How it Works link', () => {
+    it('has correct href for Solution link', () => {
         const { usePathname } = require('next/navigation');
         usePathname.mockReturnValue('/');
 
         render(<HeroHeader />);
 
-        const howItWorksLinks = screen.getAllByText('How it Works');
-        const howItWorksLink = howItWorksLinks[0].closest('a');
-        expect(howItWorksLink).toHaveAttribute('href', '/solution');
+        const solutionLinks = screen.getAllByText('Solution');
+        const solutionLink = solutionLinks[0].closest('a');
+        expect(solutionLink).toHaveAttribute('href', '/solution');
     });
 
-    it('no longer shows Solution link', () => {
+    it('maintains core navigation links', () => {
         const { usePathname } = require('next/navigation');
         usePathname.mockReturnValue('/');
 
         render(<HeroHeader />);
 
-        expect(screen.queryByText('Solution')).not.toBeInTheDocument();
-    });
-
-    it('maintains other navigation links', () => {
-        const { usePathname } = require('next/navigation');
-        usePathname.mockReturnValue('/');
-
-        render(<HeroHeader />);
-
-        // Check that other nav items exist (may be multiple due to responsive design)
-        expect(screen.getAllByText('Team').length).toBeGreaterThanOrEqual(1);
+        // Check that V2 nav items exist (may be multiple due to responsive design)
+        expect(screen.getAllByText('Solution').length).toBeGreaterThanOrEqual(1);
         expect(screen.getAllByText('Pricing').length).toBeGreaterThanOrEqual(1);
-        expect(screen.getAllByText('Testimonials').length).toBeGreaterThanOrEqual(1);
-        expect(screen.getAllByText('Experts').length).toBeGreaterThanOrEqual(1);
-        expect(screen.getAllByText('Providers').length).toBeGreaterThanOrEqual(1);
+        expect(screen.getAllByText('Team').length).toBeGreaterThanOrEqual(1);
+        expect(screen.getAllByText('Request Access').length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('renders mobile menu trigger', () => {
+        const { usePathname } = require('next/navigation');
+        usePathname.mockReturnValue('/');
+
+        render(<HeroHeader />);
+
+        // Look for the hamburger menu button
+        const menuButton = screen.getByRole('button');
+        expect(menuButton).toBeInTheDocument();
+        expect(menuButton).toHaveClass('lg:hidden'); // Should be hidden on desktop
     });
 }); 

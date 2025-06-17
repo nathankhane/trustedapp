@@ -119,7 +119,7 @@ export default function ResultCard() {
                                                 Projected recurring*
                                             </span>
                                         </TooltipTrigger>
-                                        <TooltipContent>
+                                        <TooltipContent className="bg-background/95 backdrop-blur-xl border border-border/50 shadow-xl">
                                             <p>assuming {conversionsPerMonth} conversions/mo @ {(shareRevPct * 100).toFixed(0)}%</p>
                                         </TooltipContent>
                                     </Tooltip>
