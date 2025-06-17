@@ -152,11 +152,21 @@
 
   /* Mobile performance optimizations */
   @media (max-width: 768px) {
-    * {
+    *:not(.fixed):not([class*="fixed"]):not(header) {
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       -webkit-perspective: 1000;
       perspective: 1000;
+    }
+
+    /* Ensure fixed elements maintain proper positioning on mobile */
+    .fixed,
+    [class*="fixed"],
+    header {
+      -webkit-backface-visibility: visible;
+      backface-visibility: visible;
+      -webkit-perspective: none;
+      perspective: none;
     }
   }
 }
