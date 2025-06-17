@@ -166,7 +166,7 @@ export default function HeroTabs() {
             <div className="relative">
                 {/* Hero Section */}
                 <section
-                    className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20 sm:px-6 lg:px-8"
+                    className="relative flex min-h-[100dvh] sm:min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-12 sm:py-20 sm:px-6 lg:px-8"
                     data-animate
                 >
                     {/* Background Elements - Reduced on mobile */}
@@ -178,9 +178,9 @@ export default function HeroTabs() {
                         </div>
                     )}
 
-                    <div className="mx-auto w-full max-w-7xl">
+                    <div className="mx-auto w-full max-w-7xl pt-4 sm:pt-0">
                         {/* Tabs */}
-                        <div className="flex justify-center mb-8">
+                        <div className="flex justify-center mb-6 sm:mb-8">
                             <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
                                 {(['expert', 'provider'] as const).map((p) => (
                                     <button
@@ -204,7 +204,7 @@ export default function HeroTabs() {
                         <AnimatedGroup className="w-full text-center" key={active}>
                             <motion.h1
                                 key={`h1-${active}`}
-                                className={`mx-auto text-center font-bold leading-[1.15] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${heroGradient} mb-8 sm:mb-10 lg:mb-12 max-w-5xl px-4`}
+                                className={`mx-auto text-center font-bold leading-[1.15] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${heroGradient} mb-6 sm:mb-8 lg:mb-10 max-w-5xl px-2 sm:px-4`}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
@@ -214,7 +214,7 @@ export default function HeroTabs() {
                             </motion.h1>
                             <div
                                 key={`subtitle-${active}`}
-                                className="text-center text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 sm:mb-12 lg:mb-14 max-w-3xl mx-auto px-4 leading-relaxed"
+                                className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-10 lg:mb-12 max-w-3xl mx-auto px-2 sm:px-4 leading-relaxed"
                             >
                                 {active === 'expert' ? (
                                     <TextEffect
@@ -241,14 +241,14 @@ export default function HeroTabs() {
                         {/* CTA Buttons with gradient hover animation */}
                         <motion.div
                             key={`cta-${active}`}
-                            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+                            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 sm:mb-16"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.4 }}
                         >
                             <motion.a
                                 href={data.cta.href}
-                                className="inline-block rounded-full bg-primary text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-lg border border-primary/20 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 hover:scale-[1.03] touch-target"
+                                className="inline-block rounded-full bg-primary text-primary-foreground px-8 sm:px-8 py-4 sm:py-4 text-base sm:text-lg font-semibold shadow-lg border border-primary/20 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 hover:scale-[1.03] touch-target w-full sm:w-auto max-w-xs sm:max-w-none"
                                 whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
                                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                                 style={{ willChange: shouldReduceMotion ? "auto" : "transform" }}
