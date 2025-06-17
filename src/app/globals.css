@@ -127,10 +127,6 @@
 
   body {
     @apply bg-background text-foreground antialiased transition-colors duration-300;
-    background: linear-gradient(135deg,
-        hsl(var(--background)) 0%,
-        hsl(var(--muted) / 0.3) 50%,
-        hsl(var(--background)) 100%);
     min-height: 100vh;
   }
 
@@ -140,5 +136,11 @@
         hsl(var(--background)) 0%,
         hsl(var(--muted) / 0.2) 50%,
         hsl(var(--background)) 100%);
+  }
+}
+
+@layer utilities {
+  .view-fade {
+    view-transition-name: fade;
   }
 }

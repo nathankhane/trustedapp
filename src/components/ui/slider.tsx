@@ -24,7 +24,7 @@ export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.R
             onValueChange={onValueChange}
             {...props}
         >
-            <SliderPrimitive.Track className="bg-gray-200 relative grow rounded-full h-2">
+            <SliderPrimitive.Track className="bg-muted relative grow rounded-full h-2">
                 <SliderPrimitive.Range className="absolute h-full rounded-full bg-blue-500" />
             </SliderPrimitive.Track>
             <SliderPrimitive.Thumb className="block w-5 h-5 bg-blue-600 border-2 border-white rounded-full shadow transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />

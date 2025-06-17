@@ -1,0 +1,34 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0F0F0F"/>
+  <rect x="40" y="40" width="720" height="60" rx="8" fill="#1F1F1F"/>
+  <circle cx="80" cy="70" r="15" fill="#7F5BFF"/>
+  <rect x="110" y="60" width="150" height="20" rx="4" fill="#FAFAFA"/>
+  <rect x="40" y="120" width="720" height="140" rx="12" fill="#1A1A1A"/>
+  <rect x="60" y="140" width="160" height="24" rx="4" fill="#FAFAFA"/>
+  <rect x="60" y="180" width="150" height="60" rx="8" fill="#2A2A2A"/>
+  <rect x="80" y="195" width="50" height="30" rx="2" fill="#14E956"/>
+  <rect x="85" y="205" width="40" height="12" rx="2" fill="#0F0F0F"/>
+  <rect x="240" y="180" width="150" height="60" rx="8" fill="#2A2A2A"/>
+  <rect x="260" y="195" width="50" height="30" rx="2" fill="#7F5BFF"/>
+  <rect x="265" y="205" width="40" height="12" rx="2" fill="#0F0F0F"/>
+  <rect x="420" y="180" width="150" height="60" rx="8" fill="#2A2A2A"/>
+  <rect x="440" y="195" width="50" height="30" rx="2" fill="#FAFAFA"/>
+  <rect x="445" y="205" width="40" height="12" rx="2" fill="#0F0F0F"/>
+  <rect x="600" y="180" width="140" height="60" rx="8" fill="#2A2A2A"/>
+  <rect x="620" y="195" width="50" height="30" rx="2" fill="#888"/>
+  <rect x="625" y="205" width="40" height="12" rx="2" fill="#0F0F0F"/>
+  <rect x="40" y="280" width="360" height="280" rx="12" fill="#1A1A1A"/>
+  <rect x="60" y="300" width="140" height="24" rx="4" fill="#7F5BFF"/>
+  <rect x="60" y="340" width="320" height="200" rx="8" fill="#2A2A2A"/>
+  <polygon points="80,480 120,460 160,470 200,440 240,450 280,420 320,430 360,410" fill="none" stroke="#14E956" stroke-width="2"/>
+  <polygon points="80,500 120,490 160,495 200,480 240,485 280,470 320,475 360,460" fill="none" stroke="#7F5BFF" stroke-width="2"/>
+  <rect x="420" y="280" width="340" height="280" rx="12" fill="#1A1A1A"/>
+  <rect x="440" y="300" width="180" height="24" rx="4" fill="#FAFAFA"/>
+  <rect x="440" y="340" width="300" height="200" rx="8" fill="#2A2A2A"/>
+  <circle cx="480" cy="380" r="8" fill="#14E956"/>
+  <circle cx="520" cy="420" r="12" fill="#7F5BFF"/>
+  <circle cx="580" cy="400" r="10" fill="#FAFAFA"/>
+  <circle cx="640" cy="450" r="14" fill="#888"/>
+  <circle cx="700" cy="410" r="9" fill="#14E956"/>
+  <text x="400" y="590" font-family="Arial, sans-serif" font-size="14" fill="#888">Analytics Dashboard</text>
+</svg> 

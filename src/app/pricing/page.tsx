@@ -45,10 +45,10 @@ export default function PricingPage() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-6 text-foreground">
+            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-6 text-foreground">
               Fair, usage-based pricing
             </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-8">
+            <p className="text-lg lg:text-xl text-muted-foreground mb-8">
               Pay only for insights that move revenue. Cancel anytime.
             </p>
           </motion.div>
@@ -79,10 +79,10 @@ export default function PricingPage() {
       <section className="py-16 md:py-24 bg-muted/20">
         <div className="mx-auto max-w-3xl px-4 md:px-6">
           <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl mb-4 text-foreground">
+            <h2 className="text-balance text-2xl font-bold md:text-3xl mb-4 text-foreground">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-muted-foreground mb-12">
+            <p className="text-lg text-muted-foreground mb-12">
               Everything you need to know about our pricing
             </p>
           </div>

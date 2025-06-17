@@ -178,7 +178,7 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl xl:text-5xl font-bold text-foreground mb-6">
+                        <h2 className="text-4xl xl:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
                             How It Works
                         </h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

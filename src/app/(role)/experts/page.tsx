@@ -70,10 +70,10 @@ export default function ExpertsPage() {
             <section className="py-16 lg:py-24">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12 lg:mb-16">
-                        <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+                        <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-foreground">
                             How it works
                         </h2>
-                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                             Mirror Posted&apos;s Get Paid to Create rhythm but for SaaS expertise
                         </p>
                     </div>
@@ -95,10 +95,10 @@ export default function ExpertsPage() {
             <section className="py-16 lg:py-24 bg-muted/20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12 lg:mb-16">
-                        <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+                        <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-foreground">
                             Estimate Your Revenue
                         </h2>
-                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                             See what your expertise could earn on TrustedApp
                         </p>
                     </div>
@@ -110,10 +110,10 @@ export default function ExpertsPage() {
             <section className="py-16 lg:py-24">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+                        <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-foreground">
                             Platform Performance
                         </h2>
-                        <p className="text-lg text-muted-foreground">
+                        <p className="text-base text-muted-foreground">
                             Updated monthly with real data
                         </p>
                     </div>
@@ -132,7 +132,7 @@ export default function ExpertsPage() {
             <section className="py-16 lg:py-24 bg-muted/20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+                        <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-foreground">
                             Frequently Asked Questions
                         </h2>
                     </div>
@@ -148,10 +148,10 @@ export default function ExpertsPage() {
             <section className="py-16 lg:py-24">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-gradient-to-r from-[#7F5BFF]/10 to-purple-500/10 rounded-3xl p-8 lg:p-16 text-center">
-                        <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-foreground">
+                        <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-foreground">
                             Ready to monetize your expertise?
                         </h2>
-                        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                             Join the waitlist and be among the first to start earning from your SaaS knowledge.
                         </p>
                         <Button

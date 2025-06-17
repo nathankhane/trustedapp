@@ -34,9 +34,9 @@ describe('HeroHeader', () => {
         expect(screen.getAllByText('How it Works').length).toBeGreaterThanOrEqual(1);
     });
 
-    it('highlights How it Works link when on how-it-works page', () => {
+    it('highlights How it Works link when on solution page', () => {
         const { usePathname } = require('next/navigation');
-        usePathname.mockReturnValue('/how-it-works');
+        usePathname.mockReturnValue('/solution');
 
         render(<HeroHeader />);
 
@@ -68,7 +68,7 @@ describe('HeroHeader', () => {
 
         const howItWorksLinks = screen.getAllByText('How it Works');
         const howItWorksLink = howItWorksLinks[0].closest('a');
-        expect(howItWorksLink).toHaveAttribute('href', '/how-it-works');
+        expect(howItWorksLink).toHaveAttribute('href', '/solution');
     });
 
     it('no longer shows Solution link', () => {

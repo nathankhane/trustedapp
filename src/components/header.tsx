@@ -9,9 +9,8 @@ import { usePathname } from "next/navigation";
 
 const menuItems = [
   { name: "Team", href: "/team" },
-  { name: "How it Works", href: "/how-it-works" },
+  { name: "How it Works", href: "/solution" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Testimonials", href: "/testimonials" },
   { name: "Experts", href: "/experts" },
   { name: "Providers", href: "/providers" },
 ];

@@ -24,7 +24,7 @@ export default function SimpleMode() {
         <TooltipProvider>
             <div className="space-y-8">
                 <div>
-                    <h3 className="text-lg font-semibold mb-6 text-center">Quick Estimate</h3>
+                    <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-center text-foreground">Quick Estimate</h3>
 
                     {/* Content Type */}
                     <div className="space-y-3 mb-6">
@@ -48,11 +48,11 @@ export default function SimpleMode() {
                                     </Select>
                                 </div>
                             </TooltipTrigger>
-                            <TooltipContent className="max-w-xs bg-white border border-gray-200 shadow-lg z-50 opacity-100">
+                            <TooltipContent className="max-w-xs bg-popover border border-border shadow-lg z-50 opacity-100">
                                 <div className="space-y-2 p-3">
-                                    <p className="font-semibold text-gray-900">{CONTENT_META[contentType].label}</p>
-                                    <p className="text-sm text-gray-700">{CONTENT_META[contentType].description}</p>
-                                    <div className="text-xs text-gray-500 space-y-1">
+                                    <p className="font-semibold text-popover-foreground">{CONTENT_META[contentType].label}</p>
+                                    <p className="text-sm text-muted-foreground">{CONTENT_META[contentType].description}</p>
+                                    <div className="text-xs text-muted-foreground space-y-1">
                                         <p><strong>Length:</strong> {CONTENT_META[contentType].typicalLength}</p>
                                         <p><strong>Deliverable:</strong> {CONTENT_META[contentType].deliverables}</p>
                                     </div>

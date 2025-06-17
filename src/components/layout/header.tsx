@@ -9,12 +9,9 @@ import { usePathname } from "next/navigation";
 import { t } from "@/lib/i18n";
 
 const menuItems = [
-  { name: t('nav.team'), href: "/team" },
   { name: t('nav.solution'), href: "/solution" },
   { name: t('nav.pricing'), href: "/pricing" },
-  { name: t('nav.testimonials'), href: "/testimonials" },
-  { name: t('nav.experts'), href: "/experts" },
-  { name: t('nav.providers'), href: "/providers" },
+  { name: t('nav.team'), href: "/team" },
 ];
 
 export const HeroHeader = () => {
@@ -66,7 +63,7 @@ export const HeroHeader = () => {
             "bg-background/95 backdrop-blur-xl max-w-5xl rounded-2xl shadow-lg shadow-black/5 lg:px-8",
           )}
         >
-          <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
+          <div className="relative flex flex-wrap items-center justify-between gap-4 sm:gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full justify-between lg:w-auto">
               <Link
                 href="/"
@@ -94,7 +91,7 @@ export const HeroHeader = () => {
 
             {/* Desktop Navigation */}
             <div className="absolute inset-0 m-auto hidden size-fit lg:block">
-              <ul className="flex gap-8 text-sm">
+              <ul className="flex gap-6 lg:gap-8 text-sm">
                 {menuItems.map((item, index) => {
                   const isActive = pathname === item.href;
                   return (

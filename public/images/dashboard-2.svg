@@ -1,0 +1,26 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0F0F0F"/>
+  <rect x="40" y="40" width="720" height="60" rx="8" fill="#1F1F1F"/>
+  <circle cx="80" cy="70" r="15" fill="#7F5BFF"/>
+  <rect x="110" y="60" width="150" height="20" rx="4" fill="#FAFAFA"/>
+  <rect x="40" y="120" width="720" height="80" rx="12" fill="#1A1A1A"/>
+  <rect x="60" y="140" width="180" height="24" rx="4" fill="#FAFAFA"/>
+  <rect x="60" y="170" width="120" height="16" rx="4" fill="#14E956"/>
+  <rect x="220" y="150" width="100" height="16" rx="4" fill="#888"/>
+  <rect x="40" y="220" width="360" height="340" rx="12" fill="#1A1A1A"/>
+  <rect x="60" y="240" width="150" height="24" rx="4" fill="#7F5BFF"/>
+  <rect x="60" y="280" width="320" height="80" rx="8" fill="#2A2A2A"/>
+  <circle cx="90" cy="310" r="20" fill="#7F5BFF"/>
+  <rect x="120" y="295" width="120" height="12" rx="2" fill="#FAFAFA"/>
+  <rect x="120" y="310" width="80" height="10" rx="2" fill="#888"/>
+  <rect x="120" y="325" width="100" height="10" rx="2" fill="#888"/>
+  <rect x="300" y="300" width="60" height="20" rx="4" fill="#14E956"/>
+  <rect x="400" y="220" width="360" height="340" rx="12" fill="#1A1A1A"/>
+  <rect x="420" y="240" width="170" height="24" rx="4" fill="#FAFAFA"/>
+  <rect x="420" y="280" width="320" height="120" rx="8" fill="#2A2A2A"/>
+  <rect x="440" y="300" width="280" height="15" rx="2" fill="#7F5BFF"/>
+  <rect x="440" y="320" width="200" height="12" rx="2" fill="#FAFAFA"/>
+  <rect x="440" y="340" width="150" height="10" rx="2" fill="#888"/>
+  <rect x="440" y="360" width="180" height="10" rx="2" fill="#888"/>
+  <text x="400" y="590" font-family="Arial, sans-serif" font-size="14" fill="#888">Provider Dashboard</text>
+</svg> 

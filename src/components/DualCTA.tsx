@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { WaitlistModal } from "@/components/WaitlistModal";
@@ -118,8 +119,7 @@ export const DualCTA: React.FC<DualCTAProps> = ({
                                     <Button
                                         onClick={() => setProviderModalOpen(true)}
                                         size="lg"
-                                        variant="outline"
-                                        className="w-full text-lg hover:scale-[1.03] transition-transform duration-200 hover:shadow-lg border-primary/30 hover:border-primary hover:bg-primary/5"
+                                        className="w-full text-lg hover:scale-[1.03] transition-transform duration-200 hover:shadow-lg bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90"
                                     >
                                         {providerLabel}
                                     </Button>
@@ -136,13 +136,45 @@ export const DualCTA: React.FC<DualCTAProps> = ({
                         viewport={{ once: true }}
                         className="text-center mt-12"
                     >
-                        <p className="text-sm text-muted-foreground mb-4">
+                        <p className="text-sm text-muted-foreground mb-6">
                             Trusted by teams at
                         </p>
-                        <div className="flex justify-center items-center gap-8 opacity-60">
-                            <div className="text-xs text-muted-foreground font-mono">
-                                {/* Placeholder for company logos */}
-                                COMPANY • LOGOS • HERE
+                        <div className="flex justify-center items-center gap-8 lg:gap-12 opacity-80 flex-wrap">
+                            <div className="flex items-center">
+                                <Image
+                                    src="/logos/companies/bild-ai.png"
+                                    alt="Bild AI"
+                                    width={120}
+                                    height={32}
+                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                />
+                            </div>
+                            <div className="flex items-center">
+                                <Image
+                                    src="/logos/companies/airbills.png"
+                                    alt="AirBills"
+                                    width={120}
+                                    height={32}
+                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                />
+                            </div>
+                            <div className="flex items-center">
+                                <Image
+                                    src="/logos/companies/billtrim.png"
+                                    alt="BillTrim Inc"
+                                    width={120}
+                                    height={32}
+                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                />
+                            </div>
+                            <div className="flex items-center">
+                                <Image
+                                    src="/logos/companies/clickup.png"
+                                    alt="ClickUp"
+                                    width={120}
+                                    height={32}
+                                    className="h-8 w-auto grayscale hover:grayscale-0 transition-all duration-200"
+                                />
                             </div>
                         </div>
                     </motion.div>
