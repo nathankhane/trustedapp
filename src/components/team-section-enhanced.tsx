@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const members = [
   {
-    src: "/images/founders/IMG_1525.JPG",
+    src: "/Founder Pictures/IMG_1525.JPG",
     name: "Nathan Morales",
     role: "Co-Founder & CEO",
     bio: "Nathan leads the strategic vision and operations at TrustedApp, bringing over a decade of expertise in SaaS development and product management.",
