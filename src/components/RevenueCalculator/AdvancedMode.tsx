@@ -52,14 +52,14 @@ export default function AdvancedMode() {
     // Show warning for high revenue share
     useEffect(() => {
         if (revShare > 25) {
-            console.warn("Most experts keep 85-90% of earnings.");
+
         }
     }, [revShare]);
 
     // Validation for sharing
     useEffect(() => {
         if (allowShare && shareRevPct === 0) {
-            console.warn("Pick a rev-share percentage when allowing content sharing.");
+
         }
     }, [allowShare, shareRevPct]);
 

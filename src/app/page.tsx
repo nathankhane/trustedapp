@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import HeroTabs from "@/components/HeroTabs";
 import TrustedByTeamsAt from "@/components/TrustedByTeamsAt";
-import Features from "@/components/features";
+import FeaturesSection from "@/components/FeaturesSection";
 import CommunitySection from "@/components/content-6";
 import { Stats } from "@/components/marketing/Stats";
 import Faqs from "@/components/faqs";
@@ -16,7 +16,7 @@ export default function Home() {
         </Suspense>
         <TrustedByTeamsAt />
         <Suspense fallback={<div className="h-24 flex items-center justify-center">Loading features...</div>}>
-          <Features />
+          <FeaturesSection />
         </Suspense>
         <CommunitySection />
         <Stats />

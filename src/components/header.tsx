@@ -1,149 +1,131 @@
-"use client";
-import Link from "next/link";
-import { Logo } from "@/components/logo";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import React from "react";
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+'use client';
 
-const menuItems = [
-  { name: "Team", href: "/team" },
-  { name: "How it Works", href: "/solution" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Experts", href: "/experts" },
-  { name: "Providers", href: "/providers" },
+import { Fragment, useEffect, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+const links = [
+    { href: '/team', label: 'Team' },
+    { href: '/solution', label: 'Solution' },
+    { href: '/pricing', label: 'Pricing' },
 ];
 
-export const HeroHeader = () => {
-  const [menuState, setMenuState] = React.useState(false);
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const pathname = usePathname();
+export default function Header() {
+    const [open, setOpen] = useState(false);
+    const pathname = usePathname();
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // close mobile menu on route change
+    useEffect(() => setOpen(false), [pathname]);
 
-  // Close menu when clicking on a menu item
-  const handleMenuItemClick = () => {
-    setMenuState(false);
-  };
+    // lock body scroll while menu open
+    useEffect(() => {
+        if (!open) return;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [open]);
 
-  return (
-    <header>
-      <nav
-        className="fixed z-20 w-full px-2"
-      >
-        <div
-          className={cn(
-            "mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12",
-            isScrolled &&
-            "bg-background/90 max-w-5xl rounded-2xl border border-border shadow-lg backdrop-blur-lg lg:px-8",
-          )}
-        >
-          <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
-            <div className="flex w-full justify-between lg:w-auto">
-              <Link
-                href="/"
-                aria-label="home"
-                className="flex items-center space-x-2"
-              >
-                <Logo />
-              </Link>
+    return (
+        <header className="fixed inset-x-0 top-0 z-50">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4">
+                {/* Logo */}
+                <Link href="/" className="text-lg font-semibold">
+                    ✨ Trusted
+                </Link>
 
-              <button
-                onClick={() => setMenuState(!menuState)}
-                aria-label={menuState ? "Close Menu" : "Open Menu"}
-                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
-              >
-                <Menu className={cn(
-                  "m-auto size-6 transition-all duration-200",
-                  menuState && "rotate-180 scale-0 opacity-0"
-                )} />
-                <X className={cn(
-                  "absolute inset-0 m-auto size-6 transition-all duration-200",
-                  menuState ? "rotate-0 scale-100 opacity-100" : "-rotate-180 scale-0 opacity-0"
-                )} />
-              </button>
-            </div>
-
-            <div className="absolute inset-0 m-auto hidden size-fit lg:block">
-              <ul className="flex gap-8 text-sm">
-                {menuItems.map((item, index) => (
-                  <li key={index}>
+                {/* Desktop nav */}
+                <nav className="hidden items-center md:flex">
+                    {links.map((l) => (
+                        <Link
+                            key={l.href}
+                            href={l.href}
+                            className="ml-6 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                        >
+                            {l.label}
+                        </Link>
+                    ))}
                     <Link
-                      href={item.href}
-                      className={cn(
-                        "block duration-200 transition-all px-3 py-2 rounded-lg",
-                        pathname === item.href
-                          ? "text-foreground bg-muted border border-border shadow-sm"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                      )}
+                        href="/onboard"
+                        className="ml-8 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-indigo-700"
                     >
-                      <span>{item.name}</span>
+                        Request Access
                     </Link>
-                  </li>
-                ))}
-              </ul>
+                </nav>
+
+                {/* Mobile hamburger */}
+                <button
+                    onClick={() => setOpen(true)}
+                    className="md:hidden rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                    aria-label="Open menu"
+                >
+                    <Bars3Icon className="h-6 w-6" />
+                </button>
             </div>
 
-            <div className={cn(
-              "bg-background/80 backdrop-blur-sm mb-6 w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-border/50 p-6 shadow-2xl shadow-black/5 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent",
-              menuState ? "flex" : "hidden lg:flex"
-            )}>
-              <div className="lg:hidden">
-                <ul className="space-y-6 text-base">
-                  {menuItems.map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={item.href}
-                        onClick={handleMenuItemClick}
-                        className="text-muted-foreground hover:text-foreground block duration-200 transition-colors"
-                      >
-                        <span>{item.name}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                <Button
-                  asChild
-                  variant="outline"
-                  size="sm"
-                  className={cn(isScrolled && "lg:hidden")}
-                >
-                  <Link href="/login" onClick={handleMenuItemClick}>
-                    <span>Login</span>
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="sm"
-                  className={cn(isScrolled && "lg:hidden")}
-                >
-                  <Link href="/signup" onClick={handleMenuItemClick}>
-                    <span>Sign Up</span>
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="sm"
-                  className={cn(isScrolled ? "lg:inline-flex" : "hidden")}
-                >
-                  <Link href="#" onClick={handleMenuItemClick}>
-                    <span>Get Started</span>
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-  );
-};
+            {/* Mobile full-screen menu */}
+            <Transition show={open} as={Fragment}>
+                <Dialog as="div" className="relative z-40 md:hidden" onClose={setOpen}>
+                    {/* blurred backdrop */}
+                    <Transition.Child
+                        as={Fragment}
+                        enter="duration-200 ease-out"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="duration-150 ease-in"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-white/80 backdrop-blur-lg dark:bg-gray-900/70" />
+                    </Transition.Child>
+
+                    {/* panel */}
+                    <Transition.Child
+                        as={Fragment}
+                        enter="duration-200 ease-out"
+                        enterFrom="opacity-0 -translate-y-4"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="duration-150 ease-in"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 -translate-y-4"
+                    >
+                        <Dialog.Panel className="fixed inset-0 px-6 py-6">
+                            <div className="flex items-center justify-between">
+                                <Link href="/" className="text-lg font-semibold">
+                                    ✨ Trusted
+                                </Link>
+                                <button
+                                    onClick={() => setOpen(false)}
+                                    className="rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+                                    aria-label="Close menu"
+                                >
+                                    <XMarkIcon className="h-6 w-6" />
+                                </button>
+                            </div>
+
+                            <div className="mt-10 flex flex-col space-y-6">
+                                {links.map((l) => (
+                                    <Link
+                                        key={l.href}
+                                        href={l.href}
+                                        className="block text-lg font-medium text-gray-900 dark:text-gray-100"
+                                    >
+                                        {l.label}
+                                    </Link>
+                                ))}
+                                <Link
+                                    href="/onboard"
+                                    className="mt-6 w-full rounded-lg bg-indigo-600 px-4 py-3 text-center text-base font-semibold text-white shadow hover:bg-indigo-700"
+                                >
+                                    Request Access
+                                </Link>
+                            </div>
+                        </Dialog.Panel>
+                    </Transition.Child>
+                </Dialog>
+            </Transition>
+        </header>
+    );
+}

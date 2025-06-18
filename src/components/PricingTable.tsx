@@ -102,7 +102,7 @@ export function PricingTable({
         if (onGetStarted) {
             onGetStarted(tierName);
         } else {
-            console.log(`Get started clicked for: ${tierName}`);
+
         }
     };
 

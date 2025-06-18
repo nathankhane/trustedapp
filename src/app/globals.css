@@ -330,6 +330,10 @@
 }
 
 @layer utilities {
+  .backdrop-blur-lg {
+    backdrop-filter: blur(12px);
+  }
+
   .view-fade {
     view-transition-name: fade;
   }
