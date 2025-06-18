@@ -1027,32 +1027,328 @@ if (resolvedTheme === "dark") {
 
 ## 🎬 **Animation System**
 
-### **Framer Motion Patterns**
-```typescript
-// Page entrance animation
-const pageVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-}
+### **🚨 CRITICAL: Animation Performance & Tab Switching**
 
-// Stagger children animation
-const staggerContainer = {
+**Essential Knowledge from Performance Optimization:**
+
+#### **The `viewport={{ once: true }}` Problem & Solution**
+```typescript
+// ❌ PROBLEM: Using viewport={{ once: true }} breaks tab switching
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }} // 🚨 BREAKS tab switching - animations won't retrigger
+>
+  Content that changes based on persona/tab state
+</motion.div>
+
+// ✅ SOLUTION: Use animate instead of whileInView for state-dependent content
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }} // ✅ Always triggers on re-render
+  transition={{ duration: 0.6 }}
+>
+  Content that changes based on persona/tab state
+</motion.div>
+
+// ✅ SAFE: viewport={{ once: true }} OK for static content that never changes
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }} // ✅ Safe for static content
+>
+  Static content that never changes based on state
+</motion.div>
+```
+
+#### **Performance vs Functionality Trade-offs**
+```typescript
+// Rule: Use viewport={{ once: true }} for performance ONLY if content is truly static
+
+// Static sections (headers, footers, unchanging content)
+viewport={{ once: true }} // ✅ Performance optimization
+
+// Dynamic sections (content that changes based on tabs/state)
+// No viewport={{ once: true }} // ✅ Ensures retriggering
+```
+
+### **🎯 Standard Animation Patterns**
+
+#### **1. Staggered Entrance Animations**
+```typescript
+const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
   }
 }
 
-// Hover effects
-whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-whileHover={{ y: -8, boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+}
 
-// Glass morphism hover
+// Usage
+<motion.div
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible" // Use animate for state-dependent content
+  className="grid grid-cols-1 md:grid-cols-3 gap-6"
+>
+  {items.map((item, index) => (
+    <motion.div key={index} variants={itemVariants}>
+      {item}
+    </motion.div>
+  ))}
+</motion.div>
+```
+
+#### **2. Premium Hover Effects**
+```typescript
+// Standard button hover
 whileHover={{ 
-  backgroundColor: "rgba(255,255,255,0.1)",
-  backdropFilter: "blur(20px)"
+  scale: 1.03, 
+  boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
+  transition: { duration: 0.2, ease: "easeOut" }
 }}
+
+// Card hover with glow effect
+whileHover={{
+  y: -8,
+  scale: 1.02,
+  boxShadow: "0 20px 60px rgba(127, 91, 255, 0.15)", // Brand purple glow
+  transition: { duration: 0.3, ease: "easeOut" }
+}}
+
+// Premium hover with background shift
+whileHover={{
+  background: "linear-gradient(135deg, rgba(127, 91, 255, 0.1), rgba(20, 233, 86, 0.1))",
+  scale: 1.02,
+  transition: { duration: 0.3 }
+}}
+```
+
+#### **3. Shimmer & Gradient Effects**
+```typescript
+// Shimmer effect for loading states
+const shimmerVariants = {
+  start: { x: "-100%" },
+  end: { x: "100%" }
+}
+
+<div className="relative overflow-hidden bg-gray-200 dark:bg-gray-800 rounded-lg">
+  <motion.div
+    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+    variants={shimmerVariants}
+    animate={isLoading ? "end" : "start"}
+    transition={{
+      duration: 1.5,
+      repeat: Infinity,
+      ease: "linear"
+    }}
+  />
+  Content
+</div>
+
+// Animated gradient backgrounds
+const gradientVariants = {
+  animate: {
+    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+    transition: {
+      duration: 3,
+      repeat: Infinity,
+      ease: "linear"
+    }
+  }
+}
+
+<motion.div
+  variants={gradientVariants}
+  animate="animate"
+  className="bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 bg-[length:200%_100%]"
+>
+  Content
+</motion.div>
+```
+
+#### **4. Sliding Underlines & Borders**
+```typescript
+// Animated underline on hover
+<motion.div className="relative group">
+  <span>Hover me</span>
+  <motion.div
+    className="absolute bottom-0 left-0 h-0.5 bg-purple-500"
+    initial={{ width: 0 }}
+    whileHover={{ width: "100%" }}
+    transition={{ duration: 0.3, ease: "easeOut" }}
+  />
+</motion.div>
+
+// Corner accent animation
+<motion.div
+  className="relative p-6 border border-gray-200 dark:border-gray-800 rounded-xl group"
+  whileHover="hover"
+>
+  <motion.div
+    className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-purple-500 rounded-tl-xl"
+    variants={{
+      hover: {
+        width: "100%",
+        height: "100%",
+        borderRadius: "0.75rem",
+        transition: { duration: 0.4, ease: "easeOut" }
+      }
+    }}
+  />
+  Content
+</motion.div>
+```
+
+### **🎨 Reduced Motion Support**
+```typescript
+// ALWAYS include reduced motion support
+import { useReducedMotion } from "framer-motion"
+
+const shouldReduceMotion = useReducedMotion()
+
+const animations = shouldReduceMotion ? {
+  // Static variants for accessibility
+  initial: { opacity: 1 },
+  animate: { opacity: 1 }
+} : {
+  // Full animations
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 }
+}
+
+<motion.div {...animations}>
+  Content
+</motion.div>
+```
+
+### **⚡ Performance Best Practices**
+
+#### **1. Hardware Acceleration**
+```css
+/* Add to globals.css for smooth animations */
+.motion-safe {
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+```
+
+#### **2. Optimal Transition Properties**
+```typescript
+// ✅ Performant properties (GPU accelerated)
+transform: "translateY(-8px) scale(1.02)"
+opacity: 0.8
+filter: "blur(4px)"
+
+// ❌ Avoid animating these (causes layout thrashing)
+width, height, top, left, margin, padding
+
+// ✅ Use transform instead
+scale: 1.1        // instead of width/height
+x: 100, y: -50    // instead of top/left
+```
+
+#### **3. Animation Intervals & Timing**
+```typescript
+// Optimal intervals for different effects
+staggerChildren: 0.15    // Cards/items
+delayChildren: 0.2       // Initial delay
+duration: 0.6           // Section entrances
+duration: 0.3           // Hover effects
+duration: 0.2           // Button interactions
+
+// Shimmer effects - use longer intervals for better performance
+transition: {
+  duration: 2,           // Slower = better performance
+  repeat: Infinity,
+  ease: "linear"
+}
+```
+
+### **🔄 State-Based Animations**
+```typescript
+// Animation patterns for tab/persona switching
+const [activeTab, setActiveTab] = useState("expert")
+
+// Content that needs to retrigger on tab change
+<motion.div
+  key={activeTab} // Force re-mount for clean transitions
+  initial={{ opacity: 0, x: 20 }}
+  animate={{ opacity: 1, x: 0 }}
+  exit={{ opacity: 0, x: -20 }}
+  transition={{ duration: 0.4 }}
+>
+  {/* Tab-specific content */}
+</motion.div>
+
+// Alternative: State-aware animations without re-mounting
+<motion.div
+  animate={{
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4 }
+  }}
+  // Trigger animation when activeTab changes
+  key={`content-${activeTab}`}
+>
+  {/* Content */}
+</motion.div>
+```
+
+### **📱 Mobile-Specific Considerations**
+```typescript
+// Simplified animations for mobile
+const isMobile = window.innerWidth < 768
+
+const mobileVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.3 } }
+}
+
+const desktopVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
+
+<motion.div variants={isMobile ? mobileVariants : desktopVariants}>
+  Content
+</motion.div>
+```
+
+### **🚨 Animation Debugging**
+```typescript
+// Add to development for debugging animations
+const debugMotion = {
+  initial: { opacity: 0, y: 20, outline: "2px solid red" },
+  animate: { opacity: 1, y: 0, outline: "2px solid green" },
+  transition: { duration: 2 } // Slow for debugging
+}
+
+// Console logging for animation states
+<motion.div
+  onAnimationStart={() => console.log("Animation started")}
+  onAnimationComplete={() => console.log("Animation completed")}
+  variants={variants}
+>
+  Content
+</motion.div>
 ```
 
 ---

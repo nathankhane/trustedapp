@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function CallToAction() {
   const [selected, setSelected] = useState<"expert" | "provider">("expert");
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-background">
+    <section className="py-8 sm:py-12 lg:py-16 bg-background">
       <div className="mx-auto max-w-2xl px-6 flex flex-col items-center">
         <div className="flex mb-8 rounded-full bg-muted p-1 w-fit">
           <button
@@ -28,7 +28,7 @@ export default function CallToAction() {
             ? "Start Earning From Your Stack"
             : "Get Insight From 5,000+ VC-Backed Founders"}
         </h2>
-        <p className="text-muted-foreground text-center mb-6">
+        <p className="text-muted-foreground text-center mb-4">
           {selected === "expert"
             ? "Invite-only access for VC-backed founders"
             : "Connect with founders who already love your product"}

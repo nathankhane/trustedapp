@@ -98,21 +98,17 @@ export default function SolutionPage() {
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <RoleHero
-        role="neutral"
-        headline="Great products are built with real operators, not cold surveys."
-        subline="TrustedApp drops a vetted founder council into your workflow—pay only for insights that move revenue."
-      />
-
       {/* Role Flows - Desktop: dual columns, Mobile: tabs */}
-      <StepCardGrid role="both" className="-mt-8" />
+      <StepCardGrid role="both" className="pt-8 sm:pt-12 lg:pt-16" />
 
       {/* Demo Button Section */}
       <DemoButton />
 
       {/* Dashboard Demo */}
       <DashboardDemo images={demoImages} />
+
+      {/* Value Proposition Section */}
+      <ValuePropositionSection />
 
       {/* Proof Bar - Metrics */}
       <ProofSection metrics={metrics} />
@@ -134,7 +130,7 @@ export default function SolutionPage() {
 // Demo Button Component
 function DemoButton() {
   return (
-    <section className="py-12 lg:py-16">
+    <section className="py-8 sm:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <a
@@ -158,9 +154,9 @@ function DemoButton() {
 // Extract client components to separate the server/client boundary
 function DashboardDemo({ images }: { images: CarouselImage[] }) {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-8 sm:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
             See It In Action
           </h2>
@@ -180,11 +176,28 @@ function DashboardDemo({ images }: { images: CarouselImage[] }) {
   );
 }
 
+function ValuePropositionSection() {
+  return (
+    <section className="py-8 sm:py-12 lg:py-16 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+            Great products are built with real operators, not cold surveys.
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            TrustedApp drops a vetted founder council into your workflow—pay only for insights that move revenue.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProofSection({ metrics }: { metrics: MetricItem[] }) {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-8 sm:py-12 lg:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
             Trusted by Thousands
           </h2>
@@ -207,9 +220,9 @@ interface FAQ {
 
 function FAQSection({ expertFAQs, providerFAQs }: { expertFAQs: FAQ[]; providerFAQs: FAQ[] }) {
   return (
-    <section className="py-16 lg:py-24 bg-background">
+    <section className="py-8 sm:py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
             Frequently Asked Questions
           </h2>
@@ -221,14 +234,14 @@ function FAQSection({ expertFAQs, providerFAQs }: { expertFAQs: FAQ[]; providerF
         <div className="grid gap-12 lg:grid-cols-2 max-w-6xl mx-auto">
           {/* Expert FAQs */}
           <div>
-            <h3 className="text-xl font-semibold text-foreground mb-8 text-center">
+            <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
               For Experts
             </h3>
             <div className="space-y-4">
               {expertFAQs.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-card rounded-xl shadow-lg border border-border/50 hover:shadow-xl transition-all duration-300 hover:border-primary/30"
+                  className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <Accordion type="single" collapsible>
                     <AccordionItem value={`expert-${index}`} className="border-0">
@@ -247,14 +260,14 @@ function FAQSection({ expertFAQs, providerFAQs }: { expertFAQs: FAQ[]; providerF
 
           {/* Provider FAQs */}
           <div>
-            <h3 className="text-xl font-semibold text-foreground mb-8 text-center">
+            <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
               For Providers
             </h3>
             <div className="space-y-4">
               {providerFAQs.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-card rounded-xl shadow-lg border border-border/50 hover:shadow-xl transition-all duration-300 hover:border-primary/30"
+                  className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <Accordion type="single" collapsible>
                     <AccordionItem value={`provider-${index}`} className="border-0">

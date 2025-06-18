@@ -235,7 +235,7 @@ export default function HeroTabs() {
                         {/* CTA Buttons with gradient hover animation */}
                         <motion.div
                             key={`cta-${active}`}
-                            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+                            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4 sm:mb-6"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.4 }}
@@ -256,11 +256,11 @@ export default function HeroTabs() {
                 <BenefitsSection persona={active === 'expert' ? 'expert' : 'provider'} />
 
                 {/* How it Works Section */}
-                <section className="py-20 sm:py-24 lg:py-32 bg-background">
+                <section className="py-8 sm:py-12 lg:py-16 bg-background">
                     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                         <motion.div
                             key={`how-it-works-header-${active}`}
-                            className="text-center mb-16"
+                            className="text-center mb-8 sm:mb-12"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
@@ -392,7 +392,7 @@ export default function HeroTabs() {
 
                 {/* Revenue Calculator Section - Only for Experts */}
                 {active === 'expert' && (
-                    <section className="relative z-10 bg-muted/30 py-20 sm:py-24 lg:py-32">
+                    <section className="relative z-10 bg-muted/30 py-8 sm:py-12 lg:py-16">
                         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <motion.div
                                 key={`revenue-header-${active}`}
@@ -400,10 +400,12 @@ export default function HeroTabs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.3 }}
                                 transition={{ duration: 0.6 }}
-                                className="text-center mb-12 sm:mb-16 lg:mb-20"
+                                className="text-center mb-8 sm:mb-12"
                             >
-                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-                                    Estimate Your Revenue
+                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                                    <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+                                        Estimate Your Revenue
+                                    </span>
                                 </h2>
                                 <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
                                     See what your expertise could earn on TrustedApp
@@ -414,7 +416,7 @@ export default function HeroTabs() {
                                 key={`revenue-calculator-${active}`}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
+                                viewport={{ once: true, amount: 0.2 }}
                                 transition={{ duration: 0.7, delay: 0.2 }}
                             >
                                 <RevenueCalculator />

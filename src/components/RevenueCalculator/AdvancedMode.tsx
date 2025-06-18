@@ -163,13 +163,13 @@ export default function AdvancedMode() {
 
                 {/* Allow Sharing Toggle */}
                 <div className="space-y-4">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-50/50 to-indigo-50/50 dark:from-purple-950/20 dark:to-indigo-950/20 border border-purple-200/30 dark:border-purple-800/30 hover:shadow-md transition-all duration-200">
                         <Switch
                             id="allowShare"
                             checked={allowShare}
                             onCheckedChange={setAllowShare}
                         />
-                        <Label htmlFor="allowShare" className="text-sm font-medium">
+                        <Label htmlFor="allowShare" className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer">
                             Permit provider to republish this content for marketing / sales enablement
                         </Label>
                     </div>
@@ -261,13 +261,13 @@ export default function AdvancedMode() {
 
                 {/* Rush & Stage */}
                 <div className="grid md:grid-cols-2 gap-6">
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-orange-50/50 to-red-50/50 dark:from-orange-950/20 dark:to-red-950/20 border border-orange-200/30 dark:border-orange-800/30 hover:shadow-md transition-all duration-200">
                         <Switch
                             id="rush"
                             checked={rush}
                             onCheckedChange={setRush}
                         />
-                        <Label htmlFor="rush" className="text-sm font-medium">
+                        <Label htmlFor="rush" className="text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer">
                             Rush Delivery (+15% or $50)
                         </Label>
                     </div>

@@ -100,7 +100,7 @@ export default function FeaturesSection() {
   return (
     <section
       ref={containerRef}
-      className="py-16 md:py-32 bg-background overflow-hidden relative"
+      className="py-8 sm:py-12 lg:py-16 bg-background overflow-hidden relative"
       data-animate
       key={persona}
     >
@@ -117,7 +117,7 @@ export default function FeaturesSection() {
         >
           <motion.h2
             className={cn(
-              "text-balance text-4xl font-bold lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 overflow-visible pb-2",
+              "text-balance text-4xl font-bold lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 overflow-visible pb-2",
               shouldReduceMotion && "bg-none text-foreground"
             )}
             animate={shouldReduceMotion ? {} : {
@@ -148,7 +148,7 @@ export default function FeaturesSection() {
 
         <motion.div
           key={`features-grid-${persona}`}
-          className="mx-auto mt-16 grid max-w-sm gap-8 md:mt-24 md:max-w-none md:grid-cols-3"
+          className="mx-auto mt-8 sm:mt-12 grid max-w-sm gap-8 md:max-w-none md:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

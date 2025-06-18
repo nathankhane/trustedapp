@@ -41,7 +41,7 @@ export default function Faqs() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20">
+    <section className="py-8 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-3xl px-4 md:px-6">
         <div className="mx-auto max-w-xl text-center">
           <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl mb-4">
@@ -51,7 +51,7 @@ export default function Faqs() {
             Discover quick and comprehensive answers to common questions about our platform, services, and features.
           </p>
         </div>
-        <div className="mx-auto mt-12 max-w-xl">
+        <div className="mx-auto mt-8 max-w-xl">
           <div className="space-y-6">
             {faqItems.map((item, idx) => (
               <motion.details

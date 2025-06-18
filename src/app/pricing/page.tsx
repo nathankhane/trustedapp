@@ -95,7 +95,7 @@ export default function PricingPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
                   whileHover={{ scale: 1.02, boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
-                  className={`group transition-all duration-300 bg-card text-card-foreground rounded-xl shadow-lg border border-border/50 px-6 py-4 ${openIndex === idx ? "shadow-xl border-primary/20" : ""}`}
+                  className={`group transition-all duration-300 bg-card rounded-xl shadow-lg px-6 py-4 ${openIndex === idx ? "ring-2 ring-primary" : ""}`}
                   open={openIndex === idx}
                   onClick={e => {
                     e.preventDefault();
@@ -103,7 +103,7 @@ export default function PricingPage() {
                   }}
                 >
                   <summary
-                    className="cursor-pointer text-base font-semibold hover:text-primary transition-colors flex items-center justify-between outline-none"
+                    className="cursor-pointer text-base font-semibold group-hover:text-primary transition-colors flex items-center justify-between outline-none text-card-foreground"
                   >
                     <span>{item.question}</span>
                     <span

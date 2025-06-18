@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function TrustedByTeamsAt() {
     return (
-        <section className="py-12 sm:py-16 lg:py-20">
+        <section className="py-8 sm:py-12 lg:py-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -15,7 +15,7 @@ export default function TrustedByTeamsAt() {
                     viewport={{ once: true }}
                     className="text-center"
                 >
-                    <h3 className="text-lg font-medium text-muted-foreground mb-12">
+                    <h3 className="text-lg font-medium text-muted-foreground mb-8">
                         Trusted by teams at
                     </h3>
                     <div className="flex justify-center items-center gap-12 lg:gap-16 opacity-80 flex-wrap max-w-4xl mx-auto">

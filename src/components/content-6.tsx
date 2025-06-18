@@ -59,10 +59,10 @@ const founders = [
 
 export default function CommunitySection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-background">
+    <section className="py-8 sm:py-12 lg:py-16 bg-background">
       <div className="mx-auto max-w-6xl px-6 text-center">
         <h2 className="text-4xl font-bold mb-4">Our Community</h2>
-        <p className="text-xl mb-12">
+        <p className="text-xl mb-8">
           Join a network of successful founders and innovators.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
