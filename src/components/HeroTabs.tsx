@@ -167,14 +167,14 @@ export default function HeroTabs() {
             <div className="relative">
                 {/* Hero Section */}
                 <section
-                    className="relative flex min-h-screen flex-col items-center justify-start pt-8 pb-8 sm:pt-16 sm:pb-20 lg:justify-center lg:py-20 overflow-hidden px-4 sm:px-6 lg:px-8 bg-background"
+                    className="relative flex flex-col items-center justify-start pt-4 sm:pt-2 lg:-mt-4 pb-4 sm:pb-12 lg:min-h-screen lg:justify-center lg:py-20 overflow-hidden px-4 sm:px-6 lg:px-8 bg-background"
                     data-animate
                 >
                     {/* Background Elements - Completely removed */}
 
                     <div className="relative z-10 flex flex-col w-full">
                         {/* Tabs */}
-                        <div className="flex justify-center mb-4">
+                        <div className="flex justify-center mb-6 sm:mb-5 lg:mb-8">
                             <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
                                 {(['expert', 'provider'] as const).map((p) => (
                                     <button
@@ -198,7 +198,7 @@ export default function HeroTabs() {
                         <AnimatedGroup className="w-full text-center" key={active}>
                             <motion.h1
                                 key={`h1-${active}`}
-                                className={`mx-auto text-center font-bold leading-[1.15] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${heroGradient} mb-8 sm:mb-10 lg:mb-12 max-w-5xl px-4`}
+                                className={`mx-auto text-center font-bold leading-[1.15] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${heroGradient} mb-4 sm:mb-8 lg:mb-12 max-w-5xl px-4`}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
@@ -208,7 +208,7 @@ export default function HeroTabs() {
                             </motion.h1>
                             <div
                                 key={`subtitle-${active}`}
-                                className="text-center text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 sm:mb-12 lg:mb-14 max-w-3xl mx-auto px-4 leading-relaxed"
+                                className="text-center text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 sm:mb-10 lg:mb-14 max-w-3xl mx-auto px-4 leading-relaxed"
                             >
                                 {active === 'expert' ? (
                                     <TextEffect
@@ -235,7 +235,7 @@ export default function HeroTabs() {
                         {/* CTA Buttons with gradient hover animation */}
                         <motion.div
                             key={`cta-${active}`}
-                            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-2 sm:mb-6"
+                            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.4 }}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 
 const faqItems = [
   {
@@ -72,11 +73,12 @@ export default function Faqs() {
                   className="cursor-pointer text-base font-semibold group-hover:text-primary transition-colors flex items-center justify-between outline-none text-card-foreground"
                 >
                   <span>{item.question}</span>
-                  <span
-                    className={`ml-2 transform transition-transform duration-300 ${openIndex === idx ? "rotate-90 text-primary" : "rotate-0 text-muted-foreground"}`}
-                  >
-                    ▶
-                  </span>
+                  <ChevronRight
+                    className={`ml-2 h-4 w-4 transition-all duration-300 ${openIndex === idx
+                        ? "rotate-90 text-primary"
+                        : "rotate-0 text-muted-foreground"
+                      }`}
+                  />
                 </summary>
                 <div
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === idx ? "opacity-100 max-h-[500px] translate-y-0" : "opacity-0 max-h-0 -translate-y-2"}`}

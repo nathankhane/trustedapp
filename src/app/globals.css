@@ -150,44 +150,11 @@
     transform: translateZ(0);
   }
 
-  /* Mobile performance optimizations */
+  /* Mobile performance optimizations - simplified */
   @media (max-width: 768px) {
-    *:not(.fixed):not([class*="fixed"]):not(header) {
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-perspective: 1000;
-      perspective: 1000;
-    }
 
-    /* Ensure fixed elements maintain proper positioning on mobile */
-    .fixed,
-    [class*="fixed"],
-    header {
-      -webkit-backface-visibility: visible;
-      backface-visibility: visible;
-      -webkit-perspective: none;
-      perspective: none;
-    }
-
-    /* Mobile Safari fixed positioning fixes */
-    header.fixed,
-    header[class*="fixed"] {
-      /* Ensure header stays truly fixed without transform */
-      position: fixed !important;
-      /* Avoid transform which breaks fixed positioning on iOS */
-      -webkit-transform: none !important;
-      transform: none !important;
-    }
-
-    /* Only disable backdrop-blur for specific mobile elements that cause stacking issues */
-    header .mobile-menu-overlay {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-
-    /* Only disable backdrop-blur for mobile menu overlay, not header scroll effect */
-    header .mobile-menu-overlay .backdrop-blur-md,
-    header .mobile-menu-overlay [class*="backdrop-blur"] {
+    /* Keep mobile menu overlay without backdrop-blur to prevent issues */
+    .mobile-menu-overlay {
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
     }
