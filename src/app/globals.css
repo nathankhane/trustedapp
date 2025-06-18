@@ -172,12 +172,11 @@
     /* Mobile Safari fixed positioning fixes */
     header.fixed,
     header[class*="fixed"] {
-      /* Force hardware acceleration without breaking fixed positioning */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      /* Ensure header stays truly fixed */
+      /* Ensure header stays truly fixed without transform */
       position: fixed !important;
-      will-change: transform;
+      /* Avoid transform which breaks fixed positioning on iOS */
+      -webkit-transform: none !important;
+      transform: none !important;
     }
 
     /* Only disable backdrop-blur for specific mobile elements that cause stacking issues */

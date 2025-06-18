@@ -167,14 +167,14 @@ export default function HeroTabs() {
             <div className="relative">
                 {/* Hero Section */}
                 <section
-                    className="relative flex min-h-screen flex-col items-center justify-start pt-8 pb-20 sm:pt-16 sm:pb-20 lg:justify-center lg:py-20 overflow-hidden px-4 sm:px-6 lg:px-8 bg-background"
+                    className="relative flex min-h-screen flex-col items-center justify-start pt-8 pb-8 sm:pt-16 sm:pb-20 lg:justify-center lg:py-20 overflow-hidden px-4 sm:px-6 lg:px-8 bg-background"
                     data-animate
                 >
                     {/* Background Elements - Completely removed */}
 
                     <div className="relative z-10 flex flex-col w-full">
                         {/* Tabs */}
-                        <div className="flex justify-center mb-8">
+                        <div className="flex justify-center mb-4">
                             <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
                                 {(['expert', 'provider'] as const).map((p) => (
                                     <button
@@ -235,7 +235,7 @@ export default function HeroTabs() {
                         {/* CTA Buttons with gradient hover animation */}
                         <motion.div
                             key={`cta-${active}`}
-                            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4 sm:mb-6"
+                            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-2 sm:mb-6"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.4 }}
