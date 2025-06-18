@@ -106,4 +106,43 @@ import { ChevronRight } from "lucide-react";
 
 1. Consider using CSS custom properties for spacing values to make global adjustments easier
 2. Potential to create spacing utility classes for consistency
-3. Monitor mobile performance with reduced spacing 
+3. Monitor mobile performance with reduced spacing
+
+## Mobile-First Text Hierarchy Optimization
+
+### Problem
+On mobile, the hero section headline was smaller than secondary headings like "Why Choose Trusted", creating poor visual hierarchy and failing to maximize the impact of the first screen.
+
+### Solution
+
+**Hero Title (`src/components/HeroTabs.tsx`)**
+```tsx
+className="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl"
+```
+- Mobile: `text-[2.5rem]` (40px) - Dominant size
+- Tablet: `sm:text-5xl` (48px)
+- Desktop: `lg:text-7xl` (72px)
+
+**Section Headings (`src/components/BenefitsSection.tsx`)**
+```tsx
+className="text-2xl sm:text-3xl lg:text-4xl"
+```
+- Mobile: `text-2xl` (24px) - Clearly subordinate
+- Tablet: `sm:text-3xl` (30px)
+- Desktop: `lg:text-4xl` (36px)
+
+### Mobile Viewport Optimization
+
+**Hero Section Height**
+```tsx
+className="min-h-[85vh] sm:min-h-[70vh] lg:min-h-screen"
+```
+- Mobile: 85% of viewport height - fills most of screen
+- Tablet: 70% of viewport height
+- Desktop: Full screen
+
+**Key Benefits:**
+1. Hero text is now 67% larger than section headings on mobile (40px vs 24px)
+2. Hero section fills 85% of mobile viewport for maximum impact
+3. "Why Choose Trusted" appears immediately upon first scroll
+4. Creates proper visual hierarchy: Hero > Section Headings > Body Text 

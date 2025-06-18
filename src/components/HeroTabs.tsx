@@ -167,7 +167,7 @@ export default function HeroTabs() {
             <div className="relative">
                 {/* Hero Section */}
                 <section
-                    className="relative flex flex-col items-center justify-start pt-4 sm:pt-2 lg:-mt-4 pb-4 sm:pb-12 lg:min-h-screen lg:justify-center lg:py-20 overflow-hidden px-4 sm:px-6 lg:px-8 bg-background"
+                    className="relative flex flex-col items-center justify-center min-h-[85vh] sm:min-h-[70vh] lg:min-h-screen pt-4 sm:pt-2 lg:-mt-4 pb-2 sm:pb-8 lg:pb-12 overflow-hidden px-4 sm:px-6 lg:px-8 bg-background"
                     data-animate
                 >
                     {/* Background Elements - Completely removed */}
@@ -198,7 +198,7 @@ export default function HeroTabs() {
                         <AnimatedGroup className="w-full text-center" key={active}>
                             <motion.h1
                                 key={`h1-${active}`}
-                                className={`mx-auto text-center font-bold leading-[1.15] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl ${heroGradient} mb-4 sm:mb-8 lg:mb-12 max-w-5xl px-4`}
+                                className={`mx-auto text-center font-bold leading-[1.1] tracking-tight text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl ${heroGradient} mb-4 sm:mb-6 lg:mb-8 max-w-5xl px-2`}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
@@ -208,7 +208,7 @@ export default function HeroTabs() {
                             </motion.h1>
                             <div
                                 key={`subtitle-${active}`}
-                                className="text-center text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 sm:mb-10 lg:mb-14 max-w-3xl mx-auto px-4 leading-relaxed"
+                                className="text-center text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-10 lg:mb-14 max-w-2xl mx-auto px-4 leading-relaxed"
                             >
                                 {active === 'expert' ? (
                                     <TextEffect
