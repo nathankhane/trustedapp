@@ -19,11 +19,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "TrustedApp - Turn expertise into income",
   description: "Turn expertise into income. Turn user insight into market wins.",
-  metadataBase: new URL('https://trustedapp.com'),
+  metadataBase: new URL('https://trustedapp-demo.vercel.app'),
   openGraph: {
     title: "TrustedApp - Turn expertise into income",
     description: "Turn expertise into income. Turn user insight into market wins.",
-    url: 'https://trustedapp.com',
+    url: 'https://trustedapp-demo.vercel.app',
     siteName: 'TrustedApp',
     images: [
       {
