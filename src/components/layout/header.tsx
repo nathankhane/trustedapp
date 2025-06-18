@@ -22,10 +22,18 @@ export const HeroHeader = () => {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrolled = window.scrollY > 20;
+      setIsScrolled(scrolled);
+      // Debug: Add console log to verify scroll detection
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Scroll Y:', window.scrollY, 'isScrolled:', scrolled);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Initial check
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

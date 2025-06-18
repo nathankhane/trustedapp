@@ -83,7 +83,7 @@ export default function BenefitsSection({ persona }: { persona: Persona }) {
     };
 
     return (
-        <section className="py-4 sm:py-6 lg:py-8" key={persona}>
+        <section className="py-2 sm:py-6 lg:py-8" key={persona}>
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 {/* heading */}
                 <motion.h2

@@ -175,6 +175,9 @@
       /* Force hardware acceleration without breaking fixed positioning */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
+      /* Ensure header stays truly fixed */
+      position: fixed !important;
+      will-change: transform;
     }
 
     /* Only disable backdrop-blur for specific mobile elements that cause stacking issues */
