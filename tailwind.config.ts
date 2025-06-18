@@ -66,4 +66,19 @@ const config: Config = {
     plugins: [require("tailwindcss-animate")],
 };
 
-export default config; 
+export default config;
+
+module.exports = {
+    // existing config…
+    theme: {
+        extend: {
+            boxShadow: {
+                'xl/10': '0 20px 25px -5px rgb(0 0 0 / 0.1)',
+            },
+            backgroundImage: {
+                'gradient-radial':
+                    'radial-gradient(circle at 50% 50%, rgb(236 72 153 / 0.1), rgb(99 102 241 / 0.05) 60%, transparent 100%)',
+            },
+        },
+    },
+};

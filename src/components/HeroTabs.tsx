@@ -7,6 +7,7 @@ import { TextEffect } from './ui/text-effect';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import RevenueCalculator from './RevenueCalculator';
 import FloatingTabsPill from './FloatingTabsPill';
+import BenefitsSection from '@/components/BenefitsSection';
 import { UserCheck, MessageSquare, DollarSign, FileText, Users, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -252,46 +253,7 @@ export default function HeroTabs() {
                     </div>
                 </section>
 
-                {/* Why Choose Trusted Section */}
-                <section className="py-20 sm:py-24 lg:py-32 bg-background">
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <h2 className={`mb-12 sm:mb-16 lg:mb-20 text-2xl sm:text-3xl md:text-4xl font-bold text-center ${heroGradient}`}>
-                            Why Choose Trusted
-                        </h2>
-                        <motion.div
-                            key={`why-choose-${active}`}
-                            className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12"
-                            variants={staggerContainer}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ amount: 0.3 }}
-                        >
-                            {data.why.map((card, i) => (
-                                <motion.div
-                                    key={card.title}
-                                    variants={cardVariants}
-                                    className="rounded-2xl bg-card shadow-lg border border-border/50 p-6 sm:p-7 flex flex-col items-center justify-center text-center h-full transition-all duration-300 cursor-pointer group hover:shadow-xl hover:border-primary/20 hover:shadow-primary/10 touch-target"
-                                    style={{
-                                        minHeight: 220,
-                                        willChange: shouldReduceMotion ? "auto" : "transform"
-                                    }}
-                                    whileHover={shouldReduceMotion ? {} : {
-                                        y: -4,
-                                        scale: 1.02,
-                                        transition: { duration: 0.2, ease: "easeOut" }
-                                    }}
-                                >
-                                    <div className={`text-base sm:text-lg font-semibold mb-4 text-center ${heroGradient} group-hover:drop-shadow-md`}>
-                                        {card.title}
-                                    </div>
-                                    <div className="text-muted-foreground text-sm sm:text-base leading-relaxed text-center">
-                                        {card.desc}
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                    </div>
-                </section>
+                <BenefitsSection persona={active === 'expert' ? 'expert' : 'provider'} />
 
                 {/* How it Works Section */}
                 <section className="py-20 sm:py-24 lg:py-32 bg-background">
