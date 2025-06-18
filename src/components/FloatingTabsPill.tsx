@@ -16,6 +16,32 @@ const FLOATING_OPTIONS = [
 ];
 
 export default function FloatingTabsPill({ active, onActiveChange, isScrolled }: FloatingTabsPillProps) {
+    // Hide the floating pill when mobile menu is open (detected by body overflow hidden)
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        const checkMobileMenu = () => {
+            setIsMobileMenuOpen(document.body.style.overflow === 'hidden');
+        };
+
+        // Check immediately
+        checkMobileMenu();
+
+        // Create a MutationObserver to watch for style changes on body
+        const observer = new MutationObserver(checkMobileMenu);
+        observer.observe(document.body, {
+            attributes: true,
+            attributeFilter: ['style']
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Don't render the floating pill when mobile menu is open
+    if (isMobileMenuOpen) {
+        return null;
+    }
+
     return (
         <motion.div
             initial={{ y: -100, opacity: 0 }}
