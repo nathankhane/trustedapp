@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TrustedApp",
+  title: "TrustedApp - Turn expertise into income",
   description: "Turn expertise into income. Turn user insight into market wins.",
   metadataBase: new URL('https://trustedapp.com'),
   openGraph: {
@@ -30,7 +30,8 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TrustedApp - Turn expertise into income',
+        alt: 'TrustedApp landing page showing "Turn expertise into income" with purple and green accents on dark background',
+        type: 'image/png',
       },
     ],
     locale: 'en_US',
@@ -40,7 +41,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'TrustedApp - Turn expertise into income',
     description: 'Turn expertise into income. Turn user insight into market wins.',
-    images: ['/og-image.png'],
+    images: [
+      {
+        url: '/og-image.png',
+        alt: 'TrustedApp landing page showing "Turn expertise into income" with purple and green accents on dark background',
+      }
+    ],
+    creator: '@trustedapp',
+    site: '@trustedapp',
   },
   robots: {
     index: true,
