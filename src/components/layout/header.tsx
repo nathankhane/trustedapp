@@ -51,19 +51,22 @@ export const HeroHeader = () => {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] w-full px-4 lg:px-6">
+      <header className="fixed inset-x-0 top-0 z-[80] w-full px-4 lg:px-6">
         <nav
           className={cn(
             "mx-auto transition-all duration-500 ease-out",
             isScrolled
-              ? "mt-2 max-w-5xl rounded-2xl shadow-md bg-background/95 lg:backdrop-blur-md"
+              ? "mt-2 mx-2 lg:mx-auto max-w-5xl rounded-2xl shadow-md bg-background/95 backdrop-blur-md"
               : "mt-0 max-w-6xl"
           )}
         >
-          <div className="px-4 lg:px-6">
+          <div className={cn(
+            "transition-all duration-500",
+            isScrolled ? "px-3 lg:px-6" : "px-4 lg:px-6"
+          )}>
             <div className={cn(
               "flex items-center justify-between lg:justify-start lg:relative transition-all duration-500",
-              isScrolled ? "py-2 lg:py-3" : "py-4 lg:py-5"
+              isScrolled ? "py-2" : "py-4 lg:py-5"
             )}>
               {/* Logo */}
               <div className="flex items-center lg:flex-shrink-0">
@@ -141,12 +144,12 @@ export const HeroHeader = () => {
         </nav>
       </header>
 
-      {/* Mobile Menu Overlay - V1 Style Full Screen */}
+      {/* Mobile Menu Overlay - V1 Style with Proper Frosted Glass */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[70] lg:hidden">
-          {/* Full screen backdrop */}
+        <div className="fixed inset-0 z-[70] lg:hidden mobile-menu-overlay">
+          {/* Solid backdrop with frosted glass effect */}
           <div
-            className="absolute inset-0 bg-background"
+            className="absolute inset-0 bg-white/95 dark:bg-black/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/80 supports-[backdrop-filter]:dark:bg-black/80"
             onClick={closeMobileMenu}
           />
 

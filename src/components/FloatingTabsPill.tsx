@@ -22,7 +22,7 @@ export default function FloatingTabsPill({ active, onActiveChange, isScrolled }:
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-full shadow-xl p-1"
+            className={`fixed left-1/2 transform -translate-x-1/2 z-[70] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-full shadow-xl p-1 ${isScrolled ? 'top-20' : 'top-24'}`}
         >
             <PillToggle
                 options={FLOATING_OPTIONS}

@@ -170,26 +170,24 @@
     }
 
     /* Mobile Safari fixed positioning fixes */
-    header.fixed {
+    header.fixed,
+    header[class*="fixed"] {
       /* Force hardware acceleration without breaking fixed positioning */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
-      /* Ensure no backdrop-blur creates stacking contexts on mobile */
+    }
+
+    /* Only disable backdrop-blur for specific mobile elements that cause stacking issues */
+    header .mobile-menu-overlay {
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
     }
 
-    /* Disable backdrop-blur on mobile for fixed elements to prevent stacking context issues */
-    header .backdrop-blur-md,
-    header [class*="backdrop-blur"] {
+    /* Only disable backdrop-blur for mobile menu overlay, not header scroll effect */
+    header .mobile-menu-overlay .backdrop-blur-md,
+    header .mobile-menu-overlay [class*="backdrop-blur"] {
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
-    }
-
-    /* Ensure navigation doesn't create transform stacking contexts on mobile */
-    header nav {
-      transform: none !important;
-      -webkit-transform: none !important;
     }
   }
 }
