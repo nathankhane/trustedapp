@@ -314,18 +314,20 @@ export default function HeroTabs() {
                                         />
 
                                         {/* Shimmer effect */}
-                                        <motion.div
-                                            className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                                            animate={{
-                                                translateX: ["0%", "200%"],
-                                            }}
-                                            transition={{
-                                                duration: 2.5,
-                                                delay: i * 0.6 + 1.5,
-                                                repeat: Infinity,
-                                                repeatDelay: 10,
-                                            }}
-                                        />
+                                        {!shouldReduceMotion && (
+                                            <motion.div
+                                                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                                animate={{
+                                                    translateX: ["0%", "200%"],
+                                                }}
+                                                transition={{
+                                                    duration: 2.5,
+                                                    delay: i * 0.6 + 2,
+                                                    repeat: Infinity,
+                                                    repeatDelay: 15,
+                                                }}
+                                            />
+                                        )}
 
                                         <div className="relative z-10 flex flex-col items-center h-full">
                                             <motion.div
@@ -396,7 +398,7 @@ export default function HeroTabs() {
                                 key={`revenue-header-${active}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ amount: 0.3 }}
+                                viewport={{ once: true, amount: 0.3 }}
                                 transition={{ duration: 0.6 }}
                                 className="text-center mb-12 sm:mb-16 lg:mb-20"
                             >
@@ -412,7 +414,7 @@ export default function HeroTabs() {
                                 key={`revenue-calculator-${active}`}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ amount: 0.3 }}
+                                viewport={{ once: true, amount: 0.3 }}
                                 transition={{ duration: 0.7, delay: 0.2 }}
                             >
                                 <RevenueCalculator />

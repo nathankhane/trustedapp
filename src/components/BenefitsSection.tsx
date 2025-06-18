@@ -2,7 +2,7 @@
 
 import React from 'react';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 type Persona = 'expert' | 'provider';
 
@@ -39,6 +39,7 @@ const copy: Record<Persona, { title: string; body: string }[]> = {
 
 export default function BenefitsSection({ persona }: { persona: Persona }) {
     const BENEFITS = copy[persona];
+    const shouldReduceMotion = useReducedMotion() ?? false;
 
     // Animation variants
     const containerVariants = {
@@ -133,18 +134,20 @@ export default function BenefitsSection({ persona }: { persona: Persona }) {
                                 />
 
                                 {/* Shimmer effect */}
-                                <motion.div
-                                    className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                                    animate={{
-                                        translateX: ["0%", "200%"],
-                                    }}
-                                    transition={{
-                                        duration: 2,
-                                        delay: index * 0.5 + 1,
-                                        repeat: Infinity,
-                                        repeatDelay: 8,
-                                    }}
-                                />
+                                {!shouldReduceMotion && (
+                                    <motion.div
+                                        className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                        animate={{
+                                            translateX: ["0%", "200%"],
+                                        }}
+                                        transition={{
+                                            duration: 2,
+                                            delay: index * 0.5 + 2,
+                                            repeat: Infinity,
+                                            repeatDelay: 12,
+                                        }}
+                                    />
+                                )}
 
                                 <div className="relative z-10">
                                     <motion.h3

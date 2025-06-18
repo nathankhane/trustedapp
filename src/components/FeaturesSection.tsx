@@ -111,7 +111,7 @@ export default function FeaturesSection() {
           key={`features-header-${persona}`}
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, ease: "easeOut" }}
           className="text-center"
         >
@@ -139,7 +139,7 @@ export default function FeaturesSection() {
             className="mt-6 text-xl text-muted-foreground"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.2 }}
           >
             SaaS companies, reward the founders who love you.
@@ -152,7 +152,7 @@ export default function FeaturesSection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           {features.map((feature, index) => (
             <motion.div

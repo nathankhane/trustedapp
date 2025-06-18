@@ -57,7 +57,8 @@ export default function Faqs() {
               <motion.details
                 key={item.question}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 whileHover={{ scale: 1.02, boxShadow: "0 8px 32px rgba(0,0,0,0.10)" }}
                 className={`group transition-all duration-300 bg-card rounded-xl shadow-lg px-6 py-4 ${openIndex === idx ? "ring-2 ring-primary" : ""}`}

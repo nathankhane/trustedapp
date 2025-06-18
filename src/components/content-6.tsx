@@ -70,7 +70,8 @@ export default function CommunitySection() {
             <motion.div
               key={founder.name}
               initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.07, duration: 0.5 }}
               className="flex flex-col items-center"
             >
