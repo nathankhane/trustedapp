@@ -257,61 +257,134 @@ export default function HeroTabs() {
 
                 {/* How it Works Section */}
                 <section className="py-20 sm:py-24 lg:py-32 bg-background">
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                         <motion.div
                             key={`how-it-works-header-${active}`}
-                            className="text-center mb-16 sm:mb-20 lg:mb-24"
+                            className="text-center mb-16"
                             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ amount: 0.3 }}
-                            transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: shouldReduceMotion ? 0.1 : 0.5, ease: "easeOut" }}
                         >
-                            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 ${heroGradient}`}>
-                                How it Works
+                            <h2 className="mb-4 text-center text-4xl font-bold tracking-tight">
+                                <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+                                    How it Works
+                                </span>
                             </h2>
                             <p className="text-muted-foreground text-lg sm:text-xl max-w-3xl mx-auto">
                                 {data.howItWorks.subtitle}
                             </p>
                         </motion.div>
 
-                        <motion.div
-                            key={`how-it-works-steps-${active}`}
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto"
-                            variants={staggerContainer}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ amount: 0.2 }}
-                        >
-                            {data.howItWorks.steps.map((step, i) => (
-                                <motion.div
-                                    key={step.title}
-                                    variants={cardVariants}
-                                    className="rounded-2xl border border-border bg-card p-6 sm:p-8 flex flex-col items-center text-center h-full transition-all duration-300 hover:shadow-lg hover:border-primary/30 hover:shadow-primary/10 touch-target"
-                                    style={{
-                                        minHeight: 300,
-                                        willChange: shouldReduceMotion ? "auto" : "transform"
-                                    }}
-                                    whileHover={shouldReduceMotion ? {} : {
-                                        y: -4,
-                                        scale: 1.02,
-                                        transition: { duration: 0.2, ease: "easeOut" }
-                                    }}
-                                >
-                                    <div className="text-muted-foreground mb-6">
-                                        <step.icon size={40} className="mx-auto sm:w-12 sm:h-12" />
-                                    </div>
-                                    <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6 flex-grow">
-                                        {step.desc}
-                                    </p>
-                                    <button className="px-4 sm:px-6 py-2 border border-border rounded-lg text-muted-foreground font-medium hover:bg-muted/30 hover:text-foreground transition-colors duration-200 text-sm sm:text-base touch-target">
-                                        {step.cta.label}
-                                    </button>
-                                </motion.div>
-                            ))}
-                        </motion.div>
+                        <div className="relative">
+                            {/* decorative halo */}
+                            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-radial" />
+
+                            <motion.div
+                                key={`how-it-works-steps-${active}`}
+                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                                variants={staggerContainer}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.2 }}
+                            >
+                                {data.howItWorks.steps.map((step, i) => (
+                                    <motion.div
+                                        key={step.title}
+                                        variants={cardVariants}
+                                        className="group relative rounded-3xl bg-gradient-to-br from-purple-50 to-indigo-50 p-8 ring-1 ring-purple-200/50
+                                                   dark:from-purple-950/30 dark:to-indigo-950/30 dark:ring-purple-900/60 text-center overflow-hidden"
+                                        style={{
+                                            minHeight: 300,
+                                            willChange: shouldReduceMotion ? "auto" : "transform",
+                                            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                                        }}
+                                        whileHover={shouldReduceMotion ? {} : {
+                                            y: -8,
+                                            scale: 1.02,
+                                            transition: { duration: 0.3, ease: "easeOut" }
+                                        }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        {/* Hover glow effect */}
+                                        <motion.div
+                                            className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-3xl opacity-0"
+                                            whileHover={{ opacity: 1 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+
+                                        {/* Shimmer effect */}
+                                        <motion.div
+                                            className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                            animate={{
+                                                translateX: ["0%", "200%"],
+                                            }}
+                                            transition={{
+                                                duration: 2.5,
+                                                delay: i * 0.6 + 1.5,
+                                                repeat: Infinity,
+                                                repeatDelay: 10,
+                                            }}
+                                        />
+
+                                        <div className="relative z-10 flex flex-col items-center h-full">
+                                            <motion.div
+                                                className="mb-6 p-3 rounded-2xl bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900/50 dark:to-indigo-900/50"
+                                                whileHover={{ scale: 1.1, rotate: 5 }}
+                                                transition={{ duration: 0.2 }}
+                                            >
+                                                <step.icon size={40} className="text-purple-600 dark:text-purple-400" />
+                                            </motion.div>
+
+                                            <motion.h3
+                                                className="text-lg sm:text-xl font-semibold mb-4 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent"
+                                                whileHover={{ scale: 1.05 }}
+                                                transition={{ duration: 0.2 }}
+                                            >
+                                                {step.title}
+                                            </motion.h3>
+
+                                            <motion.p
+                                                className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow"
+                                                initial={{ opacity: 0.8 }}
+                                                whileHover={{ opacity: 1 }}
+                                                transition={{ duration: 0.2 }}
+                                            >
+                                                {step.desc}
+                                            </motion.p>
+
+                                            <motion.button
+                                                className="px-4 sm:px-6 py-2 rounded-lg font-medium text-sm sm:text-base
+                                                           bg-gradient-to-r from-purple-600 to-indigo-600 text-white
+                                                           hover:from-purple-700 hover:to-indigo-700 hover:shadow-lg
+                                                           transition-all duration-200"
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                            >
+                                                {step.cta.label}
+                                            </motion.button>
+                                        </div>
+
+                                        {/* Enhanced sliding underline */}
+                                        <motion.span
+                                            className="absolute bottom-6 left-1/2 h-px bg-gradient-to-r from-purple-500 to-indigo-500"
+                                            initial={{ width: 0, x: "-50%" }}
+                                            whileHover={{
+                                                width: "60px",
+                                                transition: { duration: 0.4, ease: "easeOut" }
+                                            }}
+                                        />
+
+                                        {/* Corner accent */}
+                                        <motion.div
+                                            className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-purple-500/20 to-transparent rounded-tr-3xl opacity-0"
+                                            whileHover={{ opacity: 1 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
                     </div>
                 </section>
 
