@@ -106,12 +106,17 @@ export default function HeroTabs() {
     const shouldReduceMotion = useReducedMotion() ?? false;
 
     const [active, setActive] = useState<'expert' | 'provider'>(
-        (search.get('persona') as 'expert' | 'provider') ?? 'expert'
+        (search.get('persona') as 'expert' | 'provider') ?? 'provider'
     );
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
-        router.replace(`/?persona=${active}`, { scroll: false });
+        // Debounce rapid persona changes to prevent blank states
+        const timeoutId = setTimeout(() => {
+            router.replace(`/?persona=${active}`, { scroll: false });
+        }, 50);
+
+        return () => clearTimeout(timeoutId);
     }, [active, router]);
 
     useEffect(() => {

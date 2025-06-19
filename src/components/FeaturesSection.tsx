@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { DollarSign, Users2, Sparkles, BrainCircuit } from "lucide-react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactElement, ReactNode, useRef } from "react";
 
 type Persona = "provider" | "expert";
@@ -11,7 +11,7 @@ type Persona = "provider" | "expert";
 // Hero copy data
 const heroCopy = {
   expert: {
-    heading: "Monetize your product insight—instantly.",
+    heading: "Monetize your product insight, instantly.",
     sub: "TrustedApp pipes paid calls and surveys from the SaaS tools you already use. Cash hits Stripe right after you share."
   },
   provider: {
@@ -83,15 +83,6 @@ export default function FeaturesSection() {
   const shouldReduceMotion = useReducedMotion() ?? false;
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Reduce motion for better performance and accessibility
-  const y1 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const features = COPIES[persona];
 
@@ -137,36 +128,37 @@ export default function FeaturesSection() {
         <motion.div
           key={`features-header-${persona}`}
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, ease: "easeOut" }}
           className="text-center"
         >
           <motion.h2
+            key={`features-h2-${persona}`}
             className={cn(
-              "text-balance text-4xl font-bold lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 overflow-visible pb-2",
+              "text-4xl font-bold lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 overflow-visible pb-2",
               shouldReduceMotion && "bg-none text-foreground"
             )}
-            animate={shouldReduceMotion ? {} : {
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={shouldReduceMotion ? {} : {
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={shouldReduceMotion ? {} : {
-              backgroundSize: "200% 200%",
-              willChange: "background-position"
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: shouldReduceMotion ? 0.1 : 0.6, delay: 0.2 }}
           >
-            {heroCopy[persona].heading}
+            {persona === 'provider' ? (
+              <>
+                VC‑backed founders.
+                <br />
+                Game-changing SaaS.
+                <br />
+                Meet in minutes.
+              </>
+            ) : (
+              heroCopy[persona].heading
+            )}
           </motion.h2>
           <motion.p
+            key={`features-p-${persona}`}
             className="mt-6 text-xl text-muted-foreground"
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.2 }}
           >
             {heroCopy[persona].sub}
@@ -178,8 +170,7 @@ export default function FeaturesSection() {
           className="mx-auto mt-8 sm:mt-12 grid max-w-sm gap-8 md:max-w-none md:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate="visible"
         >
           {features.map((feature, index) => (
             <motion.div
@@ -195,90 +186,38 @@ export default function FeaturesSection() {
               <motion.div
                 className="group relative h-full overflow-hidden rounded-2xl bg-card shadow transition-all touch-target"
                 whileHover={shouldReduceMotion ? {} : {
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
-                }}
-                animate={shouldReduceMotion ? {} : {
-                  borderRadius: ["1rem", "1.2rem", "1rem"],
-                }}
-                transition={shouldReduceMotion ? {} : {
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.5
+                  y: -4,
+                  scale: 1.01,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 transition-opacity group-hover:opacity-100"
-                  animate={{
-                    background: [
-                      "linear-gradient(45deg, rgba(59, 130, 246, 0.05), rgba(168, 85, 247, 0.05))",
-                      "linear-gradient(45deg, rgba(168, 85, 247, 0.05), rgba(236, 72, 153, 0.05))",
-                      "linear-gradient(45deg, rgba(236, 72, 153, 0.05), rgba(59, 130, 246, 0.05))"
-                    ]
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.7
-                  }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="relative flex flex-col items-center p-8">
                   <EnhancedCardDecorator index={index}>{feature.icon}</EnhancedCardDecorator>
                   <motion.h3
+                    key={`${persona}-title-${feature.title}`}
                     className="mt-6 text-xl font-semibold text-center text-card-foreground"
                     initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ amount: 0.3 }}
-                    transition={{ delay: index * 0.2 + 0.5 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: index * 0.1 + 0.4 }}
                   >
                     {feature.title}
                   </motion.h3>
                   <motion.p
+                    key={`${persona}-desc-${feature.title}`}
                     className="mt-4 text-base text-muted-foreground text-center"
                     initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ amount: 0.3 }}
-                    transition={{ delay: index * 0.2 + 0.7 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: index * 0.1 + 0.5 }}
                   >
                     {feature.description}
                   </motion.p>
                 </div>
 
-                {/* Performance-optimized floating particles */}
-                {!shouldReduceMotion && (
-                  <>
-                    <motion.div
-                      className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full"
-                      animate={{
-                        y: [0, -10, 0],
-                        opacity: [0.3, 0.8, 0.3],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.3
-                      }}
-                      style={{ willChange: "transform, opacity" }}
-                    />
-                    <motion.div
-                      className="absolute bottom-6 left-6 w-1.5 h-1.5 bg-accent/40 rounded-full"
-                      animate={{
-                        y: [0, -8, 0],
-                        x: [0, 4, 0],
-                        opacity: [0.4, 0.9, 0.4],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.5 + 1
-                      }}
-                      style={{ willChange: "transform, opacity" }}
-                    />
-                  </>
-                )}
+                {/* Static decorative elements */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-primary/20 rounded-full opacity-60" />
+                <div className="absolute bottom-6 left-6 w-1.5 h-1.5 bg-accent/30 rounded-full opacity-60" />
               </motion.div>
             </motion.div>
           ))}
@@ -296,18 +235,9 @@ const EnhancedCardDecorator = ({ children, index }: { children: ReactNode; index
       transition: { duration: 0.3, ease: "easeOut" }
     }}
   >
-    <motion.div
+    <div
       aria-hidden
-      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px]"
-      animate={{
-        opacity: [0.3, 0.7, 0.3],
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: index * 0.4
-      }}
+      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px] opacity-50"
     />
     <div
       aria-hidden
