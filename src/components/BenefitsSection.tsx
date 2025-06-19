@@ -136,7 +136,7 @@ export default function BenefitsSection({ persona }: { persona: Persona }) {
                                 {/* Shimmer effect */}
                                 {!shouldReduceMotion && (
                                     <motion.div
-                                        className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                        className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-gray-900/20 dark:via-white/20 to-transparent"
                                         animate={{
                                             translateX: ["0%", "200%"],
                                         }}
