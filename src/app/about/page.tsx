@@ -37,8 +37,8 @@ export default function About() {
             {/* SOCIAL PROOF */}
             <section className="border-l-4 pl-6 border-primary/70">
                 <p className="italic">
-                    "TrustedApp put 35 competitor power-users in front of our PMs in four days.
-                    We closed six net-new logos for less than an agency retainer."
+                    &ldquo;TrustedApp put 35 competitor power-users in front of our PMs in four days.
+                    We closed six net-new logos for less than an agency retainer.&rdquo;
                 </p>
                 <p className="mt-2 font-medium">Maya Patel — Director of Product Marketing, Atlassian</p>
             </section>
@@ -62,7 +62,7 @@ export default function About() {
                 </div>
                 <div>
                     <h3 className="font-semibold">Win-win economics</h3>
-                    <p className="text-sm text-muted-foreground">Both sides profit, or we don't ship it.</p>
+                    <p className="text-sm text-muted-foreground">Both sides profit, or we don&apos;t ship it.</p>
                 </div>
                 <div>
                     <h3 className="font-semibold">Privacy by default</h3>

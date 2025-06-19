@@ -33,10 +33,10 @@ export default function PrivacyPolicyPage() {
                         <div className="bg-card rounded-xl p-8 shadow-sm mb-8">
                             <div className="mb-8">
                                 <p className="text-lg font-semibold text-foreground mb-2">
-                                    TrustedApp (part of Only Founders, Inc) ("<strong>TrustedApp</strong>," "<strong>we</strong>," "<strong>our</strong>," or "<strong>us</strong>") respects your privacy.
+                                    TrustedApp (part of Only Founders, Inc) (&ldquo;<strong>TrustedApp</strong>,&rdquo; &ldquo;<strong>we</strong>,&rdquo; &ldquo;<strong>our</strong>,&rdquo; or &ldquo;<strong>us</strong>&rdquo;) respects your privacy.
                                 </p>
                                 <p className="text-card-foreground">
-                                    This Policy explains what data we collect, why we collect it, how long we keep it, and the choices you have. It applies to trustedapp.co, trustedapp-demo.vercel.app, related sub-domains, and any service that links to it (collectively the "<strong>Services</strong>").
+                                    This Policy explains what data we collect, why we collect it, how long we keep it, and the choices you have. It applies to trustedapp.co, trustedapp-demo.vercel.app, related sub-domains, and any service that links to it (collectively the &ldquo;<strong>Services</strong>&rdquo;).
                                 </p>
                             </div>
                         </div>
@@ -372,7 +372,7 @@ export default function PrivacyPolicyPage() {
                                             </tr>
                                             <tr>
                                                 <td className="py-4 pr-6 font-medium">California (CCPA/CPRA)</td>
-                                                <td className="py-4">Know, delete, correct, opt-out of "sale/share" (we <strong>do not</strong> sell data), limit sensitive data. Click "Do Not Sell or Share" in footer.</td>
+                                                <td className="py-4">Know, delete, correct, opt-out of &ldquo;sale/share&rdquo; (we <strong>do not</strong> sell data), limit sensitive data. Click &ldquo;Do Not Sell or Share&rdquo; in footer.</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -457,7 +457,7 @@ export default function PrivacyPolicyPage() {
                                         <strong>Postal:</strong> TrustedApp (part of Only Founders, Inc), 380 C Street, Hayward, CA 94541, USA
                                     </p>
                                     <p>
-                                        If you are in the EEA/UK and believe we haven't resolved a concern, you may lodge a complaint with your local data-protection authority.
+                                        If you are in the EEA/UK and believe we haven&apos;t resolved a concern, you may lodge a complaint with your local data-protection authority.
                                     </p>
                                 </div>
                             </div>
