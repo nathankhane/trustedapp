@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useReducedMotion } from "framer-motion";
 import React from "react";
 
 export type PresetType =
@@ -108,12 +108,26 @@ function AnimatedGroup({
   as = "div",
   asChild = "div",
 }: AnimatedGroupProps) {
-  const selectedVariants = {
-    item: addDefaultVariants(preset ? presetVariants[preset] : {}),
-    container: addDefaultVariants(defaultContainerVariants),
-  };
-  const containerVariants = variants?.container || selectedVariants.container;
-  const itemVariants = variants?.item || selectedVariants.item;
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  
+  // Create motion-aware variants based on user preference
+  const motionAwareVariants = React.useMemo(() => {
+    if (shouldReduceMotion) {
+      return {
+        item: { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.1 } } },
+        container: { visible: { transition: { staggerChildren: 0 } } }
+      };
+    }
+    
+    const selectedVariants = {
+      item: addDefaultVariants(preset ? presetVariants[preset] : {}),
+      container: addDefaultVariants(defaultContainerVariants),
+    };
+    return selectedVariants;
+  }, [shouldReduceMotion, preset]);
+  
+  const containerVariants = variants?.container || motionAwareVariants.container;
+  const itemVariants = variants?.item || motionAwareVariants.item;
 
   const MotionComponent = React.useMemo(
     () => motion.create(as as string) as any,

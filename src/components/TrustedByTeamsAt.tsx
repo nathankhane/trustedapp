@@ -31,6 +31,7 @@ export default function TrustedByTeamsAt() {
                                 alt="Bild AI"
                                 width={140}
                                 height={48}
+                                priority
                                 className="h-12 w-auto opacity-90 hover:opacity-100 transition-all duration-300 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                             />
                         </motion.div>
@@ -46,6 +47,7 @@ export default function TrustedByTeamsAt() {
                                 alt="AirBills"
                                 width={140}
                                 height={48}
+                                priority
                                 className="h-12 w-auto opacity-90 hover:opacity-100 transition-all duration-300 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                             />
                         </motion.div>
@@ -61,6 +63,7 @@ export default function TrustedByTeamsAt() {
                                 alt="BillTrim Inc"
                                 width={140}
                                 height={48}
+                                priority
                                 className="h-12 w-auto opacity-90 hover:opacity-100 transition-all duration-300 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                             />
                         </motion.div>
@@ -76,6 +79,7 @@ export default function TrustedByTeamsAt() {
                                 alt="ClickUp"
                                 width={140}
                                 height={48}
+                                priority
                                 className="h-12 w-auto opacity-90 hover:opacity-100 transition-all duration-300 hover:scale-105 dark:mix-blend-screen dark:opacity-80"
                             />
                         </motion.div>

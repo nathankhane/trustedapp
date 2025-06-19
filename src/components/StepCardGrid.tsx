@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { StepCard } from "@/components/StepCard";
 import { cn } from "@/lib/utils";
 import {
@@ -98,6 +98,7 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
     steps = defaultSteps,
     className,
 }) => {
+    const shouldReduceMotion = useReducedMotion() ?? false;
     const expertsSteps = steps.experts || defaultSteps.experts;
     const providersSteps = steps.providers || defaultSteps.providers;
 
@@ -106,9 +107,9 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
             {stepList.map((step, index) => (
                 <motion.div
                     key={`${roleType}-${index}`}
-                    initial={{ opacity: 0, x: roleType === "experts" ? -20 : 20 }}
+                    initial={{ opacity: 0, x: shouldReduceMotion ? 0 : (roleType === "experts" ? -20 : 20) }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    transition={{ duration: shouldReduceMotion ? 0.1 : 0.6, delay: shouldReduceMotion ? 0 : index * 0.1 }}
                     viewport={{ once: true }}
                 >
                     <StepCard
@@ -129,9 +130,9 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
             <section className={cn("py-16 lg:py-24", className)} id="experts-flow">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
                         viewport={{ once: true }}
                         className="text-center mb-12"
                     >
@@ -153,9 +154,9 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
             <section className={cn("py-16 lg:py-24", className)} id="providers-flow">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
                         viewport={{ once: true }}
                         className="text-center mb-12"
                     >
@@ -188,9 +189,9 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
                 {/* Desktop Dual Columns */}
                 <div className="hidden lg:block">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
@@ -208,9 +209,9 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
                         {/* Experts Column */}
                         <div id="experts-flow">
                             <motion.div
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: shouldReduceMotion ? 0 : -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6 }}
+                                transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
                                 viewport={{ once: true }}
                                 className="text-center mb-12"
                             >
@@ -227,9 +228,9 @@ export const StepCardGrid: React.FC<StepCardGridProps> = ({
                         {/* Providers Column */}
                         <div id="providers-flow">
                             <motion.div
-                                initial={{ opacity: 0, x: 20 }}
+                                initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6 }}
+                                transition={{ duration: shouldReduceMotion ? 0.1 : 0.6 }}
                                 viewport={{ once: true }}
                                 className="text-center mb-12"
                             >

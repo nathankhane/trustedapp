@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { HeroHeader } from "@/components/layout/header";
 import FooterSection from "@/components/layout/footer";
 import { SimpleToggle } from "@/components/ui/mode-toggle";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -120,15 +121,21 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
       >
         <ThemeProvider>
-          <HeroHeader />
+          <ErrorBoundary>
+            <HeroHeader />
+          </ErrorBoundary>
           <div className="min-h-screen flex flex-col">
             <main className="flex-1 pt-[72px] sm:pt-16 lg:pt-14">{children}</main>
-            <FooterSection />
+            <ErrorBoundary>
+              <FooterSection />
+            </ErrorBoundary>
           </div>
           {/* Theme toggle positioned as floating button */}
-          <div className="fixed bottom-6 right-6 z-50">
-            <SimpleToggle />
-          </div>
+          <ErrorBoundary>
+            <div className="fixed bottom-6 right-6 z-50">
+              <SimpleToggle />
+            </div>
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>
