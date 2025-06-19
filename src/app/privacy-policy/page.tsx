@@ -336,7 +336,7 @@ export default function PrivacyPolicyPage() {
                                     </li>
                                 </ul>
                                 <p className="text-card-foreground">
-                                    Manage preferences anytime via "Cookie Settings" in the footer.
+                                    Manage preferences anytime via &ldquo;Cookie Settings&rdquo; in the footer.
                                 </p>
                             </div>
                         </section>
