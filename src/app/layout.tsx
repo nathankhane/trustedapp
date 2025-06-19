@@ -87,9 +87,9 @@ export const metadata: Metadata = {
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
-    'theme-color': '#7F5BFF',
-    'msapplication-TileColor': '#7F5BFF',
-    'msapplication-navbutton-color': '#7F5BFF',
+    'theme-color': '#FFFFFF',
+    'msapplication-TileColor': '#FFFFFF',
+    'msapplication-navbutton-color': '#FFFFFF',
     'apple-mobile-web-app-title': 'TrustedApp',
   },
 };
