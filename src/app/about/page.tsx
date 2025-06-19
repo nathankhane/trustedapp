@@ -6,7 +6,7 @@ export default function About() {
         <main className="mx-auto max-w-5xl px-4 lg:px-6 py-16 space-y-24 leading-relaxed">
             {/* HERO */}
             <section className="text-center space-y-6">
-                <h1 className="text-4xl font-semibold tracking-tight">
+                <h1 className="text-4xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
                     Instant product truth, powered by real users.
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-xl mx-auto">

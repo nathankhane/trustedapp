@@ -61,7 +61,13 @@ export default function FooterSection() {
             </svg>
           </Link>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 flex gap-6 text-center">
+          <Link
+            href="/terms"
+            className="text-sm text-muted-foreground hover:text-foreground underline transition-colors"
+          >
+            Terms & Conditions
+          </Link>
           <Link
             href="/privacy-policy"
             className="text-sm text-muted-foreground hover:text-foreground underline transition-colors"
@@ -70,7 +76,7 @@ export default function FooterSection() {
           </Link>
         </div>
         <span className="text-muted-foreground text-sm">
-          © {new Date().getFullYear()} TrustedApp, All rights reserved
+          © {new Date().getFullYear()} TrustedApp (part of Only Founders, Inc). All rights reserved
         </span>
       </div>
     </footer>
