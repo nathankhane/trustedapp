@@ -78,7 +78,7 @@ const COPIES: Record<
 export default function FeaturesSection() {
   const searchParams = useSearchParams();
   const persona: Persona =
-    searchParams.get("persona") === "expert" ? "expert" : "provider"; // default provider
+    searchParams.get("persona") === "provider" ? "provider" : "expert"; // default expert
 
   const shouldReduceMotion = useReducedMotion() ?? false;
 

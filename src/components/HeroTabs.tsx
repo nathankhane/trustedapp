@@ -106,7 +106,7 @@ export default function HeroTabs() {
     const shouldReduceMotion = useReducedMotion() ?? false;
 
     const [active, setActive] = useState<'expert' | 'provider'>(
-        (search.get('persona') as 'expert' | 'provider') ?? 'provider'
+        (search.get('persona') as 'expert' | 'provider') ?? 'expert'
     );
     const [isScrolled, setIsScrolled] = useState(false);
 

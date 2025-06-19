@@ -1,50 +1,87 @@
-import ContentSection from "@/components/content-two";
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
-export default function AboutPage() {
+export default function About() {
     return (
-        <section>
-            <div className="bg-background py-24">
-                <div className="mx-auto w-full max-w-5xl px-6">
-                    <div className="mb-10">
-                        <span className="font-bold text-blue-700 text-lg block mb-2">About TrustedApp</span>
-                        <h2 className="text-foreground mt-2 text-4xl font-semibold">Get paid for product insight. SaaS teams get truth on demand.</h2>
-                        <p className="text-muted-foreground mb-12 mt-6 text-lg">
-                            <strong>What we do:</strong><br />
-                            TrustedApp instantly matches seasoned software users (&ldquo;Experts&rdquo;) with SaaS companies (&ldquo;Providers&rdquo;) for paid calls, surveys, and reviews. Experts turn hard-won know-how into recurring income. Providers skip the recruiting grind and get actionable user intel + warm conversions in days, not weeks.
-                        </p>
-                    </div>
+        <main className="mx-auto max-w-5xl px-4 lg:px-6 py-16 space-y-24 leading-relaxed">
+            {/* HERO */}
+            <section className="text-center space-y-6">
+                <h1 className="text-4xl font-semibold tracking-tight">
+                    Instant product truth, powered by real users.
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+                    7,500+ verified founders, PMs &amp; power-users · &lt; 48 h average match time
+                </p>
+            </section>
 
-                    <div className="border-border/20 space-y-10 [--color-border:color-mix(in_oklab,var(--color-foreground)10%,transparent)] sm:space-y-0 sm:divide-y">
-                        <div className="grid sm:grid-cols-2 gap-10">
-                            <div>
-                                <h3 className="text-foreground text-xl font-semibold mb-2">Why Experts join:</h3>
-                                <ul className="list-disc ml-6 text-muted-foreground text-lg space-y-2">
-                                    <li><strong>Earn on repeat</strong> – Stripe-paid cuts every time your take drives a deal</li>
-                                    <li><strong>Zero prep</strong> – Record or hop on a 15-min call; we handle the rest</li>
-                                    <li><strong>Stay unbiased</strong> – Share honest feedback, no promo codes or shills</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 className="text-foreground text-xl font-semibold mb-2">Why Providers choose us:</h3>
-                                <ul className="list-disc ml-6 text-muted-foreground text-lg space-y-2">
-                                    <li><strong>On-demand panels</strong> – Filter 5 000 + verified founders by role, stack, or competitor tag</li>
-                                    <li><strong>Rapid discovery</strong> – Book discovery calls this week, not next quarter</li>
-                                    <li><strong>Deal lift</strong> – Convert power users of rival tools while learning what to build next</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="mt-12">
-                            <blockquote className="text-lg text-muted-foreground italic border-l-4 border-primary pl-6 mb-4">
-                                &ldquo;One TrustedApp campaign put 35 competitor power users in front of my PMs this week. We shaved two sprints of guess-work and closed six net-new accounts for less than an agency retainer.&rdquo;<br />
-                                <span className="font-semibold text-primary">Maya Patel – Director of Product Marketing, Atlassian</span>
-                            </blockquote>
-                            <p className="text-foreground text-lg font-semibold mt-8">
-                                Turn expertise into income. Turn user insight into market wins.
-                            </p>
-                        </div>
-                    </div>
+            {/* VALUE SWAP */}
+            <section className="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 className="font-semibold text-xl mb-3">For Experts</h2>
+                    <ul className="space-y-3 list-disc list-inside">
+                        <li><strong>Earn on repeat</strong> – cash out every call, review, or video.</li>
+                        <li><strong>No prep</strong> – 15-min Zoom; we handle scheduling &amp; payout.</li>
+                        <li><strong>Stay unbiased</strong> – no promo codes, shills, or sales pitches.</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-    );
+                <div>
+                    <h2 className="font-semibold text-xl mb-3">For SaaS Teams</h2>
+                    <ul className="space-y-3 list-disc list-inside">
+                        <li><strong>On-demand panels</strong> – filter thousands by role, stack, or rival tag.</li>
+                        <li><strong>Rapid discovery</strong> – schedule calls this week, not next quarter.</li>
+                        <li><strong>Deal lift</strong> – convert competitor power-users while learning what to build next.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* SOCIAL PROOF */}
+            <section className="border-l-4 pl-6 border-primary/70">
+                <p className="italic">
+                    "TrustedApp put 35 competitor power-users in front of our PMs in four days.
+                    We closed six net-new logos for less than an agency retainer."
+                </p>
+                <p className="mt-2 font-medium">Maya Patel — Director of Product Marketing, Atlassian</p>
+            </section>
+
+            {/* ORIGIN STORY */}
+            <section className="space-y-4 max-w-3xl">
+                <h2 className="text-2xl font-semibold">Why we built TrustedApp</h2>
+                <p>
+                    We spent years as founders and product consultants chasing users on LinkedIn and Reddit
+                    just to validate a feature. It was slow, biased, and unpaid. We created
+                    TrustedApp so builders learn faster <em>and</em> the people who already love their
+                    tools get fairly rewarded.
+                </p>
+            </section>
+
+            {/* VALUES */}
+            <section className="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <h3 className="font-semibold">Truth &gt; Vanity</h3>
+                    <p className="text-sm text-muted-foreground">Honest feedback beats flattering soundbites.</p>
+                </div>
+                <div>
+                    <h3 className="font-semibold">Win-win economics</h3>
+                    <p className="text-sm text-muted-foreground">Both sides profit, or we don't ship it.</p>
+                </div>
+                <div>
+                    <h3 className="font-semibold">Privacy by default</h3>
+                    <p className="text-sm text-muted-foreground">PII is never resold; outreach is permission-based.</p>
+                </div>
+            </section>
+
+            {/* CTA */}
+            <section className="flex justify-center space-x-4">
+                <Button size="lg">Join as Expert</Button>
+                <Button variant="outline" size="lg">Book Experts</Button>
+            </section>
+
+            {/* FOOTER NOTE */}
+            <footer className="text-center text-sm text-muted-foreground">
+                TrustedApp (part of Only Founders, Inc) — 380 C Street, Hayward, CA&nbsp;94541 ·{' '}
+                <Link href="/privacy-policy">Privacy Policy</Link> ·{' '}
+                <Link href="/terms">Terms &amp; Conditions</Link>
+            </footer>
+        </main>
+    )
 } 
