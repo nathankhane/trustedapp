@@ -12,6 +12,11 @@ import {
     Users,
     BarChart3,
     RefreshCw,
+    Settings,
+    CalendarCheck,
+    ListChecks,
+    CreditCard,
+    BarChart2,
     LucideIcon
 } from "lucide-react";
 import { PillToggle } from '@/components/ui/pill-toggle';
@@ -35,45 +40,55 @@ const defaultSteps = {
     experts: [
         {
             title: "Apply & Verify",
-            body: "2-minute form + LinkedIn OAuth. No pay-to-play.",
+            body: "2-min form → LinkedIn or Google OAuth.",
             icon: UserPlus,
         },
         {
-            title: "Pick Offers",
-            body: "Choose requests that fit your stack. Set your price.",
-            icon: FileText,
+            title: "Set Your Terms",
+            body: "Choose formats, rates & availability.",
+            icon: Settings,
         },
         {
-            title: "Record Insight",
-            body: "Video, survey or 30-min call—it's your pick.",
+            title: "Accept & Schedule",
+            body: "Review incoming requests, lock in a time.",
+            icon: CalendarCheck,
+        },
+        {
+            title: "Share Your Insight",
+            body: "Live call, async video, or quick survey—your pick.",
             icon: Video,
         },
         {
-            title: "Get Paid on Repeat",
-            body: "Earn every time your content is reused. Stripe payouts weekly.",
+            title: "Earn on Repeat",
+            body: "Stripe payouts + royalties when content is reused.",
             icon: DollarSign,
         },
     ],
     providers: [
         {
-            title: "Post Request",
-            body: "Describe who you need & why.",
+            title: "Post a Brief",
+            body: "Describe who you need & why in 60 s.",
             icon: Edit3,
         },
         {
-            title: "Match & Meet",
-            body: "We surface vetted users—book in 24 hrs.",
+            title: "Instant Matchboard",
+            body: "We surface best-fit users—ranked by usage & role.",
             icon: Users,
         },
         {
-            title: "Actionable Report",
-            body: "Auto-transcribed, AI-summarised.",
-            icon: BarChart3,
+            title: "Pick the Format",
+            body: "Call, survey, UX walk-through, panel, or workshop.",
+            icon: ListChecks,
         },
         {
-            title: "Repurpose Freely",
-            body: "Publish snippets, attribute revenue back to the expert.",
-            icon: RefreshCw,
+            title: "Secure & Schedule",
+            body: "Pay via Stripe escrow, invites auto-send.",
+            icon: CreditCard,
+        },
+        {
+            title: "Get Actionable Results",
+            body: "AI transcript & highlight reel ready to share.",
+            icon: BarChart2,
         },
     ],
 };

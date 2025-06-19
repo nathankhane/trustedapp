@@ -174,8 +174,32 @@
     animation-fill-mode: both;
   }
 
-  /* Mobile-optimized interactions */
+  /* Improved touch targets for mobile */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* iOS Safari optimizations */
+  @supports (-webkit-touch-callout: none) {
+    .touch-action-manipulation {
+      touch-action: manipulation;
+    }
+
+    .no-select {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .tap-highlight-none {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  /* Premium mobile interactions */
   @media (max-width: 768px) {
+
+    /* Reduce hover effects to tap-only */
     .hover\:scale-105:hover {
       transform: scale(1.02);
     }
@@ -183,12 +207,34 @@
     .hover\:shadow-xl:hover {
       box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
     }
-  }
 
-  /* Improved touch targets for mobile */
-  .touch-target {
-    min-height: 44px;
-    min-width: 44px;
+    /* Optimize touch scrolling */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent iOS zoom on input focus */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+
+    /* Improve button touch response */
+    button,
+    [role="button"],
+    [role="tab"] {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(127, 91, 255, 0.1);
+    }
+
+    /* Prevent double-tap zoom on specific elements */
+    .no-zoom {
+      touch-action: manipulation;
+    }
   }
 
   /* Smooth transitions */

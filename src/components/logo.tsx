@@ -1,5 +1,6 @@
 // This file should be deleted if src/components/logo.tsx exists and is correct.
 
+import Image from "next/image";
 import { cn } from "../lib/utils";
 
 interface LogoProps {
@@ -8,14 +9,20 @@ interface LogoProps {
 
 export const Logo = ({ className }: LogoProps) => (
   <div className={className}>
-    <img
+    <Image
       src="/logos/TrustedApp_Logo-removebg-preview.png"
       alt="TrustedApp Logo"
+      width={120}
+      height={32}
+      priority
       className="h-8 w-auto dark:hidden"
     />
-    <img
+    <Image
       src="/logos/TrustedApp_Logo_white.png"
       alt="TrustedApp Logo"
+      width={120}
+      height={32}
+      priority
       className="h-8 w-auto hidden dark:block"
     />
   </div>
@@ -23,14 +30,20 @@ export const Logo = ({ className }: LogoProps) => (
 
 export const LogoIcon = ({ className }: LogoProps) => (
   <div className={className}>
-    <img
+    <Image
       src="/logos/TrustedApp_Logo-removebg-preview.png"
       alt="TrustedApp Logo"
+      width={96}
+      height={24}
+      priority
       className="h-6 w-auto dark:hidden"
     />
-    <img
+    <Image
       src="/logos/TrustedApp_Logo_white.png"
       alt="TrustedApp Logo"
+      width={96}
+      height={24}
+      priority
       className="h-6 w-auto hidden dark:block"
     />
   </div>

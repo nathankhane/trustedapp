@@ -15,7 +15,7 @@ const personas = {
     expert: {
         h1: 'Turn expertise into recurring revenue.',
         sub: 'TrustedApp matches you with providers who\'ll pay for your product feedback, content, and discovery calls.',
-        cta: { label: 'Sign up as Expert', href: '/experts/onboard' },
+        cta: { label: 'Sign up as Expert', href: 'https://calendly.com/trustedapp/30min' },
         why: [
             {
                 title: 'Turn knowledge into income',
@@ -31,24 +31,24 @@ const personas = {
             },
         ],
         howItWorks: {
-            subtitle: 'Apply once → Pick offers → Earn on repeat',
+            subtitle: 'Apply once → Accept gigs → Cash in on repeat',
             steps: [
                 {
                     icon: UserCheck,
-                    title: 'Apply & Get Approved',
-                    desc: 'Tell us what tools you live in. Our team verifies you within 24 hrs—no endless forms.',
+                    title: 'Apply & Get Verified',
+                    desc: 'Two‑minute form + LinkedIn/Google. We green‑light you in under 24 h—no paperwork parade.',
                     cta: { label: 'Start Application', href: '/experts/apply' }
                 },
                 {
                     icon: MessageSquare,
-                    title: 'Pick Offers & Share Insight',
-                    desc: 'Browse live requests from SaaS teams, choose the ones that excite you, and drop your best advice.',
+                    title: 'Choose Gigs, Share Insight',
+                    desc: 'Browse live briefs, accept what fits, and drop your know‑how via call, survey, or video.',
                     cta: { label: 'View Offers', href: '/experts/offers' }
                 },
                 {
                     icon: DollarSign,
-                    title: 'Receive Recurring Payouts',
-                    desc: 'Stripe handles the cash, you collect it. Every follow-up session or content reuse means more earnings.',
+                    title: 'Instant + Recurring Payouts',
+                    desc: 'Stripe drops cash within 48 h—then pays royalties any time your content gets reused.',
                     cta: { label: 'Learn More', href: '/experts/payouts' }
                 }
             ]
@@ -57,7 +57,7 @@ const personas = {
     provider: {
         h1: 'Book insights from users who live in your product.',
         sub: 'Instantly schedule calls, surveys, and content sessions with vetted power-users — zero recruiting overhead.',
-        cta: { label: 'Start as Provider', href: '/providers/onboard' },
+        cta: { label: 'Start as Provider', href: 'https://calendly.com/trustedapp/30min' },
         why: [
             {
                 title: 'Ship the right features—fast',
@@ -73,24 +73,24 @@ const personas = {
             },
         ],
         howItWorks: {
-            subtitle: 'Post a request → Meet your match → Own every deliverable',
+            subtitle: 'Post a brief → Meet your match → Own every deliverable',
             steps: [
                 {
                     icon: FileText,
-                    title: 'Post a Request',
-                    desc: 'Tell us what insight you need. We\'ll fine-tune the brief so experts know exactly how to help.',
+                    title: 'Post a Brief',
+                    desc: 'Tell us the question, we polish the brief, so experts know exactly how to deliver.',
                     cta: { label: 'Start Request', href: '/providers/request' }
                 },
                 {
                     icon: Users,
                     title: 'Match & Meet',
-                    desc: 'Within 24 hrs we pair you with power-users who fit your use case. Book a call or async session in two clicks.',
+                    desc: 'Get a vetted shortlist in minutes, then book a call or async video in two clicks.',
                     cta: { label: 'See Experts', href: '/providers/experts' }
                 },
                 {
                     icon: TrendingUp,
                     title: 'Own the Content & Data',
-                    desc: 'Recordings, notes, and actionable recommendations are yours to keep and reuse—forever.',
+                    desc: 'Recordings, notes, and AI summaries are yours to slice, share, and reuse—forever.',
                     cta: { label: 'View Pricing', href: '/providers/pricing' }
                 }
             ]

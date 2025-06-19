@@ -2,50 +2,77 @@
 
 import { useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { HandCoins, UsersRound, Sparkles } from "lucide-react";
+import { DollarSign, Users2, Sparkles, BrainCircuit } from "lucide-react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ReactElement, ReactNode, useRef } from "react";
 
 type Persona = "provider" | "expert";
 
+// Hero copy data
+const heroCopy = {
+  expert: {
+    heading: "Monetize your product insight—instantly.",
+    sub: "TrustedApp pipes paid calls and surveys from the SaaS tools you already use. Cash hits Stripe right after you share."
+  },
+  provider: {
+    heading: "VC‑backed founders. Game‑changing SaaS. Meet in minutes.",
+    sub: "Instantly tap the power‑users who already swear by your product—and turn their insight into growth."
+  }
+};
+
+// Tiles data
+const tiles = {
+  expert: [
+    {
+      icon: <DollarSign className="size-6" aria-hidden />,
+      title: "Instant Payouts",
+      copy: "Record a call, video, or survey—Stripe cash lands within minutes."
+    },
+    {
+      icon: <Users2 className="size-6" aria-hidden />,
+      title: "Cred‑Checked Network",
+      copy: "Work directly with top SaaS teams—no tire‑kickers, only real builders."
+    },
+    {
+      icon: <Sparkles className="size-6" aria-hidden />,
+      title: "Smart Gig Feed",
+      copy: "Auto‑matched to offers that fit your stack & stage—no outreach required."
+    }
+  ],
+  provider: [
+    {
+      icon: <Sparkles className="size-6" aria-hidden />,
+      title: "One‑Click Scheduling",
+      copy: "Book calls, surveys, or UX walkthroughs in 60 seconds—pay only when delivered."
+    },
+    {
+      icon: <Users2 className="size-6" aria-hidden />,
+      title: "Founders, Vetted & Ready",
+      copy: "5 000+ funded operators who live in your category daily, eager to share real‑world feedback."
+    },
+    {
+      icon: <BrainCircuit className="size-6" aria-hidden />,
+      title: "AI‑Driven Match",
+      copy: "Our LLM pairs every brief with the best‑fit users—so every session lands actionable insight."
+    }
+  ]
+};
+
+// Legacy COPIES constant for compatibility (deprecated)
 const COPIES: Record<
   Persona,
   { title: string; description: string; icon: ReactElement }[]
 > = {
-  provider: [
-    {
-      title: "Book Insights Fast",
-      description: "Calls, surveys, or reviews—schedule in clicks, pay on delivery.",
-      icon: <Sparkles className="size-6" aria-hidden />,
-    },
-    {
-      title: "Elite Founder Panel",
-      description: "5,000+ VC-backed operators ready to give product-tested feedback.",
-      icon: <UsersRound className="size-6" aria-hidden />,
-    },
-    {
-      title: "AI Precision Match",
-      description: "LLM routes briefs to ideal users for sharper decisions.",
-      icon: <HandCoins className="size-6" aria-hidden />,
-    },
-  ],
-  expert: [
-    {
-      title: "Instant Payouts",
-      description: "Share a video, call, or survey—cash hits Stripe in minutes.",
-      icon: <HandCoins className="size-6" aria-hidden />,
-    },
-    {
-      title: "Cred-Checked Network",
-      description: "Collaborate with top founders & operators, no tire-kickers.",
-      icon: <UsersRound className="size-6" aria-hidden />,
-    },
-    {
-      title: "Smart Gig Feed",
-      description: "Offers auto-match to your stack & stage—no outreach needed.",
-      icon: <Sparkles className="size-6" aria-hidden />,
-    },
-  ],
+  provider: tiles.provider.map(tile => ({
+    title: tile.title,
+    description: tile.copy,
+    icon: tile.icon
+  })),
+  expert: tiles.expert.map(tile => ({
+    title: tile.title,
+    description: tile.copy,
+    icon: tile.icon
+  }))
 };
 
 export default function FeaturesSection() {
@@ -133,7 +160,7 @@ export default function FeaturesSection() {
               willChange: "background-position"
             }}
           >
-            Partnering VC-backed founders with the SaaS they can&apos;t live without.
+            {heroCopy[persona].heading}
           </motion.h2>
           <motion.p
             className="mt-6 text-xl text-muted-foreground"
@@ -142,7 +169,7 @@ export default function FeaturesSection() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: shouldReduceMotion ? 0.1 : 0.8, delay: shouldReduceMotion ? 0 : 0.2 }}
           >
-            SaaS companies, reward the founders who love you.
+            {heroCopy[persona].sub}
           </motion.p>
         </motion.div>
 

@@ -63,37 +63,55 @@ describe('StepCardGrid', () => {
             render(<StepCardGrid role="both" />);
 
             // Should show tab buttons
-            expect(screen.getByRole('button', { name: /for experts/i })).toBeInTheDocument();
-            expect(screen.getByRole('button', { name: /for providers/i })).toBeInTheDocument();
+            expect(screen.getByRole('tab', { name: /for experts/i })).toBeInTheDocument();
+            expect(screen.getByRole('tab', { name: /for providers/i })).toBeInTheDocument();
         });
 
         it('switches tabs correctly', async () => {
             render(<StepCardGrid role="both" />);
 
-            const expertsTab = screen.getByRole('button', { name: /for experts/i });
-            const providersTab = screen.getByRole('button', { name: /for providers/i });
+            const expertsTab = screen.getByRole('tab', { name: /for experts/i });
+            const providersTab = screen.getByRole('tab', { name: /for providers/i });
 
             // Initially experts tab should be active
-            expect(expertsTab).toHaveAttribute('aria-pressed', 'true');
-            expect(providersTab).toHaveAttribute('aria-pressed', 'false');
+            expect(expertsTab).toHaveAttribute('aria-selected', 'true');
+            expect(providersTab).toHaveAttribute('aria-selected', 'false');
 
             // Click providers tab
             fireEvent.click(providersTab);
 
             await waitFor(() => {
-                expect(providersTab).toHaveAttribute('aria-pressed', 'true');
-                expect(expertsTab).toHaveAttribute('aria-pressed', 'false');
+                expect(providersTab).toHaveAttribute('aria-selected', 'true');
+                expect(expertsTab).toHaveAttribute('aria-selected', 'false');
             });
         });
 
         it('has correct aria attributes for accessibility', () => {
             render(<StepCardGrid role="both" />);
 
-            const expertsTab = screen.getByRole('button', { name: /for experts/i });
-            const providersTab = screen.getByRole('button', { name: /for providers/i });
+            const expertsTab = screen.getByRole('tab', { name: /for experts/i });
+            const providersTab = screen.getByRole('tab', { name: /for providers/i });
 
-            expect(expertsTab).toHaveAttribute('aria-pressed');
-            expect(providersTab).toHaveAttribute('aria-pressed');
+            expect(expertsTab).toHaveAttribute('aria-selected');
+            expect(providersTab).toHaveAttribute('aria-selected');
+            expect(expertsTab).toHaveAttribute('role', 'tab');
+            expect(providersTab).toHaveAttribute('role', 'tab');
+        });
+
+        it('displays step cards for active tab', () => {
+            render(<StepCardGrid role="both" />);
+
+            // Should see expert steps initially
+            expect(screen.getByText('Apply & Verify')).toBeInTheDocument();
+            expect(screen.getByText('Set Your Terms')).toBeInTheDocument();
+
+            // Switch to providers
+            const providersTab = screen.getByRole('tab', { name: /for providers/i });
+            fireEvent.click(providersTab);
+
+            // Should see provider steps
+            expect(screen.getByText('Post a Brief')).toBeInTheDocument();
+            expect(screen.getByText('Instant Matchboard')).toBeInTheDocument();
         });
     });
 

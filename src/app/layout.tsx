@@ -20,6 +20,13 @@ export const metadata: Metadata = {
   title: "TrustedApp - Turn expertise into income",
   description: "Turn expertise into income. Turn user insight into market wins.",
   metadataBase: new URL('https://trustedapp-demo.vercel.app'),
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: 'cover',
+  },
   openGraph: {
     title: "TrustedApp - Turn expertise into income",
     description: "Turn expertise into income. Turn user insight into market wins.",
@@ -65,6 +72,25 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'TrustedApp',
+  },
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+    'theme-color': '#7F5BFF',
+    'msapplication-TileColor': '#7F5BFF',
+    'msapplication-navbutton-color': '#7F5BFF',
+    'apple-mobile-web-app-title': 'TrustedApp',
   },
 };
 

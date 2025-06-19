@@ -4,42 +4,67 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const faqItems = [
+const expertFaq = [
   {
-    question: "What exactly is TrustedApp now?",
-    answer:
-      "A closed marketplace where Tier-1, VC-backed founders sell razor-sharp product feedback to SaaS teams that need proof before they ship or spend. No coupon codes, no affiliate fluff—just paid insights.",
+    q: 'What is TrustedApp?',
+    a: 'A marketplace that pays you—founders, operators, and power-users—for live product feedback. Providers book you; we escrow the cash until the session is done.',
   },
   {
-    question: "How do founders get paid?",
-    answer:
-      "Accept a brief → record a 2-min review, short survey, or 15-min call → vendor clicks Approve → Stripe drops cash into your account instantly. Payouts are automatic and recurring for any rev-share deals you spark.",
+    q: 'How do I earn money?',
+    a: 'Claim a brief → deliver the session → Provider hits "Approve" → Stripe auto-pays you. Opt-in content reuse? Earn recurring rev-share on every deal your testimonial closes.',
   },
   {
-    question: "What do SaaS companies receive?",
-    answer:
-      "Verified founder opinions you can quote in board decks: usability videos, survey data, live discovery calls, and testimonial clips—all matched to your ICP by our LLM so the noise stays out of your roadmap.",
+    q: 'Who can sign up as an Expert?',
+    a: 'Verified operators who actively use the software category they critique. We check role, tech stack, and a sample review to keep quality high.',
   },
   {
-    question: "Who can join as a founder?",
-    answer:
-      "Operators who've raised from top-tier VCs and actively use the tools they're reviewing. We verify funding, role, and tech stack; if you're not hands-on with the product category, you're out.",
+    q: 'What session types can I offer?',
+    a: 'Discovery calls, deep-dive interviews, written pulse surveys, UI/UX walk-through videos, competitive tear-downs, panel appearances, advisory workshops, or custom formats.',
   },
   {
-    question: "How is TrustedApp different from AppSumo or FounderPass?",
-    answer:
-      "Those sites sell discounted licenses. We sell high-signal feedback loops. Vendors pay you for truth bombs; you don't pay them for lifetime deals. Think user-research turbocharged, not bargain-bin SaaS.",
+    q: 'Does it cost anything?',
+    a: 'No. Joining is free and TrustedApp only takes 10 % after the Provider approves your work.',
   },
   {
-    question: "Is there a cost to join?",
-    answer:
-      "Founders: zero. Vendors: choose a monthly plan or buy credits à la carte—cancel anytime. TrustedApp only takes a 10% cut after a vendor approves the work, so everyone's incentives stay aligned.",
+    q: 'Can I also be a Provider?',
+    a: 'Yes—one account, dual roles. Many Experts use TrustedApp for competitor insight while monetising their own expertise.',
+  },
+];
+
+const providerFaq = [
+  {
+    q: 'What is TrustedApp?',
+    a: 'A two-sided marketplace where SaaS teams instantly book vetted users for insight sessions—no recruiting, no scheduling ping-pong.',
+  },
+  {
+    q: 'How does booking work?',
+    a: 'Post a brief, pick a matched Expert, select a session type, and pay via Stripe escrow. Expert accepts, you meet, then approve. Money moves only after delivery.',
+  },
+  {
+    q: 'What insight formats are available?',
+    a: '15-min discovery calls, 30-min deep dives, async surveys, UI/UX screen-shares, testimonial clips, expert panels, advisory workshops, beta-test cohorts, and more on request.',
+  },
+  {
+    q: 'What if an Expert no-shows?',
+    a: 'You get an immediate refund. If you no-show, the Expert receives a 50 % courtesy fee.',
+  },
+  {
+    q: 'How is this different from AppSumo or generic panels?',
+    a: 'We sell decision-grade feedback, not discounted licenses. Vendors pay for truth bombs from real users already in your ICP—matched by LLM, verified by humans.',
+  },
+  {
+    q: 'Pricing?',
+    a: 'Buy credits à la carte or pick a monthly plan—cancel anytime. No platform fee until you approve the work.',
   },
 ];
 
 export default function Faqs() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<'expert' | 'provider'>('expert');
+
+  const faqItems = activeTab === 'expert' ? expertFaq : providerFaq;
 
   return (
     <section className="py-8 sm:py-12 lg:py-16">
@@ -52,11 +77,37 @@ export default function Faqs() {
             Discover quick and comprehensive answers to common questions about our platform, services, and features.
           </p>
         </div>
+
+        {/* Tabs */}
+        <div className="flex justify-center mb-8 mt-8">
+          <div className="inline-flex rounded-full bg-gray-100 dark:bg-gray-800 p-1">
+            {(['expert', 'provider'] as const).map((tab) => (
+              <button
+                key={tab}
+                onClick={() => {
+                  setActiveTab(tab);
+                  setOpenIndex(null); // Reset open accordion when switching tabs
+                }}
+                className={cn(
+                  "px-4 sm:px-6 py-2 text-sm sm:text-base font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+                  activeTab === tab
+                    ? 'bg-white dark:bg-gray-900 shadow-sm text-gray-900 dark:text-white'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                )}
+                aria-selected={activeTab === tab}
+                role="tab"
+              >
+                {tab === 'provider' ? 'Provider' : 'Expert'}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="mx-auto mt-8 max-w-xl">
           <div className="space-y-6">
             {faqItems.map((item, idx) => (
               <motion.details
-                key={item.question}
+                key={`${activeTab}-${item.q}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -72,11 +123,11 @@ export default function Faqs() {
                 <summary
                   className="cursor-pointer text-base font-semibold group-hover:text-primary transition-colors flex items-center justify-between outline-none text-card-foreground"
                 >
-                  <span>{item.question}</span>
+                  <span>{item.q}</span>
                   <ChevronRight
                     className={`ml-2 h-4 w-4 transition-all duration-300 ${openIndex === idx
-                        ? "rotate-90 text-primary"
-                        : "rotate-0 text-muted-foreground"
+                      ? "rotate-90 text-primary"
+                      : "rotate-0 text-muted-foreground"
                       }`}
                   />
                 </summary>
@@ -84,7 +135,7 @@ export default function Faqs() {
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === idx ? "opacity-100 max-h-[500px] translate-y-0" : "opacity-0 max-h-0 -translate-y-2"}`}
                 >
                   <div className="mt-2 text-sm sm:text-base text-muted-foreground animate-fade-in leading-relaxed">
-                    {item.answer}
+                    {item.a}
                   </div>
                 </div>
               </motion.details>

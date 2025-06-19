@@ -62,32 +62,42 @@ const metrics: MetricItem[] = [
 const faqData = [
   {
     question: "How do I become a verified expert?",
-    answer: "Complete our 2-minute application form and verify your LinkedIn profile. We review applications based on your experience and the tools you use professionally. No payment required to apply.",
+    answer: "Submit our 2-minute application and sign in with LinkedIn or Google. We verify your role, tenure, and tool stack—no fees required.",
     category: "experts",
   },
   {
-    question: "How much can I earn as an expert?",
-    answer: "Expert earnings vary by expertise level and engagement type. Video interviews typically pay $150-500, while surveys range from $25-100. You set your own rates and earn recurring revenue when your content gets reused.",
+    question: "What kinds of projects can I take?",
+    answer: "Discovery calls, UX walk-throughs, async video reviews, lightning surveys, panels, and workshops—toggle any format on/off anytime.",
+    category: "experts",
+  },
+  {
+    question: "How much can I earn?",
+    answer: "Typical payouts range from $150–500 for live sessions and $25–100 for surveys. You set your rates and earn 10–20 % royalties when content is reused.",
     category: "experts",
   },
   {
     question: "When do I get paid?",
-    answer: "Payments are processed weekly via Stripe. You'll receive payment within 7 days of completing an engagement, with recurring payments for content reuse distributed monthly.",
+    answer: "Funds release once you mark the session complete. Stripe deposits arrive within 2 business days; royalties are sent monthly.",
     category: "experts",
   },
   {
-    question: "How quickly can I find experts?",
-    answer: "Our average match time is 24 hours. Post your request with specific criteria, and we'll surface vetted experts who match your needs. Most providers book interviews within 1-2 business days.",
+    question: "How fast will I get matches?",
+    answer: "Post a brief and receive a shortlist in minutes. Most interviews are booked within 24 h—same-day for urgent requests.",
     category: "providers",
   },
   {
-    question: "What if I'm not satisfied with the expert insights?",
-    answer: "We offer a satisfaction guarantee. If the insights don't meet your expectations, we'll provide a full refund or match you with a different expert at no additional cost.",
+    question: "How are experts vetted?",
+    answer: "Every expert passes ID verification, LinkedIn cross-check, and tool-usage validation. Under 5 % are accepted, and sessions are continuously rated.",
     category: "providers",
   },
   {
-    question: "Can I reuse the content and insights?",
-    answer: "Yes! You own the insights and can publish snippets, create case studies, or use the data in your marketing. We handle attribution and revenue sharing with the original expert automatically.",
+    question: "What if the insights miss the mark?",
+    answer: "We offer a 100 % satisfaction promise—either a free rematch or a full refund, no hoops.",
+    category: "providers",
+  },
+  {
+    question: "Can I repurpose the content?",
+    answer: "Yes. Toggle \"Share Rights\" at checkout to use clips, quotes, or case studies. Attribution pixels and royalty payouts are automated.",
     category: "providers",
   },
 ];
