@@ -1025,6 +1025,57 @@ if (resolvedTheme === "dark") {
 
 ---
 
+## 🛠️ **Quick Troubleshooting**
+
+### **Platform Compatibility Issues**
+```bash
+# Issue: "command not found: pnpm" on team member's machine
+# Solution: Install Node.js and pnpm for their platform
+npm install -g pnpm
+
+# Issue: Tailwind Oxide binary incompatibility  
+# Solution: Clean install for current platform
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+
+# Issue: Project sharing between different OS
+# Solution: Use clean zip command (excludes node_modules)
+zip -r trustedapp-clean.zip . -x "node_modules/*" ".next/*" "*.log"
+```
+
+### **Common Development Issues**
+```bash
+# Next.js build errors
+rm -rf .next
+pnpm dev
+
+# TypeScript compilation issues
+pnpm typecheck
+
+# Linting errors
+pnpm lint --fix
+
+# Package resolution issues
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+```
+
+### **Emergency Fallbacks**
+```bash
+# If pnpm fails completely
+npm install && npm run dev
+
+# If Node.js version issues
+nvm use --lts  # or brew install node (macOS)
+
+# If all else fails
+# Download fresh copy from GitHub and follow setup guide
+```
+
+**📖 For complete team setup and troubleshooting guide, see:** `docs/team-collaboration-guide.md`
+
+---
+
 ## 🎬 **Animation System**
 
 ### **🚨 CRITICAL: Animation Performance & Tab Switching**
@@ -1920,6 +1971,13 @@ className="hover:scale-[1.02] hover:shadow-lg transition-all duration-200"
 *Last Updated: December 2024*
 
 ### **Recent Updates (Dec 2024)**
+
+#### **🤝 Team Collaboration & Platform Compatibility**
+**Resolved Tailwind Oxide cross-platform issues:**
+- Documented platform-specific binary compatibility problems with Tailwind CSS v4 Oxide engine
+- Created clean project sharing workflows (Git-based and clean zip files)
+- Added comprehensive team setup guides for macOS, Windows, and Linux
+- See `docs/team-collaboration-guide.md` for complete team onboarding and troubleshooting
 
 #### **🔗 Cal.com Integration Migration**
 **Migrated from Calendly to Cal.com booking system:**

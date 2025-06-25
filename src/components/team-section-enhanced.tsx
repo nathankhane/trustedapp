@@ -17,7 +17,7 @@ const members = [
   {
     src: "/images/founders/Dipesh advisor photo.png",
     name: "Dipesh Desai",
-    role: "Co-founder and CTO",
+    role: "Advisor & Investor",
     bio: "Dipesh oversees the technical architecture and innovation at TrustedApp, with extensive experience building scalable enterprise solutions.",
     linkedIn: "https://www.linkedin.com/in/startupking1/",
   },
