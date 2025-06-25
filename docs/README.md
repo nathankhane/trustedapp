@@ -116,6 +116,19 @@ pnpm dev
 
 Visit [http://localhost:3000](http://localhost:3000).
 
+### Team Collaboration & Setup
+
+For team members joining the project or experiencing platform compatibility issues:
+
+- **📖 Complete Setup Guide:** `docs/team-collaboration-guide.md`
+- **⚡ Quick Troubleshooting:** See troubleshooting section in `docs/TrustedApp-Dev-CheatSheet.md`
+- **🔧 Platform Issues:** Special attention needed for Tailwind CSS v4 Oxide engine cross-platform compatibility
+
+**Common Solutions:**
+- Use Git clone instead of zip files for sharing
+- Run `pnpm install` fresh on each platform (macOS/Windows/Linux)
+- See team collaboration guide for platform-specific setup instructions
+
 ### Linting & Formatting
 
 ```bash
