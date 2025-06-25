@@ -167,6 +167,14 @@ Route (app)                  Size     First Load JS
 - [x] Next.js 15 compatibility verified ✅
 - [x] All critical errors resolved ✅
 
+## Recent Updates (December 2024) ✅
+
+### Cal.com Integration Migration
+- **Booking System**: Migrated all links from Calendly to Cal.com (`https://cal.com/trustedapp/30min`)
+- **UX Streamlining**: Removed email collection forms for direct booking flow
+- **Components Updated**: PricingTable, HeroTabs, CallToAction, Footer, Solution page
+- **Documentation**: Added `docs/cal-com-integration.md` for complete reference
+
 ## Next Steps / Future Improvements
 
 ### Optional Enhancements:
@@ -178,7 +186,7 @@ Route (app)                  Size     First Load JS
 
 ---
 
-**Status**: V2 Refactor Complete ✅  
+**Status**: V2 Refactor Complete + Cal.com Integration ✅  
 **Build Status**: Successful ✅  
-**Last Updated**: Current Session  
+**Last Updated**: December 2024  
 **Next Phase**: Ready for production deployment 🚀 

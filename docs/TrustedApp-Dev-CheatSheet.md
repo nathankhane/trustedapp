@@ -1919,8 +1919,17 @@ className="hover:scale-[1.02] hover:shadow-lg transition-all duration-200"
 
 *Last Updated: December 2024*
 
-### **Recent Optimization Work (Dec 2024)**
+### **Recent Updates (Dec 2024)**
 
+#### **🔗 Cal.com Integration Migration**
+**Migrated from Calendly to Cal.com booking system:**
+- Updated all booking links from `calendly.com/trustedapp/30min` to `cal.com/trustedapp/30min`
+- Streamlined call-to-action flow by removing email collection forms
+- Updated footer Contact Us and Help links to direct booking
+- Maintained persona-based CTA text (Expert: "Request Access", Provider: "Get Started")
+- See `docs/cal-com-integration.md` for complete details
+
+#### **🧹 Codebase Optimization**
 **Major cleanup completed to streamline codebase:**
 
 #### **✅ Files Removed (13 unused/duplicate components)**
