@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginOne() {
   return (
@@ -12,14 +13,18 @@ export default function LoginOne() {
         <div className="p-6">
           <div className="text-center">
             <div className="mx-auto h-10 w-auto flex justify-center">
-              <img
+              <Image
                 src="/logos/TrustedApp_Logo-removebg-preview.png"
                 alt="TrustedApp Logo"
+                width={200}
+                height={40}
                 className="h-10 w-auto dark:hidden"
               />
-              <img
+              <Image
                 src="/logos/TrustedApp_Logo_white.png"
                 alt="TrustedApp Logo"
+                width={200}
+                height={40}
                 className="h-10 w-auto hidden dark:block"
               />
             </div>

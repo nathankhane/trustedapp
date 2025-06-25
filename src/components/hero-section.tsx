@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
@@ -132,9 +133,11 @@ export default function HeroSection() {
               {founders.map((founder, idx) => (
                 <SwiperSlide className="px-2" key={idx}>
                   <div className="bg-card/80 backdrop-blur-lg rounded-2xl h-44 sm:h-48 max-w-lg p-6 sm:p-9 flex flex-col items-center justify-center transition-all hover:scale-105 shadow-lg">
-                    <img
+                    <Image
                       src={founder.image}
                       alt={founder.name}
+                      width={64}
+                      height={64}
                       className="h-12 w-12 sm:h-16 sm:w-16 rounded-full object-cover mb-3 sm:mb-4 ring-2 ring-blue-500"
                     />
                     <p className="text-center font-medium text-base sm:text-lg text-card-foreground">
