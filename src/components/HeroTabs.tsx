@@ -15,7 +15,7 @@ const personas = {
     expert: {
         h1: 'Turn expertise into recurring revenue.',
         sub: 'TrustedApp matches you with providers who\'ll pay for your product feedback, content, and discovery calls.',
-        cta: { label: 'Sign up as Expert', href: 'https://calendly.com/trustedapp/30min' },
+        cta: { label: 'Sign up as Expert', href: 'https://cal.com/trustedapp/30min' },
         why: [
             {
                 title: 'Turn knowledge into income',
@@ -57,7 +57,7 @@ const personas = {
     provider: {
         h1: 'Book insights from users who live in your product.',
         sub: 'Instantly schedule calls, surveys, and content sessions with vetted power-users — zero recruiting overhead.',
-        cta: { label: 'Start as Provider', href: 'https://calendly.com/trustedapp/30min' },
+        cta: { label: 'Start as Provider', href: 'https://cal.com/trustedapp/30min' },
         why: [
             {
                 title: 'Ship the right features—fast',

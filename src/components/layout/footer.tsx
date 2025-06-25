@@ -7,7 +7,7 @@ export default function FooterSection() {
       <div className="max-w-3xl mx-auto flex flex-col items-center">
         <Logo className="h-8 w-auto mb-6" />
         <nav className="flex flex-wrap justify-center gap-6 mb-8 text-sm font-medium text-muted-foreground">
-          <Link href="/contactus" className="hover:text-foreground transition-colors">
+          <Link href="https://cal.com/trustedapp/30min" className="hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
             Contact Us
           </Link>
           <Link href="/solution" className="hover:text-foreground transition-colors">
@@ -19,7 +19,7 @@ export default function FooterSection() {
           <Link href="/pricing" className="hover:text-foreground transition-colors">
             Pricing
           </Link>
-          <Link href="/#faqs" className="hover:text-foreground transition-colors">
+          <Link href="https://cal.com/trustedapp/30min" className="hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
             Help
           </Link>
           <Link href="/about" className="hover:text-foreground transition-colors">

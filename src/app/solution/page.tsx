@@ -144,7 +144,7 @@ function DemoButton() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <a
-            href="https://calendly.com/trustedapp/30min"
+            href="https://cal.com/trustedapp/30min"
             target="_blank"
             rel="noopener noreferrer"
           >

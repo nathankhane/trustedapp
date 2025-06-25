@@ -33,23 +33,13 @@ export default function CallToAction() {
             ? "Invite-only access for VC-backed founders"
             : "Connect with founders who already love your product"}
         </p>
-        <form className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
-          <div className="relative w-full sm:flex-1">
-            <input
-              type="email"
-              placeholder={
-                selected === "expert" ? "Your work email" : "Company email"
-              }
-              className="w-full rounded-full border border-border bg-background text-foreground px-5 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground"
-            />
-          </div>
-          <Button
-            type="submit"
-            className="rounded-full px-6 py-3 text-base font-semibold whitespace-nowrap"
-          >
-            {selected === "expert" ? "Request Access" : "Get Started"}
-          </Button>
-        </form>
+        <div className="flex items-center justify-center">
+          <Link href="https://cal.com/trustedapp/30min" target="_blank" rel="noopener noreferrer">
+            <Button className="rounded-full px-8 py-3 text-base font-semibold">
+              {selected === "expert" ? "Request Access" : "Get Started"}
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
